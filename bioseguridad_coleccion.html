@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Bioseguridad en Atención Prehospitalaria de Emergencias</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0B1120;
+  --bg2:#111827;
+  --bg3:#1a2235;
+  --card:#161f30;
+  --border:#1e2d45;
+  --teal:#0EA5E9;
+  --teal2:#38BDF8;
+  --teal-glow:rgba(14,165,233,.15);
+  --amber:#F59E0B;
+  --amber2:#FCD34D;
+  --green:#22C55E;
+  --green2:#4ADE80;
+  --red:#EF4444;
+  --red2:#F87171;
+  --purple:#A78BFA;
+  --white:#F8FAFC;
+  --muted:#64748B;
+  --muted2:#94A3B8;
+  --font-head:'Syne',sans-serif;
+  --font-body:'DM Sans',sans-serif;
+  --r:12px;--r-sm:8px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-body);background:var(--bg);color:var(--white);min-height:100vh;overflow-x:hidden}
+
+/* ── HERO ── */
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:5rem 1.5rem 4rem;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 50% -10%,rgba(14,165,233,.2),transparent 60%),radial-gradient(ellipse 40% 40% at 80% 80%,rgba(167,139,250,.1),transparent 60%);pointer-events:none}
+.hero-dots{position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.06) 1px,transparent 1px);background-size:32px 32px;pointer-events:none}
+.collection-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(14,165,233,.1);border:1px solid rgba(14,165,233,.3);color:var(--teal2);font-size:.72rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:.4rem 1.1rem;border-radius:100px;margin-bottom:1.75rem;animation:fadeUp .5s ease both}
+.hero h1{font-family:var(--font-head);font-size:clamp(2rem,5.5vw,4rem);font-weight:800;line-height:1.05;margin-bottom:1.25rem;animation:fadeUp .5s .08s ease both;max-width:860px}
+.hero h1 .accent{color:var(--teal2)}
+.hero-desc{font-size:1rem;color:var(--muted2);max-width:560px;line-height:1.75;margin-bottom:2.5rem;animation:fadeUp .5s .16s ease both}
+.hero-pills{display:flex;gap:.6rem;flex-wrap:wrap;justify-content:center;margin-bottom:3rem;animation:fadeUp .5s .24s ease both}
+.pill{display:inline-flex;align-items:center;gap:.4rem;font-size:.75rem;font-weight:500;padding:.35rem .85rem;border-radius:100px;border:1px solid var(--border);color:var(--muted2);background:var(--bg3)}
+.pill .dot{width:6px;height:6px;border-radius:50%}
+.hero-acts{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;animation:fadeUp .5s .32s ease both}
+.act-chip{display:flex;align-items:center;gap:.6rem;background:var(--card);border:1px solid var(--border);border-radius:var(--r-sm);padding:.55rem 1rem;font-size:.78rem;font-weight:500;color:var(--muted2);cursor:pointer;transition:all .2s;text-decoration:none}
+.act-chip:hover{border-color:var(--teal);color:var(--white)}
+.act-chip .num{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.65rem;font-weight:700}
+.scroll-hint{margin-top:3rem;animation:fadeUp .5s .4s ease both,bounce 2s 1.5s ease-in-out infinite}
+.scroll-hint svg{color:var(--muted);display:block;margin:0 auto}
+
+/* ── STICKY NAV ── */
+.snav{background:rgba(11,17,32,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:200;padding:.6rem 1rem}
+.snav-inner{max-width:1050px;margin:0 auto;display:flex;align-items:center;gap:.5rem;overflow-x:auto;scrollbar-width:none}
+.snav-inner::-webkit-scrollbar{display:none}
+.snav-title{font-family:var(--font-head);font-size:.75rem;font-weight:700;color:var(--teal);white-space:nowrap;margin-right:.5rem;letter-spacing:.04em}
+.snav-btn{font-size:.72rem;font-weight:500;padding:.3rem .75rem;border-radius:100px;border:1px solid var(--border);color:var(--muted);background:transparent;white-space:nowrap;cursor:pointer;transition:all .18s}
+.snav-btn:hover,.snav-btn.active{background:var(--teal);border-color:var(--teal);color:#000}
+
+/* ── SECTION WRAPPER ── */
+.section{max-width:1050px;margin:0 auto;padding:4rem 1.5rem;scroll-margin-top:60px}
+.sec-header{margin-bottom:2.5rem}
+.sec-num{display:inline-flex;align-items:center;gap:.5rem;font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:.6rem}
+.sec-num::before{content:'';display:block;width:20px;height:1px;background:var(--teal)}
+.sec-title{font-family:var(--font-head);font-size:1.7rem;font-weight:700;color:var(--white);margin-bottom:.4rem}
+.sec-obj{font-size:.875rem;color:var(--muted2);line-height:1.65;max-width:620px;padding:.75rem 1rem;background:var(--bg3);border-left:3px solid var(--teal);border-radius:0 var(--r-sm) var(--r-sm) 0}
+.divider{border:none;border-top:1px solid var(--border);margin:0}
+
+/* ── ACTIVITY CARD ── */
+.act-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:2rem;margin-bottom:1rem}
+
+/* ── TIMER ── */
+.timer-bar{display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem;padding:.75rem 1rem;background:var(--bg3);border-radius:var(--r-sm);border:1px solid var(--border)}
+.timer-label{font-size:.75rem;color:var(--muted);font-weight:500}
+.timer-track{flex:1;height:5px;background:var(--border);border-radius:3px;overflow:hidden}
+.timer-fill{height:100%;background:var(--teal);border-radius:3px;transition:width .9s linear,background .5s}
+.timer-display{font-family:var(--font-head);font-size:1rem;font-weight:700;color:var(--teal);min-width:48px;text-align:right}
+.timer-btn{font-size:.72rem;font-weight:600;padding:.3rem .7rem;border-radius:var(--r-sm);border:1px solid var(--border);color:var(--muted);background:transparent;cursor:pointer;transition:all .2s}
+.timer-btn:hover{border-color:var(--teal);color:var(--teal)}
+
+/* ── WORDSEARCH ── */
+.ws-wrap{display:flex;gap:2rem;flex-wrap:wrap}
+.ws-grid-wrap{overflow-x:auto}
+.ws-grid{display:inline-grid;gap:2px;user-select:none;cursor:crosshair}
+.ws-cell{width:30px;height:30px;display:flex;align-items:center;justify-content:center;font-family:var(--font-head);font-size:.78rem;font-weight:600;border-radius:4px;background:var(--bg3);border:1px solid var(--border);color:var(--muted2);transition:all .1s;text-transform:uppercase}
+.ws-cell.selected{background:rgba(14,165,233,.25);border-color:var(--teal);color:var(--teal2)}
+.ws-cell.found{background:rgba(34,197,94,.2);border-color:var(--green);color:var(--green2)}
+.ws-words{flex:1;min-width:200px}
+.ws-words h4{font-size:.7rem;font-weight:700;letter-spacing:.1em;color:var(--muted);text-transform:uppercase;margin-bottom:.75rem}
+.ws-word-list{display:flex;flex-direction:column;gap:.3rem}
+.ws-word{font-size:.8rem;font-weight:500;color:var(--muted2);padding:.3rem .6rem;border-radius:var(--r-sm);border:1px solid transparent;transition:all .2s}
+.ws-word.found{color:var(--green2);text-decoration:line-through;border-color:rgba(34,197,94,.2);background:rgba(34,197,94,.08)}
+.ws-progress{display:flex;align-items:center;gap:.75rem;margin-top:1rem;font-size:.8rem;color:var(--muted2)}
+.ws-progress strong{color:var(--green2);font-family:var(--font-head);font-size:1.1rem}
+
+/* ── FILL IN BLANKS ── */
+.fib-text{font-size:.95rem;line-height:2.4;color:var(--muted2)}
+.fib-text p{margin-bottom:.75rem}
+.blank{display:inline-block;position:relative}
+.blank input{font-family:var(--font-body);font-size:.88rem;font-weight:500;background:var(--bg3);border:1.5px solid var(--border);border-radius:var(--r-sm);color:var(--white);padding:.2rem .6rem;width:160px;outline:none;transition:border-color .2s,background .2s;text-transform:uppercase}
+.blank input:focus{border-color:var(--teal);background:rgba(14,165,233,.06)}
+.blank input.correct{border-color:var(--green);background:rgba(34,197,94,.1);color:var(--green2)}
+.blank input.wrong{border-color:var(--red);background:rgba(239,68,68,.1);animation:shake .3s ease}
+.fib-bank{display:flex;flex-wrap:wrap;gap:.5rem;margin:1.5rem 0;padding:1rem;background:var(--bg3);border-radius:var(--r-sm);border:1px solid var(--border)}
+.fib-bank-label{width:100%;font-size:.68rem;font-weight:700;letter-spacing:.1em;color:var(--muted);text-transform:uppercase;margin-bottom:.4rem}
+.bank-word{font-size:.75rem;font-weight:600;padding:.3rem .7rem;border-radius:var(--r-sm);background:var(--bg);border:1px solid var(--border);color:var(--muted2);cursor:pointer;transition:all .2s;user-select:none}
+.bank-word:hover{border-color:var(--teal);color:var(--teal2)}
+.bank-word.used{opacity:.35;pointer-events:none;text-decoration:line-through}
+
+/* ── MATCH COLUMNS ── */
+.match-wrap{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+.match-col h4{font-size:.68rem;font-weight:700;letter-spacing:.1em;color:var(--muted);text-transform:uppercase;margin-bottom:.75rem;padding-left:.25rem}
+.match-items{display:flex;flex-direction:column;gap:.5rem}
+.match-item{padding:.7rem .9rem;border-radius:var(--r-sm);border:1.5px solid var(--border);background:var(--bg3);font-size:.82rem;font-weight:500;color:var(--muted2);cursor:pointer;transition:all .2s;line-height:1.4}
+.match-item:hover{border-color:var(--teal);color:var(--white)}
+.match-item.selected{border-color:var(--teal);background:rgba(14,165,233,.12);color:var(--teal2)}
+.match-item.matched{border-color:var(--green);background:rgba(34,197,94,.1);color:var(--green2);cursor:default}
+.match-item.wrong-flash{border-color:var(--red);background:rgba(239,68,68,.1);animation:shake .3s ease}
+.match-lines{position:relative}
+.match-score-row{display:flex;align-items:center;gap:1rem;margin-top:1.25rem;font-size:.82rem;color:var(--muted2)}
+.match-score-row strong{color:var(--green2);font-family:var(--font-head);font-size:1.2rem}
+
+/* ── ORDER ACTIVITY ── */
+.order-tabs{display:flex;gap:.5rem;margin-bottom:1.25rem}
+.order-tab{font-size:.78rem;font-weight:600;padding:.4rem .9rem;border-radius:100px;border:1.5px solid var(--border);color:var(--muted);background:transparent;cursor:pointer;transition:all .2s}
+.order-tab.active{background:var(--teal);border-color:var(--teal);color:#000}
+.order-list{display:flex;flex-direction:column;gap:.5rem}
+.order-item{display:flex;align-items:center;gap:.75rem;padding:.75rem .9rem;border-radius:var(--r-sm);border:1.5px solid var(--border);background:var(--bg3);cursor:grab;transition:all .18s;user-select:none}
+.order-item:hover{border-color:rgba(14,165,233,.4)}
+.order-item.dragging{opacity:.45;transform:scale(.97)}
+.order-item.drag-over{border-color:var(--teal);background:rgba(14,165,233,.1)}
+.order-item.correct{border-color:var(--green);background:rgba(34,197,94,.08);cursor:default}
+.order-item.wrong{border-color:var(--red);animation:shake .35s ease}
+.order-item.revealed{border-color:var(--border);cursor:default}
+.order-handle{display:flex;flex-direction:column;gap:2.5px;flex-shrink:0}
+.order-handle span{display:block;width:13px;height:1.5px;background:var(--muted);border-radius:1px}
+.order-n{width:26px;height:26px;border-radius:50%;background:var(--bg);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:700;color:var(--muted);flex-shrink:0}
+.order-item.correct .order-n{background:rgba(34,197,94,.15);border-color:var(--green);color:var(--green2)}
+.order-text{font-size:.85rem;font-weight:500;color:var(--muted2);flex:1;line-height:1.4}
+.order-detail{font-size:.75rem;color:var(--muted);margin-top:.2rem;display:none;line-height:1.45}
+.order-item.correct .order-detail,.order-item.revealed .order-detail{display:block}
+
+/* ── QUIZ ── */
+.quiz-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;flex-wrap:gap}
+.quiz-progress{font-size:.8rem;color:var(--muted);font-weight:500}
+.quiz-qnum{font-family:var(--font-head);font-size:.8rem;font-weight:700;color:var(--teal)}
+.quiz-timer-bar{height:4px;background:var(--border);border-radius:2px;margin-bottom:1.75rem;overflow:hidden}
+.quiz-timer-fill{height:100%;background:var(--teal);border-radius:2px;transition:width 1s linear,background .5s}
+.quiz-q{font-size:1rem;font-weight:500;color:var(--white);line-height:1.55;margin-bottom:1.5rem}
+.quiz-opts{display:flex;flex-direction:column;gap:.6rem}
+.quiz-opt{display:flex;align-items:flex-start;gap:.75rem;padding:.85rem 1rem;border-radius:var(--r-sm);border:1.5px solid var(--border);background:var(--bg3);cursor:pointer;transition:all .18s;font-size:.88rem;color:var(--muted2);line-height:1.4}
+.quiz-opt:hover:not(.disabled){border-color:rgba(14,165,233,.5);color:var(--white);background:rgba(14,165,233,.06)}
+.quiz-opt.selected{border-color:var(--teal);background:rgba(14,165,233,.1);color:var(--white)}
+.quiz-opt.correct-ans{border-color:var(--green);background:rgba(34,197,94,.1);color:var(--green2)}
+.quiz-opt.wrong-ans{border-color:var(--red);background:rgba(239,68,68,.1);color:var(--red2)}
+.quiz-opt.disabled{pointer-events:none}
+.quiz-opt-letter{width:24px;height:24px;border-radius:50%;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:.68rem;font-weight:700;flex-shrink:0;margin-top:1px}
+.quiz-explain{margin-top:1rem;padding:.75rem 1rem;background:var(--bg3);border-left:3px solid var(--teal);border-radius:0 var(--r-sm) var(--r-sm) 0;font-size:.8rem;color:var(--muted2);line-height:1.6;display:none}
+.quiz-explain.show{display:block}
+.quiz-nav{display:flex;justify-content:flex-end;margin-top:1.5rem}
+.quiz-results{text-align:center;padding:2.5rem 1rem}
+.results-circle{width:120px;height:120px;border-radius:50%;border:4px solid var(--teal);display:flex;flex-direction:column;align-items:center;justify-content:center;margin:0 auto 1.5rem}
+.results-pct{font-family:var(--font-head);font-size:2rem;font-weight:800;color:var(--teal2)}
+.results-label{font-size:.65rem;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.08em}
+.results-title{font-family:var(--font-head);font-size:1.4rem;font-weight:700;margin-bottom:.5rem}
+.results-sub{font-size:.88rem;color:var(--muted2);line-height:1.6;margin-bottom:2rem;max-width:420px;margin-left:auto;margin-right:auto}
+.results-breakdown{display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem;max-width:400px;margin:0 auto 2rem;text-align:center}
+.rb-item{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r-sm);padding:.75rem}
+.rb-val{font-family:var(--font-head);font-size:1.5rem;font-weight:700}
+.rb-lbl{font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-top:.2rem}
+
+/* ── CONTROLS ── */
+.ctrl-row{display:flex;gap:.6rem;margin-top:1.25rem;flex-wrap:wrap;align-items:center}
+.btn{font-family:var(--font-body);font-size:.82rem;font-weight:600;padding:.55rem 1.1rem;border-radius:var(--r-sm);border:1.5px solid transparent;cursor:pointer;transition:all .18s;white-space:nowrap}
+.btn-primary{background:var(--teal);border-color:var(--teal);color:#000}
+.btn-primary:hover{background:var(--teal2)}
+.btn-ghost{background:transparent;border-color:var(--border);color:var(--muted)}
+.btn-ghost:hover{border-color:var(--muted);color:var(--white)}
+.btn-danger{background:transparent;border-color:rgba(239,68,68,.4);color:var(--red2)}
+.btn-danger:hover{background:rgba(239,68,68,.1)}
+.feedback{display:none;align-items:center;gap:.6rem;padding:.65rem .9rem;border-radius:var(--r-sm);font-size:.82rem;font-weight:500;margin-top:.75rem}
+.feedback.show{display:flex}
+.feedback.ok{background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.3);color:var(--green2)}
+.feedback.err{background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.25);color:var(--red2)}
+.feedback.info{background:rgba(14,165,233,.08);border:1px solid rgba(14,165,233,.25);color:var(--teal2)}
+
+/* ── PROGRESS DOCK ── */
+.prog-dock{position:fixed;bottom:1.5rem;right:1.5rem;background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:.9rem 1.1rem;box-shadow:0 8px 32px rgba(0,0,0,.5);z-index:300;min-width:170px}
+.prog-dock-title{font-size:.65rem;font-weight:700;letter-spacing:.1em;color:var(--muted);text-transform:uppercase;margin-bottom:.6rem}
+.prog-acts{display:flex;flex-direction:column;gap:.3rem}
+.prog-act{display:flex;align-items:center;gap:.5rem;font-size:.72rem;color:var(--muted);transition:color .3s}
+.prog-act .pa-dot{width:7px;height:7px;border-radius:50%;background:var(--border);transition:background .3s;flex-shrink:0}
+.prog-act.done{color:var(--green2)}
+.prog-act.done .pa-dot{background:var(--green)}
+.prog-score{font-family:var(--font-head);font-size:1.3rem;font-weight:700;color:var(--teal2);margin-top:.6rem;border-top:1px solid var(--border);padding-top:.6rem}
+.prog-score-lbl{font-size:.65rem;color:var(--muted)}
+
+/* ── FOOTER ── */
+.footer{background:var(--bg2);border-top:1px solid var(--border);text-align:center;padding:2.5rem 1.5rem;color:var(--muted);font-size:.8rem;line-height:1.7}
+.footer strong{color:var(--teal2)}
+
+/* ── UTILS ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
+@media(max-width:640px){
+  .match-wrap{grid-template-columns:1fr}
+  .ws-wrap{flex-direction:column}
+  .results-breakdown{grid-template-columns:repeat(3,1fr)}
+  .prog-dock{display:none}
+  .hero-acts{gap:.4rem}
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<header class="hero" id="top">
+  <div class="hero-bg"></div>
+  <div class="hero-dots"></div>
+  <div class="collection-tag">
+    <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M5 1l1.2 2.4 2.7.4-1.95 1.9.46 2.66L5 7.2 2.57 8.4l.46-2.66L1.1 3.8l2.7-.4z" fill="currentColor"/></svg>
+    Colección · Licenciatura en Paramedicina
+  </div>
+  <h1>Bioseguridad en<br><span class="accent">Atención Prehospitalaria</span><br>de Emergencias</h1>
+  <p class="hero-desc">5 actividades progresivas para dominar los conceptos, protocolos y responsabilidades de la bioseguridad en el servicio médico de emergencias.</p>
+  <div class="hero-pills">
+    <span class="pill"><span class="dot" style="background:#22C55E"></span>Sopa de letras</span>
+    <span class="pill"><span class="dot" style="background:#0EA5E9"></span>Completar texto</span>
+    <span class="pill"><span class="dot" style="background:#A78BFA"></span>Relacionar columnas</span>
+    <span class="pill"><span class="dot" style="background:#F59E0B"></span>Ordenar elementos</span>
+    <span class="pill"><span class="dot" style="background:#EC4899"></span>Quiz evaluativo</span>
+  </div>
+  <div class="hero-acts">
+    <a class="act-chip" href="#act1"><span class="num" style="background:rgba(34,197,94,.15);color:#4ADE80">01</span>Sopa de letras</a>
+    <a class="act-chip" href="#act2"><span class="num" style="background:rgba(14,165,233,.15);color:#38BDF8">02</span>Completar texto</a>
+    <a class="act-chip" href="#act3"><span class="num" style="background:rgba(167,139,250,.15);color:#C4B5FD">03</span>Relacionar</a>
+    <a class="act-chip" href="#act4"><span class="num" style="background:rgba(245,158,11,.15);color:#FCD34D">04</span>Ordenar EPP</a>
+    <a class="act-chip" href="#act5"><span class="num" style="background:rgba(236,72,153,.15);color:#F9A8D4">05</span>Quiz final</a>
+  </div>
+  <div class="scroll-hint">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 4v12M10 16l-4-4M10 16l4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </div>
+</header>
+
+<!-- STICKY NAV -->
+<nav class="snav">
+  <div class="snav-inner">
+    <span class="snav-title">BIOSEG.</span>
+    <button class="snav-btn" onclick="scrollTo('act1')">01 · Sopa</button>
+    <button class="snav-btn" onclick="scrollTo('act2')">02 · Texto</button>
+    <button class="snav-btn" onclick="scrollTo('act3')">03 · Columnas</button>
+    <button class="snav-btn" onclick="scrollTo('act4')">04 · Orden</button>
+    <button class="snav-btn" onclick="scrollTo('act5')">05 · Quiz</button>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════════
+     ACTIVIDAD 1 · SOPA DE LETRAS
+══════════════════════════════════════════ -->
+<section class="section" id="act1">
+  <div class="sec-header">
+    <div class="sec-num">Actividad 01 · Sopa de letras</div>
+    <h2 class="sec-title">Vocabulario esencial de bioseguridad</h2>
+    <p class="sec-obj">Reconocer y recordar los 20 términos clave del tema de bioseguridad en la atención prehospitalaria de emergencias.</p>
+  </div>
+  <div class="act-card">
+    <div class="timer-bar" id="ws-timer-bar">
+      <span class="timer-label">Tiempo restante</span>
+      <div class="timer-track"><div class="timer-fill" id="ws-tfill" style="width:100%"></div></div>
+      <span class="timer-display" id="ws-tdisp">10:00</span>
+      <button class="timer-btn" id="ws-tbtn" onclick="wsToggleTimer()">Iniciar</button>
+    </div>
+    <div class="ws-wrap">
+      <div class="ws-grid-wrap">
+        <div class="ws-grid" id="ws-grid"></div>
+      </div>
+      <div class="ws-words">
+        <h4>Palabras a encontrar</h4>
+        <div class="ws-word-list" id="ws-wordlist"></div>
+        <div class="ws-progress">Encontradas: <strong id="ws-found">0</strong> / 20</div>
+        <div class="ctrl-row" style="margin-top:1rem">
+          <button class="btn btn-ghost" onclick="wsReveal()">Revelar todas</button>
+          <button class="btn btn-ghost" onclick="wsReset()">Reiniciar</button>
+        </div>
+        <div class="feedback" id="ws-fb"></div>
+      </div>
+    </div>
+  </div>
+</section>
+<hr class="divider">
+
+<!-- ══════════════════════════════════════════
+     ACTIVIDAD 2 · COMPLETAR TEXTO
+══════════════════════════════════════════ -->
+<section class="section" id="act2">
+  <div class="sec-header">
+    <div class="sec-num">Actividad 02 · Completar texto</div>
+    <h2 class="sec-title">Precauciones estándar en la escena de emergencia</h2>
+    <p class="sec-obj">Aplicar conceptos de bioseguridad en contexto clínico real, completando el texto con los términos correctos del banco de palabras.</p>
+  </div>
+  <div class="act-card">
+    <div class="fib-bank">
+      <div class="fib-bank-label">Banco de palabras — haz clic para insertar en el campo activo</div>
+      <div id="fib-bank-words"></div>
+    </div>
+    <div class="fib-text" id="fib-text"></div>
+    <div class="ctrl-row">
+      <button class="btn btn-primary" onclick="fibCheck()">Verificar respuestas</button>
+      <button class="btn btn-ghost" onclick="fibReset()">Limpiar</button>
+      <button class="btn btn-ghost" onclick="fibReveal()">Ver respuestas</button>
+    </div>
+    <div class="feedback" id="fib-fb"></div>
+  </div>
+</section>
+<hr class="divider">
+
+<!-- ══════════════════════════════════════════
+     ACTIVIDAD 3 · RELACIONAR COLUMNAS
+══════════════════════════════════════════ -->
+<section class="section" id="act3">
+  <div class="sec-header">
+    <div class="sec-num">Actividad 03 · Relacionar columnas</div>
+    <h2 class="sec-title">EPP y su función en la emergencia</h2>
+    <p class="sec-obj">Asociar cada equipo de protección personal del paramédico con su función específica en la atención prehospitalaria.</p>
+  </div>
+  <div class="act-card">
+    <div class="match-wrap">
+      <div>
+        <h4>Equipo / Concepto</h4>
+        <div class="match-items" id="match-left"></div>
+      </div>
+      <div>
+        <h4>Función / Descripción</h4>
+        <div class="match-items" id="match-right"></div>
+      </div>
+    </div>
+    <div class="match-score-row">Pares correctos: <strong id="match-score">0</strong> / 12</div>
+    <div class="ctrl-row">
+      <button class="btn btn-ghost" onclick="matchReset()">Reiniciar</button>
+      <button class="btn btn-ghost" onclick="matchReveal()">Ver respuestas</button>
+    </div>
+    <div class="feedback" id="match-fb"></div>
+  </div>
+</section>
+<hr class="divider">
+
+<!-- ══════════════════════════════════════════
+     ACTIVIDAD 4 · ORDENAR EPP
+══════════════════════════════════════════ -->
+<section class="section" id="act4">
+  <div class="sec-header">
+    <div class="sec-num">Actividad 04 · Ordenar elementos</div>
+    <h2 class="sec-title">Secuencia correcta de colocación y retiro del EPP</h2>
+    <p class="sec-obj">Reproducir el orden estándar para ponerse y quitarse el equipo de protección personal sin riesgo de autocontaminación.</p>
+  </div>
+  <div class="act-card">
+    <div class="order-tabs">
+      <button class="order-tab active" onclick="orderTab(0)">A · Colocación</button>
+      <button class="order-tab" onclick="orderTab(1)">B · Retiro</button>
+    </div>
+    <div id="order-panel-0" class="order-panel">
+      <div class="order-list" id="order-list-0"></div>
+      <div class="ctrl-row">
+        <button class="btn btn-primary" onclick="orderCheck(0)">Verificar orden</button>
+        <button class="btn btn-ghost" onclick="orderShuffle(0)">Mezclar de nuevo</button>
+        <button class="btn btn-ghost" onclick="orderReveal(0)">Ver respuesta</button>
+      </div>
+      <div class="feedback" id="order-fb-0"></div>
+    </div>
+    <div id="order-panel-1" class="order-panel" style="display:none">
+      <div class="order-list" id="order-list-1"></div>
+      <div class="ctrl-row">
+        <button class="btn btn-primary" onclick="orderCheck(1)">Verificar orden</button>
+        <button class="btn btn-ghost" onclick="orderShuffle(1)">Mezclar de nuevo</button>
+        <button class="btn btn-ghost" onclick="orderReveal(1)">Ver respuesta</button>
+      </div>
+      <div class="feedback" id="order-fb-1"></div>
+    </div>
+  </div>
+</section>
+<hr class="divider">
+
+<!-- ══════════════════════════════════════════
+     ACTIVIDAD 5 · QUIZ
+══════════════════════════════════════════ -->
+<section class="section" id="act5">
+  <div class="sec-header">
+    <div class="sec-num">Actividad 05 · Quiz evaluativo</div>
+    <h2 class="sec-title">Evaluación: Bioseguridad en escenas de emergencia</h2>
+    <p class="sec-obj">Evaluar la comprensión integral del tema de bioseguridad prehospitalaria. 30 segundos por pregunta. Al finalizar recibirás tu resultado detallado.</p>
+  </div>
+  <div class="act-card" id="quiz-card">
+    <div id="quiz-start">
+      <div style="text-align:center;padding:1.5rem 0">
+        <div style="font-family:var(--font-head);font-size:1.1rem;font-weight:700;margin-bottom:.5rem">15 preguntas · 30 seg. c/u</div>
+        <div style="font-size:.875rem;color:var(--muted2);margin-bottom:1.5rem">Responde con base en las NOMs y protocolos de bioseguridad prehospitalaria</div>
+        <button class="btn btn-primary" onclick="quizStart()" style="font-size:.95rem;padding:.65rem 2rem">Comenzar evaluación</button>
+      </div>
+    </div>
+    <div id="quiz-running" style="display:none"></div>
+    <div id="quiz-results-panel" style="display:none"></div>
+  </div>
+</section>
+
+<!-- PROGRESS DOCK -->
+<div class="prog-dock">
+  <div class="prog-dock-title">Mi progreso</div>
+  <div class="prog-acts" id="prog-dock-acts"></div>
+  <div class="prog-score"><span class="prog-score-lbl">Puntos: </span><span id="prog-total">0</span></div>
+</div>
+
+<footer class="footer">
+  <p><strong>Bioseguridad en Atención Prehospitalaria de Emergencias</strong></p>
+  <p>Licenciatura en Paramedicina · NOM-034-SSA3-2013 · NOM-087-SEMARNAT-SSA1-2002 · NOM-010-SSA2-2010</p>
+</footer>
+
+<script>
+// ═══════════════════════════════════════════════════
+// GLOBAL STATE
+// ═══════════════════════════════════════════════════
+const state = {scores:{1:0,2:0,3:0,4:0,5:0}, done:{1:false,2:false,3:false,4:false,5:false}};
+function addScore(id,pts){ state.scores[id]+=pts; updateDock(); }
+function markDone(id){ state.done[id]=true; updateDock(); }
+function updateDock(){
+  const total = Object.values(state.scores).reduce((a,b)=>a+b,0);
+  document.getElementById('prog-total').textContent = total;
+  const acts = document.querySelectorAll('.prog-act');
+  acts.forEach((el,i)=>{ if(state.done[i+1]) el.classList.add('done'); });
+}
+function scrollTo(id){ document.getElementById(id).scrollIntoView({behavior:'smooth'}); }
+
+// nav highlight
+window.addEventListener('scroll',()=>{
+  const ids=['act1','act2','act3','act4','act5'];
+  const btns = document.querySelectorAll('.snav-btn');
+  ids.forEach((id,i)=>{
+    const el=document.getElementById(id);
+    if(!el) return;
+    const r=el.getBoundingClientRect();
+    if(r.top<120&&r.bottom>0) btns.forEach((b,j)=>b.classList.toggle('active',i===j));
+  });
+},{passive:true});
+
+// build dock
+(function buildDock(){
+  const labels=['Sopa de letras','Completar texto','Relacionar','Ordenar EPP','Quiz'];
+  const dock=document.getElementById('prog-dock-acts');
+  labels.forEach((l,i)=>{
+    const d=document.createElement('div');
+    d.className='prog-act'; d.id=`pa-${i+1}`;
+    d.innerHTML=`<div class="pa-dot"></div><span>${l}</span>`;
+    dock.appendChild(d);
+  });
+})();
+
+// ═══════════════════════════════════════════════════
+// ACTIVIDAD 1 · SOPA DE LETRAS
+// ═══════════════════════════════════════════════════
+const WS_WORDS = [
+  'BIOSEGURIDAD','GUANTES','MASCARILLA','GOGGLES','MANDIL',
+  'LAVADO','DESINFECCION','ESTERILIZACION','PATOGENO','TRIAJE',
+  'CONTAGIO','BARRERA','RESIDUOS','AEROSOL','EXPOSICION',
+  'PARAMEDICO','HIPOCLORITO','AISLAMIENTO','PRECAUCION','PROTOCOLO'
+];
+const WS_SIZE = 18;
+let wsGrid=[], wsSelecting=false, wsStart=null, wsCurrent=[], wsFoundWords=new Set();
+let wsTimerInterval=null, wsTimeLeft=600, wsTimerRunning=false;
+
+function wsInit(){
+  const g=Array.from({length:WS_SIZE},()=>Array(WS_SIZE).fill(''));
+  const placed=[];
+  const dirs=[[0,1],[1,0],[1,1],[0,-1],[-1,0],[-1,-1],[1,-1],[-1,1]];
+  WS_WORDS.forEach(word=>{
+    let ok=false,tries=0;
+    while(!ok&&tries<400){
+      tries++;
+      const dir=dirs[Math.floor(Math.random()*dirs.length)];
+      const r=Math.floor(Math.random()*WS_SIZE);
+      const c=Math.floor(Math.random()*WS_SIZE);
+      let fits=true;
+      for(let i=0;i<word.length;i++){
+        const nr=r+dir[0]*i, nc=c+dir[1]*i;
+        if(nr<0||nr>=WS_SIZE||nc<0||nc>=WS_SIZE){fits=false;break;}
+        if(g[nr][nc]&&g[nr][nc]!==word[i]){fits=false;break;}
+      }
+      if(fits){
+        for(let i=0;i<word.length;i++) g[r+dir[0]*i][c+dir[1]*i]=word[i];
+        placed.push({word,r,c,dr:dir[0],dc:dir[1]});
+        ok=true;
+      }
+    }
+  });
+  const alpha='ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  for(let r=0;r<WS_SIZE;r++) for(let c=0;c<WS_SIZE;c++) if(!g[r][c]) g[r][c]=alpha[Math.floor(Math.random()*alpha.length)];
+  wsGrid=g;
+  wsFoundWords=new Set();
+  wsCurrent=[];
+  renderWSGrid(placed);
+  renderWSWords();
+  document.getElementById('ws-found').textContent='0';
+}
+
+function renderWSGrid(placements){
+  const container=document.getElementById('ws-grid');
+  container.style.gridTemplateColumns=`repeat(${WS_SIZE},30px)`;
+  container.innerHTML='';
+  for(let r=0;r<WS_SIZE;r++) for(let c=0;c<WS_SIZE;c++){
+    const cell=document.createElement('div');
+    cell.className='ws-cell';
+    cell.textContent=wsGrid[r][c];
+    cell.dataset.r=r; cell.dataset.c=c;
+    cell.addEventListener('mousedown',e=>{wsSelecting=true;wsStart={r,c};wsCurrent=[{r,c}];cell.classList.add('selected');e.preventDefault();});
+    cell.addEventListener('mouseover',()=>{ if(!wsSelecting) return; wsExtend(r,c); });
+    container.appendChild(cell);
+  }
+  document.addEventListener('mouseup',()=>{
+    if(wsSelecting){ wsSelecting=false; wsCheckWord(placements); }
+  },{once:false});
+  // touch
+  container.addEventListener('touchstart',e=>{
+    const t=e.touches[0];
+    const el=document.elementFromPoint(t.clientX,t.clientY);
+    if(!el||!el.classList.contains('ws-cell')) return;
+    wsSelecting=true; const rr=+el.dataset.r,cc=+el.dataset.c;
+    wsStart={r:rr,c:cc}; wsCurrent=[{r:rr,c:cc}]; el.classList.add('selected');
+    e.preventDefault();
+  },{passive:false});
+  container.addEventListener('touchmove',e=>{
+    if(!wsSelecting) return;
+    const t=e.touches[0];
+    const el=document.elementFromPoint(t.clientX,t.clientY);
+    if(el&&el.classList.contains('ws-cell')) wsExtend(+el.dataset.r,+el.dataset.c);
+    e.preventDefault();
+  },{passive:false});
+  container.addEventListener('touchend',()=>{ if(wsSelecting){wsSelecting=false;wsCheckWord(placements);} });
+}
+
+function wsExtend(r,c){
+  if(!wsStart) return;
+  const dr=r-wsStart.r, dc=c-wsStart.c;
+  const len=Math.max(Math.abs(dr),Math.abs(dc));
+  const ndr=len?Math.round(dr/len):0, ndc=len?Math.round(dc/len):0;
+  const newSel=[];
+  for(let i=0;i<=len;i++) newSel.push({r:wsStart.r+ndr*i,c:wsStart.c+ndc*i});
+  document.querySelectorAll('.ws-cell.selected:not(.found)').forEach(el=>el.classList.remove('selected'));
+  newSel.forEach(({r,c})=>{
+    const idx=r*WS_SIZE+c;
+    const el=document.querySelectorAll('.ws-cell')[idx];
+    if(el&&!el.classList.contains('found')) el.classList.add('selected');
+  });
+  wsCurrent=newSel;
+}
+
+function wsCheckWord(placements){
+  const word=wsCurrent.map(({r,c})=>wsGrid[r][c]).join('');
+  const rev=word.split('').reverse().join('');
+  const match=WS_WORDS.find(w=>w===word||w===rev);
+  document.querySelectorAll('.ws-cell.selected:not(.found)').forEach(el=>el.classList.remove('selected'));
+  if(match&&!wsFoundWords.has(match)){
+    wsFoundWords.add(match);
+    wsCurrent.forEach(({r,c})=>{
+      document.querySelectorAll('.ws-cell')[r*WS_SIZE+c].classList.add('found');
+    });
+    document.querySelector(`[data-word="${match}"]`)?.classList.add('found');
+    document.getElementById('ws-found').textContent=wsFoundWords.size;
+    addScore(1,5);
+    if(wsFoundWords.size===WS_WORDS.length){
+      markDone(1);
+      showFb('ws-fb','ok','¡Excelente! Encontraste las 20 palabras.');
+      wsStopTimer();
+    }
+  }
+  wsCurrent=[];
+}
+
+function renderWSWords(){
+  const list=document.getElementById('ws-wordlist');
+  list.innerHTML='';
+  WS_WORDS.forEach(w=>{
+    const d=document.createElement('div');
+    d.className='ws-word'; d.dataset.word=w;
+    d.textContent=w; list.appendChild(d);
+  });
+}
+
+function wsReveal(){
+  WS_WORDS.forEach(w=>{
+    if(!wsFoundWords.has(w)){
+      wsFoundWords.add(w);
+      document.querySelector(`[data-word="${w}"]`)?.classList.add('found');
+    }
+  });
+  document.querySelectorAll('.ws-cell').forEach(el=>el.classList.add('found'));
+  document.getElementById('ws-found').textContent=WS_WORDS.length;
+  wsStopTimer();
+  markDone(1);
+}
+function wsReset(){ wsStopTimer(); wsTimeLeft=600; wsTimerRunning=false; document.getElementById('ws-tbtn').textContent='Iniciar'; updateTimerDisplay('ws-tfill','ws-tdisp',wsTimeLeft,600); wsInit(); hideFb('ws-fb'); }
+function wsToggleTimer(){
+  if(!wsTimerRunning){ wsTimerRunning=true; document.getElementById('ws-tbtn').textContent='Pausar'; wsTimerInterval=setInterval(wsTickTimer,1000); }
+  else { wsTimerRunning=false; clearInterval(wsTimerInterval); document.getElementById('ws-tbtn').textContent='Continuar'; }
+}
+function wsStopTimer(){ wsTimerRunning=false; clearInterval(wsTimerInterval); document.getElementById('ws-tbtn').textContent='Iniciar'; }
+function wsTickTimer(){
+  wsTimeLeft--;
+  updateTimerDisplay('ws-tfill','ws-tdisp',wsTimeLeft,600);
+  if(wsTimeLeft<=0){ wsStopTimer(); showFb('ws-fb','err','¡Tiempo agotado! Revela las palabras o reinicia.'); }
+}
+function updateTimerDisplay(fillId,dispId,left,total){
+  const pct=(left/total)*100;
+  const fill=document.getElementById(fillId);
+  fill.style.width=pct+'%';
+  fill.style.background=pct>40?'var(--teal)':pct>20?'var(--amber)':'var(--red)';
+  const m=Math.floor(left/60), s=left%60;
+  document.getElementById(dispId).textContent=`${m}:${s.toString().padStart(2,'0')}`;
+  document.getElementById(dispId).style.color=pct>40?'var(--teal2)':pct>20?'var(--amber2)':'var(--red2)';
+}
+
+// ═══════════════════════════════════════════════════
+// ACTIVIDAD 2 · FILL IN BLANKS
+// ═══════════════════════════════════════════════════
+const FIB_ANSWERS = ['PRECAUCIONES ESTÁNDAR','EQUIPOS DE PROTECCIÓN PERSONAL','GUANTES','MASCARILLA','CONTACTO DIRECTO','GOGGLES','RÍGIDO','ROJO','20','AÉREA','N95'];
+const FIB_PARAGRAPHS = [
+  'El personal prehospitalario debe aplicar [0] en todo paciente, independientemente de su diagnóstico. El primer paso antes de abordar al paciente es colocarse los [1], que incluyen como mínimo [2] y [3].',
+  'La vía de transmisión más frecuente en emergencias es el [4] con sangre o fluidos corporales. Para proteger las mucosas oculares se utilizan [5] o careta facial.',
+  'Al concluir la atención, los residuos punzocortantes deben depositarse en un contenedor [6] y de color [7] conforme a la NOM-087. El lavado de manos con agua y jabón debe durar al menos [8] segundos.',
+  'Cuando se atienden pacientes con sospecha de transmisión [9], se debe utilizar respirador tipo [10] en lugar de mascarilla quirúrgica.'
+];
+let fibActive=null;
+
+function fibInit(){
+  const bank=document.getElementById('fib-bank-words');
+  const shuffled=[...FIB_ANSWERS].sort(()=>Math.random()-.5);
+  bank.innerHTML='';
+  shuffled.forEach(w=>{
+    const s=document.createElement('span');
+    s.className='bank-word'; s.textContent=w; s.dataset.word=w;
+    s.onclick=()=>fibInsert(w,s);
+    bank.appendChild(s);
+  });
+  const container=document.getElementById('fib-text');
+  container.innerHTML='';
+  FIB_PARAGRAPHS.forEach(para=>{
+    const p=document.createElement('p');
+    let html=para.replace(/\[(\d+)\]/g,(_,idx)=>`<span class="blank"><input type="text" id="fib-${idx}" placeholder="___" data-idx="${idx}" autocomplete="off" autocorrect="off" spellcheck="false" oninput="this.value=this.value.toUpperCase()" onfocus="fibSetActive(${idx})"></span>`);
+    p.innerHTML=html; container.appendChild(p);
+  });
+}
+
+function fibSetActive(idx){ fibActive=idx; }
+function fibInsert(word, btn){
+  if(fibActive===null){ const inp=document.getElementById('fib-0'); if(inp){inp.value=word;fibActive=null;} return; }
+  const inp=document.getElementById(`fib-${fibActive}`);
+  if(inp&&!inp.classList.contains('correct')){ inp.value=word; fibActive=null; }
+  // mark used if no other blank needs it
+}
+function fibCheck(){
+  let correct=0;
+  FIB_ANSWERS.forEach((ans,i)=>{
+    const inp=document.getElementById(`fib-${i}`);
+    if(!inp) return;
+    const val=inp.value.trim().toUpperCase();
+    if(val===ans){ inp.classList.add('correct'); inp.classList.remove('wrong'); correct++; }
+    else if(val){ inp.classList.add('wrong'); inp.classList.remove('correct'); setTimeout(()=>inp.classList.remove('wrong'),600); }
+  });
+  addScore(2,correct*5);
+  if(correct===FIB_ANSWERS.length){ markDone(2); showFb('fib-fb','ok',`¡Perfecto! Completaste correctamente todos los ${FIB_ANSWERS.length} espacios.`); }
+  else showFb('fib-fb','err',`${correct} de ${FIB_ANSWERS.length} correctos. Revisa los marcados en rojo.`);
+}
+function fibReveal(){ FIB_ANSWERS.forEach((ans,i)=>{ const inp=document.getElementById(`fib-${i}`); if(inp){inp.value=ans;inp.classList.add('correct');} }); markDone(2); showFb('fib-fb','info','Respuestas reveladas. Estúdialas para aprender los términos correctos.'); }
+function fibReset(){ FIB_ANSWERS.forEach((_,i)=>{ const inp=document.getElementById(`fib-${i}`); if(inp){inp.value='';inp.classList.remove('correct','wrong');} }); hideFb('fib-fb'); }
+
+// ═══════════════════════════════════════════════════
+// ACTIVIDAD 3 · RELACIONAR COLUMNAS
+// ═══════════════════════════════════════════════════
+const MATCH_PAIRS = [
+  {left:'Guantes de látex/nitrilo',right:'Protegen contra contacto con sangre y fluidos corporales'},
+  {left:'Mascarilla quirúrgica',right:'Bloquea partículas grandes y gotas respiratorias'},
+  {left:'Respirador N95',right:'Filtra al menos el 95% de partículas aerotransportadas'},
+  {left:'Goggles de protección',right:'Protegen las mucosas oculares ante salpicaduras'},
+  {left:'Careta facial (face shield)',right:'Cubre todo el rostro ante riesgo de aerosoles'},
+  {left:'Mandil impermeable',right:'Protege el uniforme ante derrames de fluidos'},
+  {left:'Overol de bioseguridad',right:'Cobertura corporal total en situaciones de alto riesgo'},
+  {left:'Cubre calzado / botas',right:'Evitan contaminación del calzado en escenas críticas'},
+  {left:'Contenedor rígido rojo',right:'Descarte seguro de material punzocortante'},
+  {left:'Bolsa roja RPBI',right:'Desecho de material biológico-infeccioso'},
+  {left:'Alcohol gel 70%',right:'Higiene de manos cuando no hay agua disponible'},
+  {left:'Respirador P100',right:'Máxima protección respiratoria ante patógenos de alto riesgo'},
+];
+let matchLeft=null, matchScore=0, matchDone=0;
+
+function matchInit(){
+  matchLeft=null; matchScore=0; matchDone=0;
+  document.getElementById('match-score').textContent='0';
+  const shuffledR=[...MATCH_PAIRS].sort(()=>Math.random()-.5);
+  const leftEl=document.getElementById('match-left');
+  const rightEl=document.getElementById('match-right');
+  leftEl.innerHTML=''; rightEl.innerHTML='';
+  MATCH_PAIRS.forEach((p,i)=>{
+    const l=document.createElement('div');
+    l.className='match-item'; l.textContent=p.left; l.dataset.idx=i; l.dataset.side='left';
+    l.onclick=()=>matchClick(l,'left',i);
+    leftEl.appendChild(l);
+  });
+  shuffledR.forEach((p,i)=>{
+    const origIdx=MATCH_PAIRS.findIndex(q=>q.right===p.right);
+    const r=document.createElement('div');
+    r.className='match-item'; r.textContent=p.right; r.dataset.idx=origIdx; r.dataset.side='right';
+    r.onclick=()=>matchClick(r,'right',origIdx);
+    rightEl.appendChild(r);
+  });
+}
+
+function matchClick(el,side,idx){
+  if(el.classList.contains('matched')) return;
+  if(side==='left'){
+    document.querySelectorAll('#match-left .match-item.selected').forEach(e=>e.classList.remove('selected'));
+    el.classList.add('selected'); matchLeft={el,idx};
+  } else {
+    if(!matchLeft) return;
+    if(matchLeft.idx===idx){
+      matchLeft.el.classList.remove('selected'); matchLeft.el.classList.add('matched');
+      el.classList.add('matched'); matchScore++; matchDone++;
+      document.getElementById('match-score').textContent=matchScore;
+      addScore(3,8);
+      matchLeft=null;
+      if(matchDone===MATCH_PAIRS.length){ markDone(3); showFb('match-fb','ok','¡Perfecto! Relacionaste correctamente todos los pares de EPP.'); }
+    } else {
+      el.classList.add('wrong-flash'); matchLeft.el.classList.add('wrong-flash');
+      setTimeout(()=>{ el.classList.remove('wrong-flash'); matchLeft.el.classList.remove('wrong-flash'); },400);
+      matchLeft.el.classList.remove('selected'); matchLeft=null;
+    }
+  }
+}
+function matchReset(){ matchInit(); hideFb('match-fb'); }
+function matchReveal(){
+  document.querySelectorAll('#match-left .match-item, #match-right .match-item').forEach(el=>el.classList.add('matched'));
+  document.getElementById('match-score').textContent=MATCH_PAIRS.length;
+  markDone(3); showFb('match-fb','info','Respuestas reveladas. Estudia cada par para recordar las funciones del EPP.');
+}
+
+// ═══════════════════════════════════════════════════
+// ACTIVIDAD 4 · ORDENAR EPP
+// ═══════════════════════════════════════════════════
+const ORDER_DATA = [
+  {
+    items:[
+      {t:'Lavado de manos con agua y jabón (20 seg)', d:'Primera y más importante barrera. Técnica OMS de 6 pasos. Elimina microorganismos transitorios antes de tocar cualquier EPP.'},
+      {t:'Colocación del mandil o bata impermeable', d:'Atar primero en cuello, luego en cintura. Cubrir desde cuello hasta rodillas. Protege el uniforme de salpicaduras.'},
+      {t:'Colocación de mascarilla quirúrgica o respirador N95', d:'Verificar sellado perimetral. Fit check: inhalar y exhalar para confirmar que no hay fugas por los costados.'},
+      {t:'Colocación de goggles o careta facial', d:'Asegurar que cubra completamente las mucosas oculares. Sin espacios entre mascarilla y goggles.'},
+      {t:'Colocación de guantes de látex o nitrilo', d:'Jalar los puños del guante sobre el puño de la bata. Verificar integridad antes de proceder con el paciente.'},
+    ]
+  },
+  {
+    items:[
+      {t:'Retiro de guantes (técnica de inversión)', d:'Pellizcar el exterior del guante dominante y doblar hacia adentro. Meter dedos descubiertos bajo el puño del segundo guante. Nunca tocar el exterior.'},
+      {t:'Lavado de manos inmediato', d:'Antes de tocar cualquier otra superficie. Las manos son ahora la parte "limpia" — no contaminar el siguiente paso.'},
+      {t:'Retiro de goggles o careta (por la parte posterior)', d:'Sujetar únicamente por la banda o patillas laterales. Nunca tocar la parte frontal expuesta a aerosoles.'},
+      {t:'Retiro de mascarilla (por las cintas, sin tocar el frente)', d:'Descolgar primero la cinta inferior, luego la superior. No tocar el frente de la mascarilla en ningún momento.'},
+      {t:'Retiro del mandil o bata', d:'Desatar de cintura a cuello. Enrollar con el lado contaminado hacia adentro. Desechar en contenedor adecuado.'},
+      {t:'Lavado de manos final completo', d:'Técnica OMS completa (40-60 segundos). Confirmar que no queda contaminación antes de salir del área de atención.'},
+    ]
+  }
+];
+const orderState=[{attempts:0,done:false},{attempts:0,done:false}];
+
+function orderInit(idx){
+  const list=document.getElementById(`order-list-${idx}`);
+  list.innerHTML='';
+  const shuffled=ORDER_DATA[idx].items.map((item,i)=>({...item,correctIdx:i})).sort(()=>Math.random()-.5);
+  shuffled.forEach((item,pos)=>{
+    const div=document.createElement('div');
+    div.className='order-item'; div.draggable=true; div.dataset.correct=item.correctIdx;
+    div.innerHTML=`<div class="order-handle"><span></span><span></span><span></span></div><div class="order-n">${pos+1}</div><div class="order-content"><div class="order-text">${item.t}</div><div class="order-detail">${item.d}</div></div>`;
+    list.appendChild(div);
+  });
+  initOrderDrag(idx); initOrderTouch(idx);
+}
+
+function orderTab(idx){
+  [0,1].forEach(i=>{
+    document.getElementById(`order-panel-${i}`).style.display=i===idx?'block':'none';
+    document.querySelectorAll('.order-tab')[i].classList.toggle('active',i===idx);
+  });
+}
+
+function orderCheck(idx){
+  if(orderState[idx].done) return;
+  const items=[...document.querySelectorAll(`#order-list-${idx} .order-item`)];
+  let correct=0;
+  items.forEach((item,pos)=>{ if(parseInt(item.dataset.correct)===pos){ item.classList.add('correct'); correct++; } else { item.classList.add('wrong'); setTimeout(()=>item.classList.remove('wrong'),400); } });
+  orderState[idx].attempts++;
+  const pct=correct/items.length;
+  if(pct===1){
+    orderState[idx].done=true; markDone(idx===0?4:4);
+    addScore(4,idx===0?40:40);
+    showFb(`order-fb-${idx}`,'ok',`¡Secuencia correcta! Orden ${idx===0?'de colocación':'de retiro'} dominado.`);
+    items.forEach(i=>i.setAttribute('draggable','false'));
+    if(orderState[0].done&&orderState[1].done) markDone(4);
+  } else {
+    showFb(`order-fb-${idx}`,'err',`${correct} de ${items.length} pasos correctos. Intento ${orderState[idx].attempts}. Reintenta o revela la respuesta.`);
+  }
+}
+function orderShuffle(idx){
+  if(orderState[idx].done) return;
+  const list=document.getElementById(`order-list-${idx}`);
+  const items=[...list.querySelectorAll('.order-item')];
+  items.forEach(i=>i.classList.remove('correct','wrong','revealed'));
+  for(let i=items.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [items[i],items[j]]=[items[j],items[i]]; }
+  items.forEach((item,pos)=>{ item.querySelector('.order-n').textContent=pos+1; list.appendChild(item); });
+  hideFb(`order-fb-${idx}`);
+}
+function orderReveal(idx){
+  const list=document.getElementById(`order-list-${idx}`);
+  const items=[...list.querySelectorAll('.order-item')];
+  const sorted=items.slice().sort((a,b)=>parseInt(a.dataset.correct)-parseInt(b.dataset.correct));
+  sorted.forEach((item,pos)=>{ item.querySelector('.order-n').textContent=pos+1; item.classList.add('revealed'); item.setAttribute('draggable','false'); list.appendChild(item); });
+  orderState[idx].done=true;
+  showFb(`order-fb-${idx}`,'info','Secuencia revelada. Analiza el fundamento de cada paso.');
+  if(orderState[0].done&&orderState[1].done) markDone(4);
+}
+function orderRenumber(idx){
+  document.querySelectorAll(`#order-list-${idx} .order-item`).forEach((item,pos)=>{ if(!item.classList.contains('correct')) item.querySelector('.order-n').textContent=pos+1; });
+}
+function initOrderDrag(idx){
+  const list=document.getElementById(`order-list-${idx}`);
+  let src=null;
+  list.addEventListener('dragstart',e=>{ src=e.target.closest('.order-item'); if(src) src.classList.add('dragging'); });
+  list.addEventListener('dragover',e=>{ e.preventDefault(); const t=e.target.closest('.order-item'); if(t&&t!==src){ list.querySelectorAll('.order-item').forEach(i=>i.classList.remove('drag-over')); t.classList.add('drag-over'); } });
+  list.addEventListener('dragleave',e=>{ const t=e.target.closest('.order-item'); if(t) t.classList.remove('drag-over'); });
+  list.addEventListener('drop',e=>{ e.preventDefault(); const t=e.target.closest('.order-item'); if(t&&t!==src){ const items=[...list.querySelectorAll('.order-item')]; const fi=items.indexOf(src),ti=items.indexOf(t); list.insertBefore(src,fi<ti?t.nextSibling:t); orderRenumber(idx); } t?.classList.remove('drag-over'); });
+  list.addEventListener('dragend',()=>{ list.querySelectorAll('.order-item').forEach(i=>i.classList.remove('dragging','drag-over')); src=null; });
+}
+function initOrderTouch(idx){
+  const list=document.getElementById(`order-list-${idx}`);
+  let ti=null,clone=null,oy=0;
+  list.addEventListener('touchstart',e=>{
+    if(orderState[idx].done) return;
+    const item=e.target.closest('.order-item'); if(!item) return;
+    ti=item; oy=item.getBoundingClientRect().top-e.touches[0].clientY;
+    clone=item.cloneNode(true);
+    clone.style.cssText=`position:fixed;left:${item.getBoundingClientRect().left}px;top:${item.getBoundingClientRect().top}px;width:${item.offsetWidth}px;opacity:.75;z-index:999;pointer-events:none`;
+    document.body.appendChild(clone); item.style.opacity='.3';
+  },{passive:true});
+  list.addEventListener('touchmove',e=>{
+    if(!ti||!clone) return; e.preventDefault();
+    clone.style.top=(e.touches[0].clientY+oy)+'px';
+    const el=document.elementFromPoint(e.touches[0].clientX,e.touches[0].clientY);
+    const tgt=el?.closest('.order-item');
+    list.querySelectorAll('.order-item').forEach(i=>i.classList.remove('drag-over'));
+    if(tgt&&tgt!==ti) tgt.classList.add('drag-over');
+  },{passive:false});
+  list.addEventListener('touchend',e=>{
+    if(!ti||!clone) return;
+    const el=document.elementFromPoint(e.changedTouches[0].clientX,e.changedTouches[0].clientY);
+    const tgt=el?.closest('.order-item');
+    if(tgt&&tgt!==ti){ const items=[...list.querySelectorAll('.order-item')]; const fi=items.indexOf(ti),tt=items.indexOf(tgt); list.insertBefore(ti,fi<tt?tgt.nextSibling:tgt); orderRenumber(idx); }
+    ti.style.opacity=''; clone.remove(); clone=null; ti=null;
+    list.querySelectorAll('.order-item').forEach(i=>i.classList.remove('drag-over'));
+  });
+}
+
+// ═══════════════════════════════════════════════════
+// ACTIVIDAD 5 · QUIZ
+// ═══════════════════════════════════════════════════
+const QUIZ_QS = [
+  {q:'¿Cuál es el objetivo principal de las precauciones estándar en prehospitalaria?',opts:['Proteger al personal y al paciente de infecciones en todo momento','Proteger solo al paciente con enfermedades conocidas','Reducir costos del servicio prehospitalario','Aplicarse solo en pacientes con COVID-19'],ans:0,exp:'Las precauciones estándar deben aplicarse a TODO paciente, independientemente del diagnóstico, porque en la escena el paramédico no conoce el estado serológico del paciente.'},
+  {q:'¿En qué color deben depositarse los residuos biológico-infecciosos según la NOM-087?',opts:['Rojo','Amarillo','Negro','Naranja'],ans:0,exp:'La NOM-087-SEMARNAT-SSA1 establece el color rojo para los residuos peligrosos biológico-infecciosos (RPBI).'},
+  {q:'¿Cuál es el tiempo mínimo recomendado para el lavado de manos con agua y jabón?',opts:['20 segundos','10 segundos','5 segundos','60 segundos'],ans:0,exp:'La OMS y los CDC establecen un mínimo de 20 segundos de frotado con agua y jabón para eliminar efectivamente los microorganismos transitorios.'},
+  {q:'El respirador N95 está indicado principalmente cuando el paciente presenta sospecha de transmisión por:',opts:['Vía aérea (aerosoles)','Contacto directo','Vía fecal-oral','Vectores'],ans:0,exp:'El N95 filtra ≥95% de partículas en el aire y es obligatorio para patógenos de transmisión aérea como tuberculosis, sarampión y COVID-19 en su variante aerosol.'},
+  {q:'¿Cuál es el orden correcto al retirarse los guantes?',opts:['Pellizcar exterior del primer guante, doblar hacia adentro, meter dedos sin guante bajo el segundo','Jalar ambos guantes desde la punta de los dedos al mismo tiempo','Retirarlos jalando desde la muñeca hacia afuera','No importa el orden si después te lavas las manos'],ans:0,exp:'La técnica de inversión evita tocar la superficie exterior contaminada. Es el primer paso del retiro para no contaminar las manos al quitar el resto del EPP.'},
+  {q:'¿Cuándo es obligatorio el uso de goggles o careta en la atención prehospitalaria?',opts:['Cuando hay riesgo de salpicaduras de sangre o fluidos corporales','Solo en cirugías hospitalarias','Únicamente en pacientes COVID-19','Solo si el paciente tiene hepatitis'],ans:0,exp:'Las precauciones estándar indican protección ocular siempre que exista riesgo de salpicaduras, incluyendo colocación de vías IV, aspiración y atención de traumas.'},
+  {q:'Un paramédico atiende un politraumatizado con hemorragia activa. ¿Qué EPP mínimo debe usar?',opts:['Guantes, mascarilla y goggles','Solo guantes','Solo mascarilla','No requiere EPP en campo'],ans:0,exp:'Con hemorragia activa existe riesgo de contacto con sangre y salpicaduras. Se requiere como mínimo guantes (contacto), mascarilla (gotas) y goggles (mucosas oculares).'},
+  {q:'¿Qué se debe hacer PRIMERO si ocurre un pinchazo accidental con aguja contaminada?',opts:['Lavar con agua y jabón profusamente','Exprimir la herida para drenar la sangre','Aplicar alcohol directamente','Cubrir con gasa y continuar la atención'],ans:0,exp:'Lavar con agua corriente y jabón durante al menos 5 minutos es el primer paso. Exprimir está contraindicado porque aumenta el riesgo de infección.'},
+  {q:'¿Cuál de los siguientes es el primer paso al COLOCARSE el EPP?',opts:['Lavado de manos','Colocación de guantes','Colocación de mascarilla','Colocación de bata'],ans:0,exp:'El lavado de manos es siempre el primer paso antes de ponerse cualquier elemento del EPP, para evitar contaminar el equipo desde el inicio.'},
+  {q:'¿Qué significa el principio de "universalidad" en bioseguridad prehospitalaria?',opts:['Todo paciente debe considerarse potencialmente infeccioso, sin excepción','Las precauciones aplican solo a pacientes hospitalizados','Solo se aplica a enfermedades de transmisión sexual','Es un principio administrativo, no clínico'],ans:0,exp:'El principio de universalidad es la base de las precauciones estándar: no se puede saber qué patógenos porta un paciente en la escena, por lo que todos deben manejarse bajo el mismo protocolo.'},
+  {q:'La descontaminación de la ambulancia debe iniciarse:',opts:['Inmediatamente al llegar a la base, antes de disponibilizar la unidad','Solo si el paciente tenía diagnóstico confirmado de infección','Al terminar el turno','Solo cuando hay sangre visible'],ans:0,exp:'La NOM-034-SSA3-2013 establece que la descontaminación es obligatoria después de cada servicio para garantizar que la unidad esté en condiciones para el siguiente paciente.'},
+  {q:'¿Cuál es la diferencia principal entre desinfección y esterilización?',opts:['La esterilización elimina todas las formas de vida incluyendo esporas; la desinfección no garantiza eliminar esporas','Son sinónimos','La desinfección es más efectiva','La esterilización solo aplica a equipos hospitalarios'],ans:0,exp:'La esterilización destruye TODOS los microorganismos incluyendo esporas bacterianas resistentes. La desinfección reduce la carga microbiana pero puede no eliminar esporas.'},
+  {q:'¿Qué concentración de hipoclorito de sodio se recomienda para la descontaminación de la ambulancia?',opts:['0.5%','5%','10%','0.05%'],ans:0,exp:'El hipoclorito de sodio al 0.5% (5000 ppm) tiene espectro de acción amplio y es efectivo para desinfección de superficies en unidades de emergencias médicas.'},
+  {q:'Ante un paciente con sospecha de tuberculosis pulmonar activa, el paramédico debe usar:',opts:['Respirador N95, goggles, guantes y bata','Solo mascarilla quirúrgica','Solo guantes y mascarilla','No requiere EPP especial'],ans:0,exp:'La TBC se transmite por vía aérea (aerosoles de menos de 5 micrómetros). La mascarilla quirúrgica no protege contra aerosoles. Se requiere N95 como mínimo.'},
+  {q:'¿Cuándo debe hacerse el último lavado de manos al retirarse el EPP?',opts:['Después de retirar la bata, como paso final','Antes de retirar los guantes','Entre el retiro de goggles y la mascarilla','No es necesario si se usó alcohol gel antes'],ans:0,exp:'El lavado de manos final es el último paso del retiro del EPP y confirma que el personal sale del área de atención sin riesgo de autocontaminación ni contaminación cruzada.'},
+];
+
+let quizCurrent=0, quizAnswers=[], quizTimer=null, quizTimeLeft=30;
+
+function quizStart(){
+  quizCurrent=0; quizAnswers=[];
+  document.getElementById('quiz-start').style.display='none';
+  document.getElementById('quiz-running').style.display='block';
+  quizRender();
+}
+
+function quizRender(){
+  if(quizCurrent>=QUIZ_QS.length){ quizShowResults(); return; }
+  clearInterval(quizTimer); quizTimeLeft=30;
+  const q=QUIZ_QS[quizCurrent];
+  const container=document.getElementById('quiz-running');
+  const letters=['A','B','C','D'];
+  container.innerHTML=`
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.75rem;flex-wrap:wrap;gap:.5rem">
+      <span class="quiz-qnum">Pregunta ${quizCurrent+1} / ${QUIZ_QS.length}</span>
+      <span class="quiz-progress" style="font-size:.78rem;color:var(--muted)">Respondidas: ${quizAnswers.length}</span>
+    </div>
+    <div class="quiz-timer-bar"><div class="quiz-timer-fill" id="qtfill" style="width:100%"></div></div>
+    <div class="quiz-q">${q.q}</div>
+    <div class="quiz-opts" id="qopts">
+      ${q.opts.map((o,i)=>`<div class="quiz-opt" onclick="quizAnswer(${i})"><span class="quiz-opt-letter">${letters[i]}</span><span>${o}</span></div>`).join('')}
+    </div>
+    <div class="quiz-explain" id="qexp">${q.exp}</div>
+    <div id="quiz-next-row" style="display:none;margin-top:1.25rem;text-align:right">
+      <button class="btn btn-primary" onclick="quizNext()">${quizCurrent+1<QUIZ_QS.length?'Siguiente pregunta →':'Ver resultados →'}</button>
+    </div>`;
+  quizTimer=setInterval(()=>{
+    quizTimeLeft--;
+    const pct=(quizTimeLeft/30)*100;
+    const fill=document.getElementById('qtfill');
+    if(fill){ fill.style.width=pct+'%'; fill.style.background=pct>50?'var(--teal)':pct>25?'var(--amber)':'var(--red)'; }
+    if(quizTimeLeft<=0){ clearInterval(quizTimer); quizAnswer(-1); }
+  },1000);
+}
+
+function quizAnswer(idx){
+  clearInterval(quizTimer);
+  const q=QUIZ_QS[quizCurrent];
+  quizAnswers.push(idx);
+  const opts=document.querySelectorAll('.quiz-opt');
+  opts.forEach((o,i)=>{
+    o.classList.add('disabled');
+    if(i===q.ans) o.classList.add('correct-ans');
+    else if(i===idx&&idx!==q.ans) o.classList.add('wrong-ans');
+  });
+  document.getElementById('qexp').classList.add('show');
+  document.getElementById('quiz-next-row').style.display='block';
+  if(idx===q.ans) addScore(5,7);
+}
+
+function quizNext(){ quizCurrent++; quizRender(); }
+
+function quizShowResults(){
+  clearInterval(quizTimer);
+  document.getElementById('quiz-running').style.display='none';
+  const panel=document.getElementById('quiz-results-panel');
+  panel.style.display='block';
+  const correct=quizAnswers.filter((a,i)=>a===QUIZ_QS[i].ans).length;
+  const pct=Math.round((correct/QUIZ_QS.length)*100);
+  const msg=pct>=90?'¡Excelente dominio del tema!':pct>=70?'Buen resultado, refuerza los temas fallidos.':pct>=50?'Aprobado, pero conviene repasar los protocolos.':'Necesitas repasar el material antes de continuar.';
+  const color=pct>=90?'var(--green2)':pct>=70?'var(--teal2)':pct>=50?'var(--amber2)':'var(--red2)';
+  panel.innerHTML=`
+    <div class="quiz-results">
+      <div class="results-circle" style="border-color:${color}"><div class="results-pct" style="color:${color}">${pct}%</div><div class="results-label">Resultado</div></div>
+      <h3 class="results-title">${msg}</h3>
+      <p class="results-sub">Respondiste correctamente ${correct} de ${QUIZ_QS.length} preguntas en la evaluación de bioseguridad prehospitalaria.</p>
+      <div class="results-breakdown">
+        <div class="rb-item"><div class="rb-val" style="color:var(--green2)">${correct}</div><div class="rb-lbl">Correctas</div></div>
+        <div class="rb-item"><div class="rb-val" style="color:var(--red2)">${QUIZ_QS.length-correct}</div><div class="rb-lbl">Incorrectas</div></div>
+        <div class="rb-item"><div class="rb-val" style="color:${color}">${pct}%</div><div class="rb-lbl">Calificación</div></div>
+      </div>
+      <div style="display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap">
+        <button class="btn btn-primary" onclick="quizRestart()">Reintentar evaluación</button>
+        <button class="btn btn-ghost" onclick="quizReview()">Revisar respuestas</button>
+      </div>
+    </div>`;
+  markDone(5);
+}
+
+function quizRestart(){
+  quizCurrent=0; quizAnswers=[];
+  document.getElementById('quiz-results-panel').style.display='none';
+  document.getElementById('quiz-running').style.display='block';
+  quizRender();
+}
+
+function quizReview(){
+  const panel=document.getElementById('quiz-results-panel');
+  const letters=['A','B','C','D'];
+  let html=`<div style="padding:1rem 0">`;
+  QUIZ_QS.forEach((q,i)=>{
+    const ua=quizAnswers[i]; const ok=ua===q.ans;
+    html+=`<div style="margin-bottom:1.25rem;padding:1rem;background:var(--bg3);border-radius:var(--r-sm);border:1px solid ${ok?'rgba(34,197,94,.3)':'rgba(239,68,68,.3)'}">
+      <div style="font-size:.75rem;font-weight:700;color:${ok?'var(--green2)':'var(--red2)'};margin-bottom:.4rem">${ok?'✓ Correcta':'✗ Incorrecta'} · Pregunta ${i+1}</div>
+      <div style="font-size:.88rem;font-weight:500;color:var(--white);margin-bottom:.6rem">${q.q}</div>
+      ${q.opts.map((o,j)=>`<div style="font-size:.8rem;padding:.3rem .6rem;border-radius:4px;margin-bottom:.2rem;${j===q.ans?'background:rgba(34,197,94,.1);color:var(--green2)':j===ua&&ua!==q.ans?'background:rgba(239,68,68,.1);color:var(--red2)':'color:var(--muted)'}">${letters[j]}. ${o}</div>`).join('')}
+      <div style="font-size:.78rem;color:var(--muted2);margin-top:.5rem;padding:.5rem;background:var(--bg);border-radius:4px">${q.exp}</div>
+    </div>`;
+  });
+  html+=`<div style="text-align:center;margin-top:1rem"><button class="btn btn-primary" onclick="quizRestart()">Reintentar evaluación</button></div></div>`;
+  panel.innerHTML=html;
+}
+
+// ═══════════════════════════════════════════════════
+// HELPERS
+// ═══════════════════════════════════════════════════
+function showFb(id,type,msg){ const el=document.getElementById(id); if(!el) return; el.className=`feedback show ${type}`; el.innerHTML=`<span>${type==='ok'?'✓':type==='err'?'✗':'ℹ'}</span><span>${msg}</span>`; }
+function hideFb(id){ const el=document.getElementById(id); if(el) el.classList.remove('show'); }
+
+// ═══════════════════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════════════════
+wsInit();
+fibInit();
+matchInit();
+orderInit(0);
+orderInit(1);
+</script>
+</body>
+</html>
