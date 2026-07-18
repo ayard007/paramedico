@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anatomía Cervical Aplicada - IPCED</title>
+    <!-- Tailwind CSS para diseño moderno -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome para iconos académicos y de emergencias -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Inter para alta legibilidad -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        ipced: {
+                            orange: '#f97316', // Naranja Protección Civil
+                            blue: '#0284c7',   // Azul Emergencias
+                            dark: '#0f172a',   // Pizarra Oscuro Profundo
+                            accent: '#ea580c',
+                            teal: '#0d9488'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .hotspot-area {
+            transition: all 0.25s ease;
+            cursor: pointer;
+            fill: rgba(249, 115, 22, 0);
+            stroke: transparent;
+            stroke-width: 2px;
+        }
+        .hotspot-area:hover {
+            fill: rgba(249, 115, 22, 0.25);
+            stroke: #f97316;
+        }
+        .hotspot-label {
+            cursor: pointer;
+            fill: rgba(2, 132, 199, 0);
+            stroke: transparent;
+            stroke-width: 2px;
+        }
+        .hotspot-label:hover {
+            fill: rgba(2, 132, 199, 0.15);
+            stroke: #0284c7;
+        }
+        .hotspot-active-muscle {
+            fill: rgba(239, 68, 68, 0.35) !important;
+            stroke: #ef4444 !important;
+            stroke-width: 3px !important;
+        }
+        .hotspot-active-label {
+            fill: rgba(2, 132, 199, 0.25) !important;
+            stroke: #0284c7 !important;
+            stroke-width: 2px !important;
+        }
+        @keyframes pulse-pin {
+            0%, 100% { transform: scale(1); opacity: 0.9; }
+            50% { transform: scale(1.4); opacity: 0.4; }
+        }
+        .pulsing-dot {
+            transform-origin: center;
+            animation: pulse-pin 2s infinite ease-in-out;
+        }
+        .pulsing-dot-active {
+            fill: #ef4444 !important;
+            stroke: #ffffff !important;
+        }
+    </style>
+</head>
+<body class="bg-slate-900 font-sans text-slate-100 flex flex-col min-h-screen selection:bg-orange-500 selection:text-white">
+
+<header class="bg-gradient-to-r from-slate-950 via-slate-900 to-slate-950 text-white shadow-2xl border-b-4 border-orange-500 sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 py-3 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
+        <!-- Logo y Nombre de la Escuela -->
+        <div class="flex items-center gap-4 text-center md:text-left">
+            <img src="ipcedlogo_2.jfif" alt="Logo IPCED" class="h-16 w-16 object-contain rounded-xl bg-white p-1 shadow-lg border-2 border-orange-500 transition-transform hover:scale-105" onerror="this.src='https://placehold.co/150x150/1e293b/ffffff?text=IPCED'">
+            <div>
+                <span class="text-[10px] font-black tracking-widest text-orange-400 uppercase block">Plataforma Tecnológica de Anatomía</span>
+                <h1 class="text-lg sm:text-xl font-extrabold text-white leading-tight">
+                    Instituto de Protección Civil, Emergencias y Desastres
+                </h1>
+                <p class="text-xs text-slate-300 font-medium">Maqueta Interactiva: Miología Cervical Aplicada a Emergencias Médicas</p>
+            </div>
+        </div>
+        <!-- Indicadores rápidos e interactivos -->
+        <div class="flex flex-wrap gap-2 justify-center">
+            <span class="bg-orange-500/20 text-orange-400 px-3 py-1 rounded-full text-xs font-semibold border border-orange-500/30 flex items-center gap-1">
+                <i class="fa-solid fa-graduation-cap"></i> Nivel TSU / Paramédico
+            </span>
+            <span class="bg-blue-500/20 text-blue-400 px-3 py-1 rounded-full text-xs font-semibold border border-blue-500/30 flex items-center gap-1">
+                <i class="fa-solid fa-kit-medical"></i> Anatomía de Urgencias
+            </span>
+            <button onclick="toggleAudio()" id="audio-toggle-btn" class="bg-slate-800 hover:bg-slate-700 text-slate-300 px-3 py-1 rounded-full text-xs font-semibold border border-slate-700 flex items-center gap-1 transition-colors">
+                <i class="fa-solid fa-volume-high" id="audio-icon"></i> <span>Voz Activa</span>
+            </button>
+        </div>
+    </div>
+</header>
+
+<section class="bg-slate-950 border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 py-6 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-center">
+            <div class="lg:col-span-2">
+                <h2 class="text-xl font-bold text-white flex items-center gap-2">
+                    <i class="fa-solid fa-circle-info text-orange-500"></i> Miología del Cuello y Soporte de Vida
+                </h2>
+                <p class="mt-2 text-slate-300 text-sm leading-relaxed">
+                    Esta maqueta web interactiva utiliza el esquema de disección lateral derecha (<strong class="text-orange-400">cuello.jpg</strong>) para estudiar los 11 músculos cervicales críticos. Para el profesional de la salud y emergencias, cada uno de estos músculos cumple funciones protectoras del eje vascular, movilidad cefálica o control respiratorio mecánico.
+                </p>
+                <div class="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-xs text-slate-400">
+                    <span><i class="fa-solid fa-mouse-pointer text-orange-500"></i> <strong>Instrucciones:</strong> Pasa el ratón o pulsa sobre la imagen del cuello para explorar cada músculo en detalle.</span>
+                </div>
+            </div>
+            <div class="bg-slate-900 rounded-xl p-4 border border-slate-800 shadow-xl">
+                <h3 class="font-bold text-orange-400 flex items-center gap-2 text-xs uppercase tracking-wide">
+                    <i class="fa-solid fa-lightbulb"></i> Tip de Aprendizaje
+                </h3>
+                <p class="text-xs text-slate-400 mt-1.5 leading-relaxed">
+                    Tanto la <strong>zona del músculo</strong> en la ilustración, el <strong>texto de la etiqueta</strong>, como el <strong>pin parpadeante</strong> son interactivos. Haz clic sobre cualquiera para desplegar la información clínica.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<main class="flex-grow max-w-7xl w-full mx-auto px-4 py-8 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        
+        <!-- Columna Izquierda: Imagen cuello.jpg con Overlays SVG Activos -->
+        <div class="lg:col-span-7 bg-slate-950 p-4 rounded-2xl shadow-2xl border border-slate-800 flex flex-col justify-between">
+            <div>
+                <div class="flex items-center justify-between mb-4 border-b border-slate-800 pb-3">
+                    <h3 class="text-sm font-bold text-slate-200 flex items-center gap-2">
+                        <i class="fa-solid fa-street-view text-blue-500"></i> Disección Lateral Interactiva (cuello.jpg)
+                    </h3>
+                    <span class="text-[10px] bg-slate-800 text-slate-300 px-2 py-0.5 rounded font-medium border border-slate-700">Digitalizado por IPCED</span>
+                </div>
+            </div>
+
+            <!-- Contenedor relativo para posicionar la imagen y el SVG encima -->
+            <div class="relative w-full aspect-[736/414] bg-slate-900 rounded-xl overflow-hidden border border-slate-800 select-none">
+                <!-- Imagen de fondo provista por el usuario -->
+                <img src="cuello.jpg" alt="Anatomía del Cuello" class="absolute inset-0 w-full h-full object-contain select-none" onerror="this.src='https://placehold.co/800x450/1e293b/ffffff?text=Cargue+cuello.jpg+en+su+directorio'">
+                
+                <!-- SVG Interactivo de alta fidelidad superpuesto -->
+                <svg viewBox="0 0 800 450" class="absolute inset-0 w-full h-full z-10">
+                    
+                    <!-- 1. Esternocleidomastoideo -->
+                    <polygon id="muscle-ecm" class="hotspot-area" points="360,110 405,95 440,110 395,350 350,340 345,310" onclick="selectMuscle('ecm')"/>
+                    <rect id="label-ecm" class="hotspot-label" x="545" y="195" width="220" height="28" rx="4" onclick="selectMuscle('ecm')"/>
+                    <circle id="pin-ecm" class="pulsing-dot" cx="410" cy="225" r="7" fill="#f97316" fill-opacity="0.8" onclick="selectMuscle('ecm')"/>
+
+                    <!-- 2. Trapecio -->
+                    <polygon id="muscle-trapecio" class="hotspot-area" points="460,240 500,210 525,215 590,320 600,355 540,360 490,290" onclick="selectMuscle('trapecio')"/>
+                    <rect id="label-trapecio" class="hotspot-label" x="545" y="342" width="110" height="28" rx="4" onclick="selectMuscle('trapecio')"/>
+                    <circle id="pin-trapecio" class="pulsing-dot" cx="545" cy="315" r="7" fill="#f97316" fill-opacity="0.8" onclick="selectMuscle('trapecio')"/>
+
+                    <!-- 3. Esplenio -->
+                    <polygon id="muscle-esplenio" class="hotspot-area" points="415,110 445,95 460,110 470,165 440,185" onclick="selectMuscle('esplenio')"/>
+                    <rect id="label-esplenio" class="hotspot-label" x="545" y="92" width="105" height="28" rx="4" onclick="selectMuscle('esplenio')"/>
+                    <circle id="pin-esplenio" class="pulsing-dot" cx="445" cy="140" r="7" fill="#f97316" fill-opacity="0.8" onclick="selectMuscle('esplenio')"/>
+
+                    <!-- 4. Elevador de la Escápula -->
+                    <polygon id="muscle-elevador" class="hotspot-area" points="445,185 470,165 485,210 455,230" onclick="selectMuscle('elevador')"/>
+                    <rect id="label-elevador" class="hotspot-label" x="545" y="132" width="225" height="28" rx="4" onclick="selectMuscle('elevador')"/>
+                    <circle id="pin-elevador" class="pulsing-dot" cx="468" cy="195" r="7" fill="#f97316" fill-opacity="0.8" onclick="selectMuscle('elevador')"/>
+
+                    <!-- 5. Escaleno Anterior -->
+                    <polygon id="muscle-escaleno-ant" class="hotspot-area" points="432,245 448,252 432,305 415,295" onclick="selectMuscle('escaleno-ant')"/>
+                    <rect id="label-escaleno-ant" class="hotspot-label" x="545" y="235" width="180" height="28" rx="4" onclick="selectMuscle('escaleno-ant')"/>
+                    <circle id="pin-escaleno-ant" class="pulsing-dot" cx="428" cy="272" r="7" fill="#f97316" fill-opacity="0.8" onclick="selectMuscle('escaleno-ant')"/>
+
+                    <!-- 6. Escaleno Medio -->
+                    <polygon id="muscle-escaleno-med" class="hotspot-area" points="448,252 462,260 450,318 432,305" onclick="selectMuscle('escaleno-med')"/>
+                    <rect id="label-escaleno-med" class="hotspot-label" x="545" y="272" width="165" height="28" rx="4" onclick="selectMuscle('escaleno-med')"/>
+                    <circle id="pin-escaleno-med" class="pulsing-dot" cx="445" cy="290" r="7" fill="#f97316" fill-opacity="0.8" onclick="selectMuscle('escaleno-med')"/>
+
+                    <!-- 7. Escaleno Posterior -->
+                    <polygon id="muscle-escaleno-post" class="hotspot-area" points="462,260 478,268 470,332 450,318" onclick="selectMuscle('escaleno-post')"/>
+                    <rect id="label-escaleno-post" class="hotspot-label" x="545" y="307" width="185" height="28" rx="4" onclick="selectMuscle('escaleno-post')"/>
+                    <circle id="pin-escaleno-post" class="pulsing-dot" cx="460" cy="308" r="7" fill="#f97316" fill-opacity="0.8" onclick="selectMuscle('escaleno-post')"/>
+
+                    <!-- 8. Tirohioideo -->
+                    <polygon id="muscle-tirohioideo" class="hotspot-area" points="305,160 338,158 335,188 300,185" onclick="selectMuscle('tirohioideo')"/>
+                    <rect id="label-tirohioideo" class="hotspot-label" x="20" y="120" width="130" height="28" rx="4" onclick="selectMuscle('tirohioideo')"/>
+                    <circle id="pin-tirohioideo" class="pulsing-dot" cx="310" cy="175" r="7" fill="#f97316" fill-opacity="0.8" onclick="selectMuscle('tirohioideo')"/>
+
+                    <!-- 9. Omohioideo -->
+                    <polygon id="muscle-omohioideo" class="hotspot-area" points="325,190 342,192 335,278 318,272" onclick="selectMuscle('omohioideo')"/>
+                    <rect id="label-omohioideo" class="hotspot-label" x="20" y="185" width="130" height="28" rx="4" onclick="selectMuscle('omohioideo')"/>
+                    <circle id="pin-omohioideo" class="pulsing-dot" cx="330" cy="235" r="7" fill="#f97316" fill-opacity="0.8" onclick="selectMuscle('omohioideo')"/>
+
+                    <!-- 10. Esternohioideo -->
+                    <polygon id="muscle-esternohioideo" class="hotspot-area" points="310,215 325,215 340,330 325,330" onclick="selectMuscle('esternohioideo')"/>
+                    <rect id="label-esternohioideo" class="hotspot-label" x="20" y="248" width="155" height="28" rx="4" onclick="selectMuscle('esternohioideo')"/>
+                    <circle id="pin-esternohioideo" class="pulsing-dot" cx="320" cy="270" r="7" fill="#f97316" fill-opacity="0.8" onclick="selectMuscle('esternohioideo')"/>
+
+                    <!-- 11. Omohioideo Inferior -->
+                    <polygon id="muscle-omohioideo-inf" class="hotspot-area" points="405,312 472,328 465,348 400,332" onclick="selectMuscle('omohioideo-inf')"/>
+                    <rect id="label-omohioideo-inf" class="hotspot-label" x="545" y="388" width="230" height="28" rx="4" onclick="selectMuscle('omohioideo-inf')"/>
+                    <circle id="pin-omohioideo-inf" class="pulsing-dot" cx="430" cy="330" r="7" fill="#f97316" fill-opacity="0.8" onclick="selectMuscle('omohioideo-inf')"/>
+
+                </svg>
+            </div>
+
+            <!-- Lista Rápida de Músculos para Selección Directa -->
+            <div class="mt-4 pt-4 border-t border-slate-800">
+                <span class="text-xs font-bold text-slate-400 block mb-2 uppercase tracking-wider">Índice Anatómico (Selecciona un músculo):</span>
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-1.5">
+                    <button onclick="selectMuscle('ecm')" id="btn-ecm" class="muscle-btn text-left text-xs bg-slate-900 hover:bg-red-950/40 text-slate-300 px-2 py-1.5 rounded border border-slate-800 transition-all font-medium truncate">Esternocleidomastoideo</button>
+                    <button onclick="selectMuscle('trapecio')" id="btn-trapecio" class="muscle-btn text-left text-xs bg-slate-900 hover:bg-blue-950/40 text-slate-300 px-2 py-1.5 rounded border border-slate-800 transition-all font-medium truncate">Trapecio</button>
+                    <button onclick="selectMuscle('esplenio')" id="btn-esplenio" class="muscle-btn text-left text-xs bg-slate-900 hover:bg-purple-950/40 text-slate-300 px-2 py-1.5 rounded border border-slate-800 transition-all font-medium truncate">Esplenio</button>
+                    <button onclick="selectMuscle('elevador')" id="btn-elevador" class="muscle-btn text-left text-xs bg-slate-900 hover:bg-indigo-950/40 text-slate-300 px-2 py-1.5 rounded border border-slate-800 transition-all font-medium truncate">Elevador Escápula</button>
+                    <button onclick="selectMuscle('escaleno-ant')" id="btn-escaleno-ant" class="muscle-btn text-left text-xs bg-slate-900 hover:bg-emerald-950/40 text-slate-300 px-2 py-1.5 rounded border border-slate-800 transition-all font-medium truncate">Escaleno Anterior</button>
+                    <button onclick="selectMuscle('escaleno-med')" id="btn-escaleno-med" class="muscle-btn text-left text-xs bg-slate-900 hover:bg-teal-950/40 text-slate-300 px-2 py-1.5 rounded border border-slate-800 transition-all font-medium truncate">Escaleno Medio</button>
+                    <button onclick="selectMuscle('escaleno-post')" id="btn-escaleno-post" class="muscle-btn text-left text-xs bg-slate-900 hover:bg-cyan-950/40 text-slate-300 px-2 py-1.5 rounded border border-slate-800 transition-all font-medium truncate">Escaleno Posterior</button>
+                    <button onclick="selectMuscle('tirohioideo')" id="btn-tirohioideo" class="muscle-btn text-left text-xs bg-slate-900 hover:bg-amber-950/40 text-slate-300 px-2 py-1.5 rounded border border-slate-800 transition-all font-medium truncate">Tirohioideo</button>
+                    <button onclick="selectMuscle('omohioideo')" id="btn-omohioideo" class="muscle-btn text-left text-xs bg-slate-900 hover:bg-pink-950/40 text-slate-300 px-2 py-1.5 rounded border border-slate-800 transition-all font-medium truncate">Omohioideo</button>
+                    <button onclick="selectMuscle('esternohioideo')" id="btn-esternohioideo" class="muscle-btn text-left text-xs bg-slate-900 hover:bg-rose-950/40 text-slate-300 px-2 py-1.5 rounded border border-slate-800 transition-all font-medium truncate">Esternohioideo</button>
+                    <button onclick="selectMuscle('omohioideo-inf')" id="btn-omohioideo-inf" class="muscle-btn text-left text-xs bg-slate-900 hover:bg-sky-950/40 text-slate-300 px-2 py-1.5 rounded border border-slate-800 transition-all font-medium truncate">Omohioideo Inferior</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Columna Derecha: Información Interactiva Dinámica -->
+        <div class="lg:col-span-5 flex flex-col gap-6">
+            
+            <!-- Contenedor Ficha Técnica Dinámica -->
+            <div id="info-card" class="bg-slate-950 p-6 rounded-2xl shadow-2xl border border-slate-800 relative overflow-hidden transition-all duration-300">
+                <!-- Banner de fondo decorativo dinámico -->
+                <div id="info-accent" class="absolute top-0 left-0 right-0 h-2 bg-slate-600"></div>
+                
+                <div class="flex items-start justify-between mt-2">
+                    <div>
+                        <span id="info-group" class="text-[10px] font-black tracking-widest text-slate-400 uppercase">GRUPO MUSCULAR</span>
+                        <h3 id="info-name" class="text-xl font-black text-white mt-1">Exploración Anatómica</h3>
+                    </div>
+                    <div id="info-icon" class="h-10 w-10 rounded-lg bg-slate-900 text-slate-500 flex items-center justify-center text-lg border border-slate-800">
+                        <i class="fa-solid fa-hand-pointer animate-bounce"></i>
+                    </div>
+                </div>
+
+                <!-- Descripción básica -->
+                <p id="info-desc" class="text-slate-300 mt-4 leading-relaxed text-xs">
+                    Haz clic en cualquiera de las estructuras anatómicas señaladas con círculos pulsantes en la maqueta para desplegar la descripción oficial, origen, inserción e importancia en primeros auxilios e inmovilización de trauma.
+                </p>
+
+                <!-- Detalles Anatómicos -->
+                <div id="info-details" class="hidden mt-6 grid grid-cols-1 gap-3 pt-4 border-t border-slate-900">
+                    <div class="bg-slate-900 p-3 rounded-lg border border-slate-800">
+                        <span class="text-[10px] font-bold text-orange-400 block"><i class="fa-solid fa-person-running"></i> FUNCIÓN PRINCIPAL</span>
+                        <p id="info-function" class="text-xs text-slate-300 mt-1 font-medium"></p>
+                    </div>
+                    <div class="bg-slate-900 p-3 rounded-lg border border-slate-800">
+                        <span class="text-[10px] font-bold text-blue-400 block"><i class="fa-solid fa-compass"></i> ORIGEN E INSERCIÓN</span>
+                        <p id="info-origin" class="text-xs text-slate-300 mt-1 font-medium"></p>
+                    </div>
+                </div>
+
+                <!-- Sección Especial para Protección Civil / Emergencias -->
+                <div id="info-emergency-block" class="hidden mt-4 bg-orange-950/40 p-4 rounded-xl border-l-4 border-orange-500">
+                    <h4 class="text-xs font-bold text-orange-400 uppercase tracking-wider flex items-center gap-1.5">
+                        <i class="fa-solid fa-triangle-exclamation"></i> Importancia en Emergencias y Trauma
+                    </h4>
+                    <p id="info-emergency" class="text-xs text-slate-200 mt-1.5 leading-relaxed"></p>
+                </div>
+            </div>
+
+            <!-- Cuadro de Síntesis del Cuello para Protección Civil -->
+            <div class="bg-gradient-to-br from-slate-950 to-slate-900 text-white p-5 rounded-2xl shadow-xl relative overflow-hidden border border-slate-800">
+                <div class="absolute -right-16 -bottom-16 w-32 h-32 bg-orange-600/10 rounded-full blur-2xl"></div>
+                
+                <h3 class="text-xs font-bold text-orange-500 flex items-center gap-2 mb-2 uppercase tracking-wider">
+                    <i class="fa-solid fa-shield-halved"></i> Protocolo de Trauma Cervical - IPCED
+                </h3>
+                <p class="text-xs text-slate-300 leading-relaxed mb-3">
+                    En incidentes de alto impacto (accidentes vehiculares, caídas), la tensión o espasmo muscular involuntario de estos grupos intenta proteger la columna cervical. Este estado de "férula natural" puede esconder fracturas inestables:
+                </p>
+                <div class="grid grid-cols-1 gap-2 text-[11px] text-slate-400">
+                    <div class="bg-slate-900/80 p-2.5 rounded-lg border border-slate-800 flex gap-2">
+                        <i class="fa-solid fa-1 text-orange-500 mt-0.5 font-black"></i>
+                        <span><strong>Restricción manual inmediata:</strong> Evita que los músculos profundos como los Escalenos y Esplenio se agoten y provoquen desplazamientos óseos.</span>
+                    </div>
+                    <div class="bg-slate-900/80 p-2.5 rounded-lg border border-slate-800 flex gap-2">
+                        <i class="fa-solid fa-2 text-orange-500 mt-0.5 font-black"></i>
+                        <span><strong>Evaluación respiratoria:</strong> La contracción tónica del Esternocleidomastoideo durante la inspiración es el signo definitivo de esfuerzo respiratorio en paro inminente.</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Sección de Autoevaluación Académica -->
+    <section class="mt-12 bg-slate-950 rounded-2xl shadow-2xl border border-slate-800 overflow-hidden">
+        <div class="bg-gradient-to-r from-orange-600 to-orange-500 text-white px-6 py-4 flex items-center justify-between">
+            <div>
+                <h3 class="font-extrabold text-base flex items-center gap-2">
+                    <i class="fa-solid fa-graduation-cap"></i> Examen Rápido de Miología Cervical
+                </h3>
+                <p class="text-xs text-orange-100">Pon a prueba tu conocimiento para emergencias médicas</p>
+            </div>
+            <div class="bg-orange-700/50 px-3 py-1 rounded-full text-xs font-bold border border-orange-500/30">
+                Puntaje: <span id="quiz-score">0</span>/3
+            </div>
+        </div>
+        
+        <div class="p-6">
+            <!-- Preguntas -->
+            <div class="space-y-6">
+                <!-- Pregunta 1 -->
+                <div class="p-4 bg-slate-900 rounded-xl border border-slate-800" id="q1-container">
+                    <p class="font-semibold text-slate-200 text-xs sm:text-sm flex gap-2">
+                        <span class="text-orange-500 font-bold">P1.</span> ¿Qué músculo corre de forma diagonal cruzando todo el cuello y sirve de hito para localizar el pulso de la arteria carótida?
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-2.5 mt-3">
+                        <button onclick="checkAnswer(1, 'A', 'incorrect')" class="q1-btn text-xs text-left p-3 rounded-lg bg-slate-950 hover:bg-slate-800 transition-all font-medium text-slate-300 border border-slate-800">
+                            A) Escaleno Anterior
+                        </button>
+                        <button onclick="checkAnswer(1, 'B', 'correct')" class="q1-btn text-xs text-left p-3 rounded-lg bg-slate-950 hover:bg-slate-800 transition-all font-medium text-slate-300 border border-slate-800">
+                            B) Esternocleidomastoideo
+                        </button>
+                        <button onclick="checkAnswer(1, 'C', 'incorrect')" class="q1-btn text-xs text-left p-3 rounded-lg bg-slate-950 hover:bg-slate-800 transition-all font-medium text-slate-300 border border-slate-800">
+                            C) Trapecio
+                        </button>
+                    </div>
+                    <div id="feedback-1" class="hidden mt-3 text-xs p-2.5 rounded-lg"></div>
+                </div>
+
+                <!-- Pregunta 2 -->
+                <div class="p-4 bg-slate-900 rounded-xl border border-slate-800" id="q2-container">
+                    <p class="font-semibold text-slate-200 text-xs sm:text-sm flex gap-2">
+                        <span class="text-orange-500 font-bold">P2.</span> ¿Cuál es el grupo de 3 músculos (Anterior, Medio y Posterior) que elevan la primera y segunda costilla durante el esfuerzo inspiratorio de un paciente con asma grave?
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-2.5 mt-3">
+                        <button onclick="checkAnswer(2, 'A', 'correct')" class="q2-btn text-xs text-left p-3 rounded-lg bg-slate-950 hover:bg-slate-800 transition-all font-medium text-slate-300 border border-slate-800">
+                            A) Músculos Escalenos
+                        </button>
+                        <button onclick="checkAnswer(2, 'B', 'incorrect')" class="q2-btn text-xs text-left p-3 rounded-lg bg-slate-950 hover:bg-slate-800 transition-all font-medium text-slate-300 border border-slate-800">
+                            B) Esternohioideo y Tirohioideo
+                        </button>
+                        <button onclick="checkAnswer(2, 'C', 'incorrect')" class="q2-btn text-xs text-left p-3 rounded-lg bg-slate-950 hover:bg-slate-800 transition-all font-medium text-slate-300 border border-slate-800">
+                            C) Esplenio de la Cabeza
+                        </button>
+                    </div>
+                    <div id="feedback-2" class="hidden mt-3 text-xs p-2.5 rounded-lg"></div>
+                </div>
+
+                <!-- Pregunta 3 -->
+                <div class="p-4 bg-slate-900 rounded-xl border border-slate-800" id="q3-container">
+                    <p class="font-semibold text-slate-200 text-xs sm:text-sm flex gap-2">
+                        <span class="text-orange-500 font-bold">P3.</span> ¿Qué músculo posee un vientre superior e inferior y cruza el triángulo posterior del cuello en profundidad para insertarse en el hioides?
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-2.5 mt-3">
+                        <button onclick="checkAnswer(3, 'A', 'incorrect')" class="q3-btn text-xs text-left p-3 rounded-lg bg-slate-950 hover:bg-slate-800 transition-all font-medium text-slate-300 border border-slate-800">
+                            A) Elevador de la Escápula
+                        </button>
+                        <button onclick="checkAnswer(3, 'B', 'incorrect')" class="q3-btn text-xs text-left p-3 rounded-lg bg-slate-950 hover:bg-slate-800 transition-all font-medium text-slate-300 border border-slate-800">
+                            B) Tirohioideo
+                        </button>
+                        <button onclick="checkAnswer(3, 'C', 'correct')" class="q3-btn text-xs text-left p-3 rounded-lg bg-slate-950 hover:bg-slate-800 transition-all font-medium text-slate-300 border border-slate-800">
+                            C) Músculo Omohioideo
+                        </button>
+                    </div>
+                    <div id="feedback-3" class="hidden mt-3 text-xs p-2.5 rounded-lg"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer class="bg-slate-950 text-slate-400 text-xs border-t border-slate-800 mt-16">
+    <div class="max-w-7xl mx-auto px-4 py-8 sm:px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="text-center md:text-left">
+                <p class="font-bold text-slate-300">© 2026 Instituto de Protección Civil, Emergencias y Desastres (IPCED)</p>
+                <p class="mt-1 text-[11px] text-slate-500">Material de Apoyo Académico Autoinstruccional para Carreras de Urgencias Médicas y Gestión del Riesgo.</p>
+            </div>
+            <!-- Enlaces informativos -->
+            <div class="flex gap-4">
+                <span class="hover:text-white transition-colors cursor-pointer"><i class="fa-solid fa-book-open"></i> Planes de Estudio</span>
+                <span class="hover:text-white transition-colors cursor-pointer"><i class="fa-solid fa-hospital-user"></i> Escuela de Paramédicos</span>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // Variables globales de audio
+    let audioSpeechEnabled = true;
+    let score = 0;
+    const answeredQuestions = {};
+
+    function toggleAudio() {
+        audioSpeechEnabled = !audioSpeechEnabled;
+        const btn = document.getElementById('audio-toggle-btn');
+        const icon = document.getElementById('audio-icon');
+        if (audioSpeechEnabled) {
+            btn.classList.remove('bg-red-950/40', 'border-red-800', 'text-red-400');
+            btn.classList.add('bg-slate-800', 'border-slate-700', 'text-slate-300');
+            icon.className = 'fa-solid fa-volume-high';
+            speakText("Audio activo");
+        } else {
+            btn.classList.add('bg-red-950/40', 'border-red-800', 'text-red-400');
+            btn.classList.remove('bg-slate-800', 'border-slate-700', 'text-slate-300');
+            icon.className = 'fa-solid fa-volume-xmark';
+        }
+    }
+
+    function speakText(text) {
+        if (!audioSpeechEnabled) return;
+        // Detener reproducción previa
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = 'es-MX';
+        utterance.rate = 1.0;
+        window.speechSynthesis.speak(utterance);
+    }
+
+    // Base de datos expandida de 11 músculos
+    const musclesDatabase = {
+        ecm: {
+            name: "Esternocleidomastoideo",
+            group: "Lateral Superficial",
+            desc: "El músculo más visible del cuello. Divide anatómicamente el cuello en un triángulo anterior y uno posterior.",
+            function: "Inclinación de la cabeza hacia el mismo lado y rotación hacia el lado opuesto. Bilateralmente flexiona el cuello hacia el esternón.",
+            origin: "Nace en el manubrio del esternón y la clavícula, insertándose en la apófisis mastoides del hueso temporal.",
+            emergency: "Es el marcador físico para encontrar la arteria carótida. Su contracción severa durante la inspiración es el signo clave de uso de músculos accesorios (dificultad respiratoria extrema en asma, EPOC o shock).",
+            color: "#ef4444"
+        },
+        trapecio: {
+            name: "Trapecio (Fibras Superiores)",
+            group: "Posterior de la Nuca",
+            desc: "Un gran músculo plano que cubre la región posterior del cuello y se extiende sobre los hombros.",
+            function: "Eleva los hombros (escapula) y extiende la cabeza hacia atrás de forma bilateral.",
+            origin: "Línea nucal superior, protuberancia occipital externa y ligamento nucal, insertándose en el tercio lateral de la clavícula.",
+            emergency: "Muy comprometido en el esguince cervical por choque trasero ('latigazo cervical'). La inmovilización con collarines rígidos está diseñada para descansar y proteger la columna de la carga de este músculo.",
+            color: "#3b82f6"
+        },
+        esplenio: {
+            name: "Músculo Esplenio de la Cabeza",
+            group: "Posterior Profundo",
+            desc: "Ubicado debajo del trapecio superior, es un músculo ancho y plano que sostiene el cráneo.",
+            function: "Extiende el cuello de forma bilateral e inclina y rota la cabeza homolateralmente.",
+            origin: "Ligamento nucal y apófisis espinosas de las vértebras C7 a T3, insertándose en el hueso temporal (mastoides).",
+            emergency: "Su espasmo involuntario tras traumatismos es causante de cefaleas de origen cervical y una notable rigidez de nuca que impide la rotación voluntaria segura.",
+            color: "#8b5cf6"
+        },
+        elevador: {
+            name: "Elevador de la Escápula",
+            group: "Posterior y Lateral",
+            desc: "Situado debajo del trapecio, va desde la columna cervical hasta el ángulo superior de la escápula.",
+            function: "Eleva la escápula e inclina la columna cervical de manera homolateral.",
+            origin: "Apófisis transversas de las vértebras C1 a C4, insertándose en el borde medial superior de la escápula.",
+            emergency: "Soporta una tensión constante durante el transporte de camillas o equipo pesado. Su lesión causa espasmo protector que imita o agrava el dolor de lesiones vertebrales cervicales.",
+            color: "#6366f1"
+        },
+        "escaleno-ant": {
+            name: "Escaleno Anterior",
+            group: "Lateral Profundo",
+            desc: "Es el más anterior de los tres músculos escalenos, situado profundamente detrás del ECM.",
+            function: "Eleva la primera costilla durante la inspiración forzada e inclina la cabeza de forma homolateral.",
+            origin: "Apófisis transversas de C3 a C6, insertándose en el tubérculo del escaleno en la primera costilla.",
+            emergency: "Sirve como músculo accesorio esencial en insuficiencia respiratoria severa. Su espasmo crónico puede comprimir el plexo braquial, causando debilidad o entumecimiento en todo el brazo afectado.",
+            color: "#10b981"
+        },
+        "escaleno-med": {
+            name: "Escaleno Medio",
+            group: "Lateral Profundo",
+            desc: "El músculo escaleno más grande y largo, situado justo detrás del escaleno anterior.",
+            function: "Eleva la primera costilla y realiza flexión lateral de la columna cervical.",
+            origin: "Apófisis transversas de C2 a C7, insertándose en la cara superior de la primera costilla.",
+            emergency: "Junto con el escaleno anterior, forma el desfiladero de los escalenos, por donde pasan la arteria subclavia y las raíces del plexo braquial. Clave en la evaluación de traumas de miembro superior.",
+            color: "#0d9488"
+        },
+        "escaleno-post": {
+            name: "Escaleno Posterior",
+            group: "Lateral Profundo",
+            desc: "El más pequeño y posterior de los tres escalenos pectorales profundos.",
+            function: "Eleva la segunda costilla durante la ventilación y rota el cuello lateralmente.",
+            origin: "Apófisis transversas de C5 a C7, insertándose en el borde superior de la segunda costilla.",
+            emergency: "Participa de forma refleja en los procesos de compensación ventilatoria (respiración costal superior rápida de emergencia).",
+            color: "#06b6d4"
+        },
+        tirohioideo: {
+            name: "Músculo Tirohioideo",
+            group: "Anterior (Infrahioideo)",
+            desc: "Un músculo cuadrilátero pequeño que se encuentra en la parte superior del cartílago tiroides.",
+            function: "Deprime el hueso hioides o eleva el cartílago tiroides y la laringe.",
+            origin: "Línea oblicua del cartílago tiroides, insertándose en el cuerpo del hueso hioides.",
+            emergency: "Su integridad es vital para tragar de forma segura tras intubaciones de emergencia o cirugías de trauma en la vía aérea anterior.",
+            color: "#f59e0b"
+        },
+        omohioideo: {
+            name: "Músculo Omohioideo (Vientre Superior)",
+            group: "Anterior (Infrahioideo)",
+            desc: "Músculo acintado de dos vientres (digástrico) que viaja de manera oblicua cruzando el cuello.",
+            function: "Deprime y retrae el hueso hioides y la laringe tras el acto de tragar o hablar.",
+            origin: "Borde superior de la escápula, cruza el tendón intermedio, insertándose en el cuerpo del hueso hioides.",
+            emergency: "En el triángulo posterior, su vientre inferior sirve como hito para identificar los vasos subclavios. El desgarro de este plano muscular causa hemorragias que dificultan la permeabilidad de la tráquea.",
+            color: "#ec4899"
+        },
+        esternohioideo: {
+            name: "Músculo Esternohioideo",
+            group: "Anterior (Infrahioideo)",
+            desc: "Un músculo plano y delgado que cubre la laringe y la glándula tiroides en la parte más frontal del cuello.",
+            function: "Deprime el hueso hioides después de que ha sido elevado durante la deglución.",
+            origin: "Manubrio del esternón y extremo medial de la clavícula, insertándose en el borde inferior del hueso hioides.",
+            emergency: "Se corta o separa con pinzas delicadamente durante procedimientos urgentes de cricotiroidotomía o traqueotomía de emergencia para poder acceder a la vía aérea obstruida.",
+            color: "#f43f5e"
+        },
+        "omohioideo-inf": {
+            name: "Omohioideo (Vientre Inferior)",
+            group: "Anterior y Lateral Profundo",
+            desc: "La porción posterior/inferior del músculo omohioideo que cruza oblicuamente el espacio supraescapular.",
+            function: "Tensa la fascia cervical media y colabora en el descenso laringeo coordinado.",
+            origin: "Nace en el borde superior de la escápula e inserta en el tendón intermedio del cuello.",
+            emergency: "Es una referencia anatómica vital en cirugía de emergencia y manejo de heridas penetrantes del cuello (Zonas de trauma cervical I y II).",
+            color: "#0284c7"
+        }
+    };
+
+    // Función principal para controlar la interactividad del gráfico
+    function selectMuscle(key) {
+        // 1. Limpiar efectos visuales del SVG
+        document.querySelectorAll('.hotspot-area').forEach(p => p.classList.remove('hotspot-active-muscle'));
+        document.querySelectorAll('.hotspot-label').forEach(l => l.classList.remove('hotspot-active-label'));
+        document.querySelectorAll('.pulsing-dot').forEach(d => d.classList.remove('pulsing-dot-active'));
+
+        // 2. Limpiar botones
+        document.querySelectorAll('.muscle-btn').forEach(btn => {
+            btn.className = 'muscle-btn text-left text-xs bg-slate-900 hover:bg-slate-800 text-slate-300 px-2 py-1.5 rounded border border-slate-800 transition-all font-medium truncate';
+        });
+
+        // 3. Activar los elementos correspondientes
+        const activeArea = document.getElementById(`muscle-${key}`);
+        const activeLabel = document.getElementById(`label-${key}`);
+        const activePin = document.getElementById(`pin-${key}`);
+        const activeBtn = document.getElementById(`btn-${key}`);
+
+        if (activeArea) activeArea.classList.add('hotspot-active-muscle');
+        if (activeLabel) activeLabel.classList.add('hotspot-active-label');
+        if (activePin) activePin.classList.add('pulsing-dot-active');
+        if (activeBtn) {
+            activeBtn.className = 'muscle-btn text-left text-xs bg-orange-600 text-white px-2 py-1.5 rounded border border-orange-500 transition-all font-black truncate shadow-lg shadow-orange-900/30';
+        }
+
+        // 4. Mostrar y Narrar Ficha Técnica
+        const data = musclesDatabase[key];
+        if (data) {
+            document.getElementById('info-group').innerText = `GRUPO: ${data.group}`;
+            document.getElementById('info-name').innerText = data.name;
+            document.getElementById('info-desc').innerText = data.desc;
+            document.getElementById('info-function').innerText = data.function;
+            document.getElementById('info-origin').innerText = data.origin;
+            document.getElementById('info-emergency').innerText = data.emergency;
+
+            // Cambiar acentos visuales de la ficha
+            const accentBar = document.getElementById('info-accent');
+            accentBar.style.backgroundColor = data.color;
+
+            const iconDiv = document.getElementById('info-icon');
+            iconDiv.innerHTML = `<i class="fa-solid fa-stethoscope"></i>`;
+            iconDiv.style.backgroundColor = `${data.color}20`;
+            iconDiv.style.color = data.color;
+
+            // Mostrar secciones
+            document.getElementById('info-details').classList.remove('hidden');
+            document.getElementById('info-emergency-block').classList.remove('hidden');
+
+            // Síntesis de voz educacional
+            speakText(`${data.name}. Su función principal es ${data.function}`);
+        }
+    }
+
+    // Lógica del Quiz
+    function checkAnswer(questionNumber, selectedOption, result) {
+        if (answeredQuestions[questionNumber]) return; // Evitar re-responder
+        answeredQuestions[questionNumber] = true;
+
+        const feedbackDiv = document.getElementById(`feedback-${questionNumber}`);
+        const buttons = document.querySelectorAll(`.q${questionNumber}-btn`);
+
+        buttons.forEach(btn => {
+            btn.disabled = true;
+            btn.classList.add('opacity-40');
+        });
+
+        feedbackDiv.classList.remove('hidden');
+
+        if (result === 'correct') {
+            score++;
+            document.getElementById('quiz-score').innerText = score;
+            feedbackDiv.className = "mt-3 text-xs p-3 rounded-lg bg-emerald-950/80 border border-emerald-500 text-emerald-200 border-l-4";
+            
+            if (questionNumber === 1) {
+                feedbackDiv.innerHTML = `<strong>¡Excelente! <i class="fa-solid fa-circle-check"></i></strong> El Esternocleidomastoideo divide las zonas vasculares del cuello y sirve como hito clave del pulso carotídeo.`;
+                speakText("Respuesta correcta");
+            } else if (questionNumber === 2) {
+                feedbackDiv.innerHTML = `<strong>¡Muy bien! <i class="fa-solid fa-circle-check"></i></strong> Los Escalenos se activan de inmediato para ayudar a ventilar en crisis asmáticas o traumas graves.`;
+                speakText("Respuesta correcta");
+            } else if (questionNumber === 3) {
+                feedbackDiv.innerHTML = `<strong>¡Correcto! <i class="fa-solid fa-circle-check"></i></strong> El Omohioideo es un músculo digástrico con vientres superior e inferior separados por un tendón intermedio.`;
+                speakText("Respuesta correcta");
+            }
+        } else {
+            feedbackDiv.className = "mt-3 text-xs p-3 rounded-lg bg-red-950/80 border border-red-500 text-red-200 border-l-4";
+            speakText("Respuesta incorrecta");
+            if (questionNumber === 1) {
+                feedbackDiv.innerHTML = `<strong>Incorrecto <i class="fa-solid fa-circle-xmark"></i></strong> El Esternocleidomastoideo (ECM) es la banda cruzada clave para esta maniobra y referencia clínica.`;
+            } else if (questionNumber === 2) {
+                feedbackDiv.innerHTML = `<strong>Incorrecto <i class="fa-solid fa-circle-xmark"></i></strong> Son los Escalenos, los cuales se insertan en las costillas 1 y 2.`;
+            } else if (questionNumber === 3) {
+                feedbackDiv.innerHTML = `<strong>Incorrecto <i class="fa-solid fa-circle-xmark"></i></strong> El Omohioideo es el único que posee un vientre inferior localizado en el triángulo posterior del cuello.`;
+            }
+        }
+    }
+
+    // Inicialización automática
+    window.onload = function() {
+        setTimeout(() => {
+            selectMuscle('ecm');
+        }, 500);
+    };
+</script>
+
+</body>
+</html>
