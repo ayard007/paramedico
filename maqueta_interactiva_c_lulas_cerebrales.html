@@ -1,0 +1,1912 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Células Cerebrales: Anatomía, Impulsos y Sinapsis | IPCED</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            orange: '#e06000',
+                            'orange-dark': '#b54c00',
+                            'orange-light': '#ff8a3d',
+                            blue: '#0a4275',
+                            'blue-dark': '#072e52',
+                            'blue-light': '#1864ab',
+                            dark: '#111827',
+                            light: '#f9fafb'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f3f4f6;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 3px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+        /* Highlight styles for SVG elements */
+        .interactive-part {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .interactive-part:hover .part-shape {
+            filter: drop-shadow(0 0 8px #ff8a3d);
+            stroke: #ff8a3d !important;
+            stroke-width: 4px !important;
+        }
+        .interactive-part:hover .part-glow {
+            display: block !important;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans min-h-screen flex flex-col antialiased selection:bg-brand-orange selection:text-white">
+
+    <!-- Navbar / Header -->
+    <header class="bg-white border-b border-gray-200 sticky top-0 z-50 shadow-sm transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Brand / Logo Container with Automatic Vector Fallback -->
+                <div class="flex items-center space-x-4" id="logo-container">
+                    <img id="ipced-logo-img" src="ipcedlogo.jfif" alt="Logo IPCED" class="h-16 w-auto object-contain hover:scale-105 transition-transform duration-300" onerror="handleLogoError(this)">
+                    <div id="school-text-brand" class="hidden md:block border-l border-gray-300 pl-4">
+                        <h1 class="text-xs font-bold text-gray-400 tracking-wider uppercase">Portal de Divulgación Científica</h1>
+                        <p class="text-sm font-bold text-brand-blue">Instituto de Protección Civil, Emergencias y Desastres</p>
+                    </div>
+                </div>
+                
+                <!-- Navigation Tabs -->
+                <nav class="hidden lg:flex space-x-1">
+                    <a href="#anatomia" class="px-3 py-2 text-sm font-semibold text-gray-600 hover:text-brand-orange transition rounded-md">1. Anatomía</a>
+                    <a href="#sinapsis" class="px-3 py-2 text-sm font-semibold text-gray-600 hover:text-brand-orange transition rounded-md">2. Comunicación</a>
+                    <a href="#gliales" class="px-3 py-2 text-sm font-semibold text-gray-600 hover:text-brand-orange transition rounded-md">3. Células Gliales</a>
+                    <a href="#quiz" class="px-3 py-2 text-sm font-semibold text-gray-600 hover:text-brand-orange transition rounded-md">4. Evaluación</a>
+                </nav>
+                
+                <!-- Action Buttons -->
+                <div class="flex items-center space-x-3">
+                    <span class="bg-brand-orange/10 text-brand-orange text-[11px] font-bold px-3 py-1.5 rounded-lg border border-brand-orange/20 hidden sm:inline-block">
+                        <i class="fas fa-shield-alt mr-1"></i> Campus Seguro
+                    </span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section / Introducción -->
+    <section class="relative bg-gradient-to-r from-brand-blue-dark to-brand-blue overflow-hidden text-white py-16 lg:py-20">
+        <!-- Abstract Background Network Elements -->
+        <div class="absolute inset-0 opacity-10 pointer-events-none">
+            <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="10%" cy="20%" r="3" fill="white"/>
+                <circle cx="80%" cy="30%" r="4" fill="white"/>
+                <circle cx="40%" cy="70%" r="2" fill="white"/>
+                <circle cx="65%" cy="85%" r="5" fill="white"/>
+                <line x1="10%" y1="20%" x2="40%" y2="70%" stroke="white" stroke-width="1"/>
+                <line x1="80%" y1="30%" x2="65%" y2="85%" stroke="white" stroke-width="1"/>
+            </svg>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-7 space-y-6">
+                    <span class="bg-brand-orange text-white text-xs font-bold px-3 py-1.5 rounded-full uppercase tracking-wider shadow">Módulo de Divulgación Académica</span>
+                    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight">
+                        Fisiología Celular y Respuesta del Cerebro
+                    </h2>
+                    <p class="text-base sm:text-lg text-gray-200 font-light leading-relaxed font-sans">
+                        Diseñado por el <span class="font-semibold text-brand-orange-light">Instituto de Protección Civil, Emergencias y Desastres (IPCED)</span>, este portal interactivo explora la neurobiología celular, el soporte glial y la velocidad del pensamiento ante emergencias y toma de decisiones.
+                    </p>
+                    <div class="flex flex-wrap gap-4 pt-2">
+                        <a href="#anatomia" class="bg-brand-orange hover:bg-brand-orange-light text-white font-semibold px-6 py-3 rounded-xl transition shadow-lg transform hover:-translate-y-0.5">
+                            Explorar Anatomía <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                        <a href="#sinapsis" class="bg-white/10 hover:bg-white/20 border border-white/20 text-white font-medium px-6 py-3 rounded-xl transition flex items-center">
+                            <i class="fas fa-play-circle mr-2"></i> Ir a Simuladores
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Quick Info Card -->
+                <div class="lg:col-span-5">
+                    <div class="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/10 shadow-2xl">
+                        <h3 class="text-lg font-bold text-brand-orange mb-4 flex items-center">
+                            <i class="fas fa-brain mr-2"></i> Objetivos del Módulo
+                        </h3>
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <div class="bg-brand-orange/20 text-brand-orange p-2 rounded-lg mr-3">
+                                    <i class="fas fa-project-diagram"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-sm">Arquitectura de la Neurona</h4>
+                                    <p class="text-xs text-gray-300">Identifica las estructuras críticas y los daños fisiológicos en escenarios de trauma.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="bg-blue-400/20 text-blue-400 p-2 rounded-lg mr-3">
+                                    <i class="fas fa-bolt"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-sm">Respuestas en Cadena y Divergencia</h4>
+                                    <p class="text-xs text-gray-300">Comprende cómo los estímulos del entorno coordinan las respuestas motoras de emergencia.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <div class="bg-emerald-400/20 text-emerald-400 p-2 rounded-lg mr-3">
+                                    <i class="fas fa-hand-holding-heart"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-sm">Soporte Vital Glial</h4>
+                                    <p class="text-xs text-gray-300">Conoce el ecosistema protector celular ante toxinas y amenazas biológicas.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MÓDULO 1: ANATOMÍA INTERACTIVA -->
+    <main class="flex-grow max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-12 space-y-16">
+        
+        <section id="anatomia" class="bg-white rounded-3xl border border-gray-100 shadow-xl overflow-hidden scroll-mt-24">
+            <div class="p-6 sm:p-8 border-b border-gray-100 bg-gradient-to-r from-gray-50 to-white flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                <div>
+                    <span class="text-brand-orange font-bold text-xs uppercase tracking-widest block mb-1">Módulo 1 de 4</span>
+                    <h3 class="text-2xl font-bold text-brand-blue flex items-center">
+                        <i class="fas fa-project-diagram mr-3 text-brand-orange"></i>
+                        Estructura y Anatomía de la Neurona
+                    </h3>
+                    <p class="text-sm text-gray-500 mt-1">Haz clic directamente sobre los componentes coloreados del diagrama para desplegar su descripción clínica.</p>
+                </div>
+                <!-- Interactive Instructions Banner -->
+                <div class="bg-amber-50 text-amber-800 text-xs px-4 py-2.5 rounded-lg border border-amber-200 flex items-center">
+                    <i class="fas fa-mouse-pointer mr-2 animate-bounce"></i> Explora interactuando con el diagrama
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 p-6 sm:p-8">
+                <!-- Interactive SVG Canvas Panel -->
+                <div class="lg:col-span-7 flex flex-col items-center justify-center bg-slate-900 rounded-2xl p-4 sm:p-8 relative min-h-[350px] shadow-inner">
+                    <!-- Tech overlay design -->
+                    <div class="absolute top-4 left-4 text-[10px] font-mono text-cyan-400/80 uppercase tracking-widest select-none">
+                        Interactive Neural Mapping IPCED v5.0
+                    </div>
+                    
+                    <!-- SVG Interactive Neuron representation -->
+                    <svg class="w-full max-w-lg h-auto" viewBox="0 0 800 400" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <radialGradient id="somaGrad" cx="50%" cy="50%" r="50%">
+                                <stop offset="0%" stop-color="#fdba74" />
+                                <stop offset="100%" stop-color="#f97316" />
+                            </radialGradient>
+                            <radialGradient id="nucGrad" cx="50%" cy="50%" r="50%">
+                                <stop offset="0%" stop-color="#93c5fd" />
+                                <stop offset="100%" stop-color="#3b82f6" />
+                            </radialGradient>
+                            <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+                                <feGaussianBlur stdDeviation="5" result="blur" />
+                                <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                            </filter>
+                        </defs>
+
+                        <!-- Connections/Dendrites underlay (gray lines) -->
+                        <g opacity="0.4" stroke="#475569" stroke-width="2" stroke-linecap="round">
+                            <line x1="50" y1="80" x2="160" y2="160" />
+                            <line x1="40" y1="180" x2="150" y2="200" />
+                            <line x1="70" y1="300" x2="160" y2="240" />
+                            <line x1="120" y1="350" x2="180" y2="260" />
+                        </g>
+
+                        <!-- AXON TERMINALS -->
+                        <g id="part-terminales" class="interactive-part" onclick="selectPart('terminales')">
+                            <path class="part-glow hidden" d="M 640,200 Q 700,100 750,80 M 640,200 Q 720,170 760,180 M 640,200 Q 710,230 750,260 M 640,200 Q 690,320 740,330" fill="none" stroke="#fb923c" stroke-width="16" stroke-linecap="round" opacity="0.3"/>
+                            <path class="part-shape" d="M 640,200 Q 700,100 750,80 M 640,200 Q 720,170 760,180 M 640,200 Q 710,230 750,260 M 640,200 Q 690,320 740,330" fill="none" stroke="#fb923c" stroke-width="4" stroke-linecap="round" />
+                            <circle cx="750" cy="80" r="7" fill="#fb923c" />
+                            <circle cx="760" cy="180" r="7" fill="#fb923c" />
+                            <circle cx="750" cy="260" r="7" fill="#fb923c" />
+                            <circle cx="740" cy="330" r="7" fill="#fb923c" />
+                        </g>
+
+                        <!-- AXON MAIN FIBER -->
+                        <g id="part-axon" class="interactive-part" onclick="selectPart('axon')">
+                            <line x1="230" y1="200" x2="640" y2="200" stroke="#ef4444" stroke-width="15" opacity="0.1" class="part-glow hidden" />
+                            <line x1="230" y1="200" x2="640" y2="200" stroke="#ef4444" stroke-width="4" stroke-dasharray="5 5" class="part-shape" />
+                        </g>
+
+                        <!-- VAINAS DE MIELINA -->
+                        <g id="part-mielina" class="interactive-part" onclick="selectPart('mielina')">
+                            <g class="part-glow hidden" opacity="0.3">
+                                <rect x="260" y="175" width="70" height="50" rx="10" fill="#22c55e" />
+                                <rect x="350" y="175" width="70" height="50" rx="10" fill="#22c55e" />
+                                <rect x="440" y="175" width="70" height="50" rx="10" fill="#22c55e" />
+                                <rect x="530" y="175" width="70" height="50" rx="10" fill="#22c55e" />
+                            </g>
+                            <rect class="part-shape" x="260" y="180" width="70" height="40" rx="8" fill="#10b981" stroke="#047857" stroke-width="2" />
+                            <rect class="part-shape" x="350" y="180" width="70" height="40" rx="8" fill="#10b981" stroke="#047857" stroke-width="2" />
+                            <rect class="part-shape" x="440" y="180" width="70" height="40" rx="8" fill="#10b981" stroke="#047857" stroke-width="2" />
+                            <rect class="part-shape" x="530" y="180" width="70" height="40" rx="8" fill="#10b981" stroke="#047857" stroke-width="2" />
+                        </g>
+
+                        <!-- NODOS DE RANVIER -->
+                        <g id="part-nodos" class="interactive-part" onclick="selectPart('nodos')">
+                            <g class="part-glow hidden" opacity="0.4">
+                                <circle cx="340" cy="200" r="14" fill="#38bdf8" />
+                                <circle cx="430" cy="200" r="14" fill="#38bdf8" />
+                                <circle cx="520" cy="200" r="14" fill="#38bdf8" />
+                            </g>
+                            <circle class="part-shape" cx="340" cy="200" r="7" fill="#38bdf8" stroke="#0284c7" stroke-width="2" />
+                            <circle class="part-shape" cx="430" cy="200" r="7" fill="#38bdf8" stroke="#0284c7" stroke-width="2" />
+                            <circle class="part-shape" cx="520" cy="200" r="7" fill="#38bdf8" stroke="#0284c7" stroke-width="2" />
+                        </g>
+
+                        <!-- SOMA -->
+                        <g id="part-soma" class="interactive-part" onclick="selectPart('soma')">
+                            <path class="part-glow hidden" d="M 180,130 Q 150,150 140,190 Q 130,240 170,270 Q 210,260 230,220 Q 240,170 200,140 Z" fill="#f97316" opacity="0.3" filter="url(#glow)"/>
+                            <path class="part-shape" d="M 180,130 Q 150,150 140,190 Q 130,240 170,270 Q 210,260 230,220 Q 240,170 200,140 Z" fill="url(#somaGrad)" stroke="#ea580c" stroke-width="3" />
+                        </g>
+
+                        <!-- NÚCLEO -->
+                        <g id="part-nucleo" class="interactive-part" onclick="selectPart('nucleo')">
+                            <circle class="part-glow hidden" cx="185" cy="200" r="28" fill="#3b82f6" opacity="0.4" />
+                            <circle class="part-shape" cx="185" cy="200" r="18" fill="url(#nucGrad)" stroke="#1d4ed8" stroke-width="2" />
+                            <circle cx="185" cy="200" r="6" fill="#1e3a8a" />
+                        </g>
+
+                        <!-- DENDRITAS -->
+                        <g id="part-dendritas" class="interactive-part" onclick="selectPart('dendritas')">
+                            <g class="part-glow hidden" fill="none" stroke="#f97316" stroke-width="14" stroke-linecap="round" opacity="0.3">
+                                <path d="M 155,160 Q 100,100 50,80 M 155,160 Q 80,130 40,180" />
+                                <path d="M 160,245 Q 110,290 70,300" />
+                                <path d="M 185,265 Q 150,320 120,350" />
+                            </g>
+                            <g class="part-shape" fill="none" stroke="#f97316" stroke-width="5" stroke-linecap="round">
+                                <path d="M 155,160 Q 100,100 50,80 M 155,160 Q 80,130 40,180" />
+                                <path d="M 160,245 Q 110,290 70,300" />
+                                <path d="M 185,265 Q 150,320 120,350" />
+                            </g>
+                        </g>
+                    </svg>
+
+                    <!-- Reset button inside the canvas -->
+                    <button onclick="resetAnatomy()" class="absolute bottom-4 right-4 bg-slate-800 hover:bg-slate-700 text-gray-300 border border-slate-700 hover:text-white px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center transition shadow-lg">
+                        <i class="fas fa-undo-alt mr-1.5"></i> Reiniciar
+                    </button>
+                </div>
+
+                <!-- Anatomy Description Panel -->
+                <div class="lg:col-span-5 flex flex-col justify-between space-y-6">
+                    <div id="welcome-detail" class="bg-slate-50 border border-slate-100 rounded-2xl p-6 h-full flex flex-col justify-center text-center space-y-4">
+                        <div class="w-16 h-16 bg-brand-orange/10 text-brand-orange rounded-full flex items-center justify-center mx-auto text-2xl animate-pulse">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-slate-800">Mapeo Anatómico</h4>
+                        <p class="text-sm text-slate-600 leading-relaxed max-w-sm mx-auto">
+                            Las neuronas son las unidades de transmisión primarias de nuestro sistema nervioso. Selecciona cualquier componente de color en el diagrama de la izquierda para ver su rol e importancia biológica en casos de trauma o estrés.
+                        </p>
+                    </div>
+
+                    <!-- Dynamic Part Details Container (Hidden on start) -->
+                    <div id="part-detail" class="hidden h-full flex flex-col justify-between bg-slate-50 border border-brand-blue/10 rounded-2xl p-6 relative">
+                        <div class="absolute -top-3 left-4 bg-brand-orange text-white text-[10px] uppercase font-bold tracking-wider px-2.5 py-1 rounded">
+                            Componente Seleccionado
+                        </div>
+                        
+                        <div class="space-y-4 mt-2">
+                            <div class="flex items-center space-x-3">
+                                <span id="detail-icon" class="w-10 h-10 rounded-xl flex items-center justify-center text-white text-lg"></span>
+                                <h4 id="detail-title" class="text-xl font-bold text-brand-blue"></h4>
+                            </div>
+                            <div class="border-t border-slate-200 pt-3">
+                                <p id="detail-desc" class="text-sm text-slate-600 leading-relaxed"></p>
+                            </div>
+                            <div class="bg-white rounded-lg p-3 border border-slate-200">
+                                <h5 class="text-xs font-semibold text-brand-orange uppercase tracking-wide flex items-center">
+                                    <i class="fas fa-info-circle mr-1"></i> Correlación Clínica y Emergencias
+                                </h5>
+                                <p id="detail-clinical" class="text-xs text-slate-500 mt-1 leading-relaxed"></p>
+                            </div>
+                        </div>
+
+                        <!-- Mini indicator footer inside card -->
+                        <div class="mt-6 pt-3 border-t border-slate-200/60 flex justify-between items-center text-xs text-slate-400">
+                            <span>Siguiente recomendación: El impulso</span>
+                            <a href="#sinapsis" class="text-brand-orange hover:underline font-semibold flex items-center">
+                                Ver Simuladores <i class="fas fa-arrow-right ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MÓDULO 2: SIMULADORES INTERACTIVOS -->
+        <section id="sinapsis" class="bg-white rounded-3xl border border-gray-100 shadow-xl overflow-hidden scroll-mt-24">
+            <div class="p-6 sm:p-8 border-b border-gray-100 bg-gradient-to-r from-gray-50 to-white">
+                <span class="text-brand-orange font-bold text-xs uppercase tracking-widest block mb-1">Módulo 2 de 4</span>
+                <h3 class="text-2xl font-bold text-brand-blue flex items-center">
+                    <i class="fas fa-bolt mr-3 text-brand-orange"></i>
+                    Simuladores de Comunicación e Impulso Nervioso
+                </h3>
+                <p class="text-sm text-gray-500 mt-1">Interactúa con los procesos biofísicos que hacen posible la velocidad de respuesta del cuerpo humano.</p>
+            </div>
+
+            <!-- Tab switcher for Simulators -->
+            <div class="border-b border-gray-200 bg-slate-50 grid grid-cols-2 lg:grid-cols-4">
+                <button onclick="switchSim('sinapsis-tab')" id="sinapsis-tab-btn" class="py-4 text-center font-bold text-xs sm:text-sm text-brand-orange border-b-2 border-brand-orange transition-all flex justify-center items-center gap-2 border-r border-gray-200">
+                    <i class="fas fa-exchange-alt"></i> 1. Transmisión Sináptica
+                </button>
+                <button onclick="switchSim('voltaje-tab')" id="voltaje-tab-btn" class="py-4 text-center font-bold text-xs sm:text-sm text-gray-500 hover:text-brand-blue transition-all flex justify-center items-center gap-2 border-r border-gray-200">
+                    <i class="fas fa-wave-square"></i> 2. Potencial de Acción
+                </button>
+                <button onclick="switchSim('red-tab')" id="red-tab-btn" class="py-4 text-center font-bold text-xs sm:text-sm text-gray-500 hover:text-brand-blue transition-all flex justify-center items-center gap-2 border-r border-gray-200 border-t sm:border-t-0">
+                    <i class="fas fa-network-wired"></i> 3. Red en Cadena
+                </button>
+                <button onclick="switchSim('divergencia-tab')" id="divergencia-tab-btn" class="py-4 text-center font-bold text-xs sm:text-sm text-gray-500 hover:text-brand-blue transition-all flex justify-center items-center gap-2 border-t sm:border-t-0">
+                    <i class="fas fa-project-diagram text-brand-orange"></i> 4. Red Divergente (1 a Muchos)
+                </button>
+            </div>
+
+            <div class="p-6 sm:p-8">
+                <!-- SIMULADOR A: TRANSMISION SINÁPTICA -->
+                <div id="sim-sinapsis-container" class="space-y-6">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                        <div class="lg:col-span-8 flex flex-col items-center bg-slate-900 rounded-2xl p-4 relative">
+                            <div class="absolute top-4 left-4 text-[10px] font-mono text-cyan-400/80 uppercase tracking-widest select-none">
+                                Synapse Bio-Sim IPCED v1.0
+                            </div>
+
+                            <canvas id="synapseCanvas" class="w-full bg-slate-950 rounded-xl h-96 shadow-lg border border-slate-800"></canvas>
+                            
+                            <div class="mt-4 flex flex-wrap gap-3 justify-center z-10 w-full px-2">
+                                <button onclick="triggerSynapseImpulse()" class="bg-brand-orange hover:bg-brand-orange-light text-white font-bold text-sm px-6 py-2.5 rounded-lg shadow transition flex items-center gap-2">
+                                    <i class="fas fa-bolt animate-pulse"></i> Disparar Impulso Eléctrico
+                                </button>
+                                <button onclick="resetSynapse()" class="bg-slate-700 hover:bg-slate-600 text-white font-medium text-sm px-4 py-2.5 rounded-lg transition">
+                                    <i class="fas fa-sync"></i> Reiniciar
+                                </button>
+                                <div class="flex items-center gap-2 bg-slate-800 text-xs text-slate-300 px-3 py-2 rounded-lg border border-slate-700">
+                                    <span class="inline-block w-2.5 h-2.5 bg-cyan-400 rounded-full animate-ping"></span>
+                                    Estado: <span id="synapse-stats" class="font-mono text-cyan-400">Estable (Reposo)</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="lg:col-span-4 space-y-4">
+                            <h4 class="text-lg font-bold text-slate-800 flex items-center">
+                                <span class="bg-brand-orange/10 text-brand-orange w-8 h-8 rounded-lg flex items-center justify-center mr-2 text-sm">
+                                    <i class="fas fa-network-wired"></i>
+                                </span>
+                                ¿Cómo cruzan el abismo?
+                            </h4>
+                            <p class="text-sm text-slate-600 leading-relaxed font-sans">
+                                Las neuronas no se tocan físicamente entre sí. Existe una minúscula separación llamada <strong class="text-brand-blue">Espacio Sináptico</strong> (o brecha).
+                            </p>
+                            
+                            <div class="space-y-3 pt-2 text-xs font-sans">
+                                <div class="flex items-start gap-3">
+                                    <span class="w-5 h-5 bg-brand-blue text-white rounded-full flex items-center justify-center font-bold flex-shrink-0">1</span>
+                                    <p class="text-slate-600"><strong class="text-slate-800">El impulso llega:</strong> El viaje eléctrico recorre el axón y alcanza el terminal presináptico.</p>
+                                </div>
+                                <div class="flex items-start gap-3">
+                                    <span class="w-5 h-5 bg-brand-blue text-white rounded-full flex items-center justify-center font-bold flex-shrink-0">2</span>
+                                    <p class="text-slate-600"><strong class="text-slate-800">Liberación química:</strong> Las vesículas llenas de <strong class="text-cyan-400">neurotransmisores</strong> se fusionan con la membrana liberando el químico.</p>
+                                </div>
+                                <div class="flex items-start gap-3">
+                                    <span class="w-5 h-5 bg-brand-blue text-white rounded-full flex items-center justify-center font-bold flex-shrink-0">3</span>
+                                    <p class="text-slate-600"><strong class="text-slate-800">Activación postsináptica:</strong> Los receptores de la siguiente neurona reciben las moléculas químicas, creando un nuevo potencial eléctrico.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SIMULADOR B: POTENCIAL DE ACCION / VOLTAJE -->
+                <div id="sim-voltaje-container" class="hidden space-y-6">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                        <div class="lg:col-span-8 flex flex-col items-center bg-slate-900 rounded-2xl p-4 relative">
+                            <div class="absolute top-4 left-4 text-[10px] font-mono text-emerald-400/80 uppercase tracking-widest select-none">
+                                Action Potential Oscilloscope IPCED v2.0
+                            </div>
+
+                            <canvas id="voltageCanvas" class="w-full bg-slate-950 rounded-xl h-96 shadow-lg border border-slate-800"></canvas>
+                            
+                            <div class="mt-4 flex flex-wrap gap-3 justify-center z-10 w-full px-2">
+                                <button onclick="triggerVoltageImpulse()" class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-sm px-6 py-2.5 rounded-lg shadow transition flex items-center gap-2">
+                                    <i class="fas fa-play"></i> Iniciar Flujo de Iones (Impulso)
+                                </button>
+                                <button onclick="resetVoltage()" class="bg-slate-700 hover:bg-slate-600 text-white font-medium text-sm px-4 py-2.5 rounded-lg transition">
+                                    <i class="fas fa-sync"></i> Reiniciar
+                                </button>
+                                <div class="flex items-center gap-2 bg-slate-800 text-xs text-slate-300 px-3 py-2 rounded-lg border border-slate-700">
+                                    Voltaje de Membrana: <span id="voltage-value" class="font-mono text-emerald-400">-70 mV (Reposo)</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="lg:col-span-4 space-y-4">
+                            <h4 class="text-lg font-bold text-slate-800 flex items-center">
+                                <span class="bg-emerald-100 text-emerald-600 w-8 h-8 rounded-lg flex items-center justify-center mr-2 text-sm">
+                                    <i class="fas fa-bolt"></i>
+                                </span>
+                                ¿Qué es el Potencial de Acción?
+                            </h4>
+                            <p class="text-sm text-slate-600 leading-relaxed font-sans">
+                                Es un cambio drástico y rápido en la carga eléctrica celular. En reposo, la neurona tiene carga negativa (<strong class="text-emerald-600">-70 mV</strong>).
+                            </p>
+                            
+                            <div class="bg-slate-50 rounded-xl p-4 border border-slate-200 space-y-2 font-sans">
+                                <h5 class="text-xs font-bold text-brand-blue uppercase">Fases del Potencial:</h5>
+                                <ul class="text-xs space-y-2 text-slate-600 list-disc pl-4">
+                                    <li><strong>Despolarización:</strong> El sodio (<span class="text-red-500 font-bold">Na+</span>) entra rápidamente, haciendo el interior más positivo (hasta <span class="font-bold text-emerald-600">+40 mV</span>).</li>
+                                    <li><strong>Repolarización:</strong> El potasio (<span class="text-blue-500 font-bold">K+</span>) sale para devolver el equilibrio negativo.</li>
+                                    <li><strong>Hiperpolarización:</strong> El voltaje desciende un poco más del nivel de reposo antes de estabilizarse.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SIMULADOR C: RED NEURONAL EN CADENA -->
+                <div id="sim-red-container" class="hidden space-y-6">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                        <div class="lg:col-span-8 flex flex-col items-center bg-slate-900 rounded-2xl p-4 relative">
+                            <div class="absolute top-4 left-4 text-[10px] font-mono text-orange-400/80 uppercase tracking-widest select-none">
+                                Neural Network Chain IPCED v1.0
+                            </div>
+
+                            <canvas id="networkCanvas" class="w-full bg-slate-950 rounded-xl h-96 shadow-lg border border-slate-800"></canvas>
+                            
+                            <div class="mt-4 flex flex-wrap gap-3 justify-center z-10 w-full px-2">
+                                <button onclick="triggerNetworkImpulse()" class="bg-brand-orange hover:bg-brand-orange-light text-white font-bold text-sm px-6 py-2.5 rounded-lg shadow transition flex items-center gap-2">
+                                    <i class="fas fa-play"></i> Estimular Neurona Sensorial
+                                </button>
+                                <button onclick="resetNetwork()" class="bg-slate-700 hover:bg-slate-600 text-white font-medium text-sm px-4 py-2.5 rounded-lg transition">
+                                    <i class="fas fa-sync"></i> Reiniciar Cadena
+                                </button>
+                                <div class="flex items-center gap-2 bg-slate-800 text-xs text-slate-300 px-3 py-2 rounded-lg border border-slate-700">
+                                    Fase Activa: <span id="network-stats" class="font-mono text-brand-orange">Inactivo (Esperando estímulo)</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="lg:col-span-4 space-y-4">
+                            <h4 class="text-lg font-bold text-slate-800 flex items-center">
+                                <span class="bg-orange-100 text-brand-orange w-8 h-8 rounded-lg flex items-center justify-center mr-2 text-sm">
+                                    <i class="fas fa-project-diagram"></i>
+                                </span>
+                                Comunicación en Cadena
+                            </h4>
+                            <p class="text-sm text-slate-600 leading-relaxed font-sans">
+                                El cerebro procesa información mediante circuitos en serie. Esta simulación muestra una <strong class="text-brand-blue">ruta de tres neuronas</strong> (Sensorial, Interneurona y Motora) conectadas consecutivamente.
+                            </p>
+                            
+                            <div class="bg-slate-50 rounded-xl p-4 border border-slate-200 space-y-2 font-sans">
+                                <h5 class="text-xs font-bold text-brand-blue uppercase">Flujo Secuencial:</h5>
+                                <ul class="text-xs space-y-2 text-slate-600 list-disc pl-4">
+                                    <li><strong>Estímulo:</strong> La primera neurona es activada por un estímulo externo y dispara un potencial de acción eléctrico.</li>
+                                    <li><strong>Traducción Química:</strong> Al final del axón, se liberan neurotransmisores que cruzan el espacio sináptico y excitan a la segunda neurona.</li>
+                                    <li><strong>Transmisión en Cadena:</strong> La excitación desencadena otro potencial eléctrico que viaja hacia la tercera neurona, completando la respuesta.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SIMULADOR D: RED DIVERGENTE (UNO A MUCHOS) -->
+                <div id="sim-divergencia-container" class="hidden space-y-6">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                        <div class="lg:col-span-8 flex flex-col items-center bg-slate-900 rounded-2xl p-4 relative">
+                            <div class="absolute top-4 left-4 text-[10px] font-mono text-purple-400/80 uppercase tracking-widest select-none">
+                                Neural Divergence Map IPCED v1.0
+                            </div>
+
+                            <canvas id="divergenciaCanvas" class="w-full bg-slate-950 rounded-xl h-96 shadow-lg border border-slate-800"></canvas>
+                            
+                            <div class="mt-4 flex flex-wrap gap-3 justify-center z-10 w-full px-2">
+                                <button onclick="triggerDivergenciaImpulse()" class="bg-purple-600 hover:bg-purple-500 text-white font-bold text-sm px-6 py-2.5 rounded-lg shadow transition flex items-center gap-2">
+                                    <i class="fas fa-share-alt animate-pulse"></i> Disparar Señal Divergente
+                                </button>
+                                <button onclick="resetDivergencia()" class="bg-slate-700 hover:bg-slate-600 text-white font-medium text-sm px-4 py-2.5 rounded-lg transition">
+                                    <i class="fas fa-sync"></i> Reiniciar
+                                </button>
+                                <div class="flex items-center gap-2 bg-slate-800 text-xs text-slate-300 px-3 py-2 rounded-lg border border-slate-700">
+                                    Destinos Activos: <span id="div-stats" class="font-mono text-purple-400">Reposo (0 de 3)</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="lg:col-span-4 space-y-4">
+                            <h4 class="text-lg font-bold text-slate-800 flex items-center">
+                                <span class="bg-purple-100 text-purple-600 w-8 h-8 rounded-lg flex items-center justify-center mr-2 text-sm">
+                                    <i class="fas fa-share-alt"></i>
+                                </span>
+                                ¿Qué es la Divergencia Neuronal?
+                            </h4>
+                            <p class="text-sm text-slate-600 leading-relaxed font-sans">
+                                La divergencia es un principio organizativo del cerebro donde <strong class="text-purple-600">una sola neurona</strong> transmite información a <strong class="text-brand-blue">múltiples neuronas receptoras</strong> en paralelo para coordinar una respuesta multifocal.
+                            </p>
+                            
+                            <div class="bg-slate-50 rounded-xl p-4 border border-slate-200 space-y-2 font-sans">
+                                <h5 class="text-xs font-bold text-brand-blue uppercase">Importancia Biológica:</h5>
+                                <ul class="text-xs space-y-2 text-slate-600 list-disc pl-4">
+                                    <li><strong>Procesamiento en Paralelo:</strong> Permite que un solo estímulo (como ver un fuego) se envíe al mismo tiempo a la corteza visual, al sistema motor y a las áreas de memoria.</li>
+                                    <li><strong>Coordinación en Emergencias:</strong> Multiplica la velocidad de propagación de alertas críticas para salvar vidas en situaciones de desastres.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- MÓDULO 3: CÉLULAS GLIALES -->
+        <section id="gliales" class="bg-white rounded-3xl border border-gray-100 shadow-xl overflow-hidden scroll-mt-24">
+            <div class="p-6 sm:p-8 border-b border-gray-100 bg-gradient-to-r from-gray-50 to-white">
+                <span class="text-brand-orange font-bold text-xs uppercase tracking-widest block mb-1">Módulo 3 de 4</span>
+                <h3 class="text-2xl font-bold text-brand-blue flex items-center">
+                    <i class="fas fa-hand-holding-heart mr-3 text-brand-orange"></i>
+                    Las Células Gliales: El Soporte Vital Invisible del Cerebro
+                </h3>
+                <p class="text-sm text-gray-500 mt-1">Por cada neurona, existen células indispensables para el mantenimiento, defensa y aislamiento del ecosistema nervioso.</p>
+            </div>
+
+            <div class="p-6 sm:p-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Glial Card 1: Astrocitos -->
+                <div class="bg-slate-50 border border-slate-200 rounded-2xl p-6 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
+                    <div class="w-12 h-12 bg-amber-100 text-amber-600 rounded-xl flex items-center justify-center text-xl mb-4">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-brand-blue font-sans">Astrocitos</h4>
+                    <p class="text-xs font-semibold text-brand-orange uppercase tracking-wider mb-2">Nutrición y Barrera</p>
+                    <p class="text-sm text-slate-600 leading-relaxed font-sans">
+                        Tienen forma de estrella y conectan las neuronas con los vasos sanguíneos para asegurar su nutrición. Además, forman la <strong>Barrera Hematoencefálica</strong> que protege de virus y toxinas.
+                    </p>
+                </div>
+
+                <!-- Glial Card 2: Oligodendrocitos -->
+                <div class="bg-slate-50 border border-slate-200 rounded-2xl p-6 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
+                    <div class="w-12 h-12 bg-indigo-100 text-indigo-600 rounded-xl flex items-center justify-center text-xl mb-4">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-brand-blue font-sans">Oligodendrocitos</h4>
+                    <p class="text-xs font-semibold text-brand-orange uppercase tracking-wider mb-2">Aislamiento y Mielinización</p>
+                    <p class="text-sm text-slate-600 leading-relaxed font-sans">
+                        Generan la vaina de <strong>mielina</strong> en el Sistema Nervioso Central. Al aislar las fibras axónicas, permiten velocidades de transmisión eléctrica increíblemente rápidas.
+                    </p>
+                </div>
+
+                <!-- Glial Card 3: Microglía -->
+                <div class="bg-slate-50 border border-slate-200 rounded-2xl p-6 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
+                    <div class="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-xl flex items-center justify-center text-xl mb-4">
+                        <i class="fas fa-virus-slash"></i>
+                    </div>
+                    <h4 class="text-lg font-bold text-brand-blue font-sans">Microglía</h4>
+                    <p class="text-xs font-semibold text-brand-orange uppercase tracking-wider mb-2">Defensa Inmunológica</p>
+                    <p class="text-sm text-slate-600 leading-relaxed font-sans">
+                        Es el sistema de defensa activo del cerebro. Fagocitan (eliminan) desechos celulares, neuronas dañadas e invasores patógenos, manteniendo un ecosistema celular saludable.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- MÓDULO 4: EVALUACIÓN DE CONOCIMIENTOS (QUIZ) -->
+        <section id="quiz" class="bg-gradient-to-br from-brand-blue-dark to-brand-blue text-white rounded-3xl overflow-hidden scroll-mt-24 shadow-2xl">
+            <div class="p-6 sm:p-8 border-b border-white/10 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                <div>
+                    <span class="text-brand-orange font-bold text-xs uppercase tracking-widest block mb-1">Módulo 4 de 4</span>
+                    <h3 class="text-2xl font-bold flex items-center">
+                        <i class="fas fa-clipboard-check mr-3 text-brand-orange"></i>
+                        Evaluación del Aprendizaje
+                    </h3>
+                    <p class="text-sm text-gray-300 mt-1">Valida los conceptos clave aprendidos. ¡Puntuación académica inmediata!</p>
+                </div>
+                <div class="bg-white/10 text-white text-xs px-3 py-1.5 rounded-lg border border-white/20">
+                    <i class="fas fa-clock mr-1.5"></i> Evaluación Formativa
+                </div>
+            </div>
+
+            <div class="p-6 sm:p-8 max-w-3xl mx-auto">
+                <div id="quiz-intro" class="text-center space-y-6 py-4">
+                    <div class="w-20 h-20 bg-white/10 text-brand-orange rounded-full flex items-center justify-center text-3xl mx-auto">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div>
+                        <h4 class="text-xl font-bold font-sans">¿Listo para medir tus conocimientos?</h4>
+                        <p class="text-sm text-gray-300 max-w-md mx-auto mt-2 leading-relaxed font-sans">
+                            Hemos preparado 4 preguntas esenciales con el rigor académico del <strong class="text-brand-orange-light">IPCED</strong> para validar tus conceptos del funcionamiento cerebral.
+                        </p>
+                    </div>
+                    <button onclick="startQuiz()" class="bg-brand-orange hover:bg-brand-orange-light text-white font-bold px-8 py-3.5 rounded-xl shadow-lg transition">
+                        Iniciar Cuestionario
+                    </button>
+                </div>
+
+                <!-- Active Question Container -->
+                <div id="quiz-active" class="hidden space-y-6">
+                    <div class="flex justify-between items-center text-xs text-brand-orange uppercase font-bold tracking-wider font-sans">
+                        <span>Pregunta <span id="current-question-num">1</span> de 4</span>
+                        <span class="bg-white/10 text-white px-2.5 py-1 rounded">Progreso: <span id="quiz-progress-pct">25%</span></span>
+                    </div>
+
+                    <!-- Question text -->
+                    <h4 id="question-text" class="text-lg font-bold leading-snug font-sans">Cargando pregunta...</h4>
+
+                    <!-- Alternatives Grid -->
+                    <div id="answers-grid" class="grid grid-cols-1 gap-3 pt-2">
+                        <!-- Filled by JS -->
+                    </div>
+
+                    <!-- Action/Navigate Button -->
+                    <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 pt-4 border-t border-white/10">
+                        <p id="quiz-feedback" class="text-sm font-semibold text-amber-300 hidden font-sans"></p>
+                        <button id="quiz-next-btn" onclick="nextQuestion()" class="bg-brand-orange hover:bg-brand-orange-light text-white font-bold px-6 py-2.5 rounded-lg transition sm:ml-auto disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                            Siguiente Pregunta <i class="fas fa-arrow-right ml-1"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Results Screen -->
+                <div id="quiz-results" class="hidden text-center space-y-6 py-4">
+                    <div id="results-icon" class="w-24 h-24 rounded-full flex items-center justify-center text-4xl mx-auto">
+                        <!-- Dynamic Icon -->
+                    </div>
+                    <div>
+                        <h4 class="text-2xl font-bold font-sans">Resultados de Evaluación</h4>
+                        <p id="results-score" class="text-3xl font-extrabold text-brand-orange mt-2">0 / 4</p>
+                        <p id="results-message" class="text-sm text-gray-300 max-w-md mx-auto mt-2 leading-relaxed font-sans">
+                            Cargando retroalimentación...
+                        </p>
+                    </div>
+                    <div class="flex flex-wrap justify-center gap-4 pt-2">
+                        <button onclick="resetQuiz()" class="bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold px-6 py-3 rounded-xl transition">
+                            Reintentar Evaluación
+                        </button>
+                        <a href="#anatomia" class="bg-brand-orange hover:bg-brand-orange-light text-white font-bold px-6 py-3 rounded-xl transition">
+                            Repasar Anatomía
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer / Pie de Página -->
+    <footer class="bg-slate-900 border-t border-slate-800 text-slate-400 py-12 mt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+            <!-- Left Info -->
+            <div class="md:col-span-4 space-y-3">
+                <div class="flex items-center space-x-3" id="footer-logo-container">
+                    <img id="ipced-logo-footer" src="ipcedlogo.jfif" alt="Logo IPCED" class="h-16 w-auto object-contain filter brightness-110" onerror="handleLogoError(this)">
+                </div>
+                <p class="text-xs text-slate-500 leading-relaxed font-sans">
+                    IPCED - Instituto de Protección Civil, Emergencias y Desastres. Plataforma interactiva de difusión científica y tecnológica libre para uso de estudiantes e investigadores.
+                </p>
+            </div>
+
+            <!-- Middle Quick Links -->
+            <div class="md:col-span-4 flex flex-col md:items-center space-y-2 text-sm font-sans">
+                <h5 class="text-white font-semibold text-xs uppercase tracking-widest mb-2">Recursos Educativos</h5>
+                <a href="#anatomia" class="hover:text-brand-orange transition">Estructura Celular</a>
+                <a href="#sinapsis" class="hover:text-brand-orange transition">Simulador de Impulso</a>
+                <a href="#gliales" class="hover:text-brand-orange transition">Glosario Glial</a>
+            </div>
+
+            <!-- Right Legal / GitHub -->
+            <div class="md:col-span-4 space-y-3 text-xs md:text-right font-sans">
+                <p class="text-slate-500">&copy; 2026 IPCED. Todos los derechos reservados.</p>
+                <p class="text-slate-600">Este proyecto interactivo está optimizado para su visualización y despliegue en GitHub Pages.</p>
+                <div class="pt-2 flex justify-start md:justify-end gap-3 text-lg">
+                    <a href="https://www.ipced.edu.mx" target="_blank" class="hover:text-brand-orange transition"><i class="fas fa-globe"></i></a>
+                    <a href="#" class="hover:text-brand-orange transition"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="hover:text-brand-orange transition"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // --- LOGO FALLBACK ENGINE ---
+        // Generates an elegant, robust vector SVG fallback matching the official logo if the jfif is missing or uncommitted.
+        function handleLogoError(img) {
+            const container = img.parentElement;
+            container.innerHTML = `
+                <div class="flex items-center space-x-3 cursor-pointer hover:scale-105 transition-transform duration-300">
+                    <svg class="h-16 w-14" viewBox="0 0 100 110" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Shield Outer -->
+                        <path d="M 10,10 C 40,0 60,0 90,10 C 95,50 85,90 50,105 C 15,90 5,50 10,10 Z" fill="#e06000" stroke="#111827" stroke-width="2"/>
+                        <!-- Shield Inner -->
+                        <path d="M 13,14 C 41,5 59,5 87,14 C 91,51 82,88 50,101 C 18,88 9,51 13,14 Z" fill="#111827"/>
+                        <!-- Inner Orange Glow -->
+                        <path d="M 18,19 C 42,11 58,11 82,19 C 85,52 77,84 50,95 C 23,84 15,52 18,19 Z" fill="#e06000" opacity="0.15"/>
+                        <!-- Star of Life -->
+                        <g transform="translate(50, 64) scale(0.65)">
+                            <!-- Blue Star -->
+                            <path d="M -8,-45 L 8,-45 L 8,-18 L 32,-32 L 40,-18 L 16,-4 L 42,4 L 38,20 L 12,10 L 20,36 L 4,40 L 0,15 L -4,40 L -20,36 L -12,10 L -38,20 L -42,4 L -16,-4 L -40,-18 L -32,-32 L -8,-18 Z" fill="#0a4275" stroke="#ffffff" stroke-width="2"/>
+                            <!-- Rod of Asclepius -->
+                            <path d="M 0,-30 L 0,30" stroke="#ffffff" stroke-width="4" stroke-linecap="round"/>
+                            <path d="M -5,20 C -12,10 -5,0 0,-5 C 5,-10 12,-15 5,-25" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+                        </g>
+                        <!-- Text IPCED -->
+                        <text x="50" y="32" font-family="'Inter', sans-serif" font-weight="900" font-size="15" fill="#ffffff" text-anchor="middle" letter-spacing="1">IPCED</text>
+                    </svg>
+                    <div class="hidden sm:block">
+                        <span class="text-[10px] font-bold text-gray-400 tracking-wider uppercase block">Divulgación</span>
+                        <span class="text-sm font-extrabold text-brand-blue block leading-tight">IPCED</span>
+                    </div>
+                </div>
+            `;
+            // Also update the footer version dynamically if it fails
+            const footerImg = document.getElementById('ipced-logo-footer');
+            if (footerImg && footerImg === img) {
+                // Done inline above as img refers to whichever called handleLogoError
+            }
+        }
+
+        // --- 1. DATOS DE ANATOMÍA ---
+        const anatomyData = {
+            soma: {
+                title: "Soma o Cuerpo Celular",
+                icon: "fa-brain",
+                bgColor: "bg-orange-500",
+                desc: "Es el centro metabólico de la neurona. Contiene el núcleo y los orgánulos encargados de sintetizar proteínas, neurotransmisores y generar la energía que la célula necesita para mantenerse viva y funcional.",
+                clinical: "En casos de hipoxia prolongada durante emergencias de asfixia o paro cardiorrespiratorio, la privación de oxígeno destruye el soma de forma irreversible."
+            },
+            nucleo: {
+                title: "Núcleo Celular",
+                icon: "fa-dna",
+                bgColor: "bg-blue-600",
+                desc: "Alberga la información genética completa de la célula (ADN). Desde aquí se coordinan todas las funciones esenciales, dictando la expresión genética necesaria para adaptarse al aprendizaje y estímulos del entorno.",
+                clinical: "Regula los procesos de plasticidad que le permiten al cerebro de un rescatista o técnico en emergencias asimilar protocolos de respuesta rápida bajo altos niveles de cortisol (estrés)."
+            },
+            dendritas: {
+                title: "Dendritas",
+                icon: "fa-project-diagram",
+                bgColor: "bg-orange-500",
+                desc: "Prolongaciones ramificadas que actúan como las 'antenas receptoras' principales de la neurona. Captan las señales químicas de las neuronas vecinas y las dirigen en forma de pequeños estímulos eléctricos hacia el soma.",
+                clinical: "La privación de estímulos o la exposición a neurotoxinas ambientales dañan la densidad dendrítica, limitando la agudeza y la toma de decisiones rápidas."
+            },
+            axon: {
+                title: "El Axón",
+                icon: "fa-bolt",
+                bgColor: "bg-red-500",
+                desc: "Es una prolongación única y larga a modo de 'cable de salida'. Se encarga de conducir los impulsos eléctricos generados en el soma (potencial de acción) a través de largas distancias hacia otras células o tejidos corporales.",
+                clinical: "El daño mecánico al axón por traumatismo craneoencefálico grave rompe la comunicación instantánea, provocando parálisis irreversible o pérdida del estado de conciencia."
+            },
+            mielina: {
+                title: "Vaina de Mielina",
+                icon: "fa-shield-halved",
+                bgColor: "bg-emerald-500",
+                desc: "Capa lipídica protectora formada por oligodendrocitos. Actúa como el aislante de un cable de cobre, evitando fugas eléctricas y forzando al impulso eléctrico a avanzar con velocidades de hasta 120 metros por segundo.",
+                clinical: "En desórdenes desmielinizantes como la Esclerosis Múltiple, las respuestas de reflejo de emergencia se degradan severamente, afectando la movilidad física."
+            },
+            nodos: {
+                title: "Nodos de Ranvier",
+                icon: "fa-arrows-split-up-and-left",
+                bgColor: "bg-sky-500",
+                desc: "Espacios de membrana axonal que quedan expuestos entre cada vaina de mielina. Contienen altas concentraciones de canales iónicos. Permiten la 'conducción saltatoria', donde el potencial de acción salta de nodo en nodo, ahorrando energía celular masivamente.",
+                clinical: "Esenciales para mantener la fuerza de las transmisiones motoras ante reflejos rápidos de evitación de peligros."
+            },
+            terminales: {
+                title: "Terminales Axónicas",
+                icon: "fa-exchange-alt",
+                bgColor: "bg-amber-500",
+                desc: "Son la bifurcación final del axón. Almacenan las vesículas llenas de mensajeros químicos (neurotransmisores). Al llegar el estímulo eléctrico, los liberan al espacio sináptico para desencadenar la estimulación en la célula vecina.",
+                clinical: "La mayoría de los fármacos utilizados en emergencias psiquiátricas o de soporte de dolor actúan bloqueando o estimulando los receptores de estas terminales."
+            }
+        };
+
+        // --- MANEJO DE SELECCIÓN DE ANATOMÍA ---
+        function selectPart(id) {
+            document.getElementById('welcome-detail').classList.add('hidden');
+            
+            const detailPanel = document.getElementById('part-detail');
+            detailPanel.classList.remove('hidden');
+
+            document.querySelectorAll('.part-glow').forEach(el => el.classList.add('hidden'));
+
+            const groupEl = document.getElementById(`part-${id}`);
+            if(groupEl) {
+                groupEl.querySelectorAll('.part-glow').forEach(el => el.classList.remove('hidden'));
+            }
+
+            const data = anatomyData[id];
+            if (data) {
+                const iconContainer = document.getElementById('detail-icon');
+                iconContainer.className = `w-10 h-10 rounded-xl flex items-center justify-center text-white text-lg ${data.bgColor}`;
+                iconContainer.innerHTML = `<i class="fas ${data.icon}"></i>`;
+                
+                document.getElementById('detail-title').innerText = data.title;
+                document.getElementById('detail-desc').innerText = data.desc;
+                document.getElementById('detail-clinical').innerText = data.clinical;
+            }
+        }
+
+        function resetAnatomy() {
+            document.getElementById('part-detail').classList.add('hidden');
+            document.getElementById('welcome-detail').classList.remove('hidden');
+            document.querySelectorAll('.part-glow').forEach(el => el.classList.add('hidden'));
+        }
+
+        // --- STREAMING_CHUNK: Writing Interactive Simulators core mathematics... ---
+        // --- 2. CÓDIGO DE SIMULADORES (CANVAS) ---
+        let synapseCanvas, synCtx;
+        let voltageCanvas, voltCtx;
+        let networkCanvas, netCtx;
+        let divergenciaCanvas, divCtx;
+        let synAnimationId, voltAnimationId, netAnimationId, divAnimationId;
+
+        // Propiedades de la animación de sinapsis
+        let vesicles = [];
+        let neurotransmitters = [];
+        let receptors = [];
+        let isImpulseTriggered = false;
+        let impulseProgress = 0; 
+
+        // Inicializar Sinapsis
+        function initSynapseCanvas() {
+            synapseCanvas = document.getElementById('synapseCanvas');
+            if(!synapseCanvas) return;
+            synCtx = synapseCanvas.getContext('2d');
+            
+            let targetWidth = synapseCanvas.parentElement.clientWidth || 600;
+            synapseCanvas.width = targetWidth;
+            synapseCanvas.height = 384; 
+
+            receptors = [];
+            for (let i = 0; i < 5; i++) {
+                receptors.push({
+                    x: (synapseCanvas.width / 6) * (i + 1),
+                    y: synapseCanvas.height - 40,
+                    w: 30,
+                    h: 15,
+                    activated: false,
+                    activationTimer: 0
+                });
+            }
+
+            resetVesicles();
+        }
+
+        function resetVesicles() {
+            if(!synapseCanvas) return;
+            vesicles = [];
+            for (let i = 0; i < 6; i++) {
+                vesicles.push({
+                    x: (synapseCanvas.width / 7) * (i + 1),
+                    y: 75,
+                    radius: 14,
+                    released: false
+                });
+            }
+            neurotransmitters = [];
+            isImpulseTriggered = false;
+            impulseProgress = 0;
+            document.getElementById('synapse-stats').innerText = "Estable (Reposo)";
+            document.getElementById('synapse-stats').className = "font-mono text-cyan-400";
+        }
+
+        function triggerSynapseImpulse() {
+            if (isImpulseTriggered) return;
+            isImpulseTriggered = true;
+            impulseProgress = 0;
+            document.getElementById('synapse-stats').innerText = "IMPULSO ELÉCTRICO ACTIVO";
+            document.getElementById('synapse-stats').className = "font-mono text-amber-400 animate-pulse";
+        }
+
+        function resetSynapse() {
+            resetVesicles();
+        }
+
+        function drawSynapse() {
+            if(!synCtx || !synapseCanvas) return;
+            synCtx.clearRect(0, 0, synapseCanvas.width, synapseCanvas.height);
+
+            // 1. Dibujar Membrana Presináptica
+            synCtx.fillStyle = '#1e293b';
+            synCtx.beginPath();
+            synCtx.moveTo(0, 0);
+            synCtx.lineTo(synapseCanvas.width, 0);
+            synCtx.lineTo(synapseCanvas.width, 100);
+            synCtx.quadraticCurveTo(synapseCanvas.width / 2, 140, 0, 100);
+            synCtx.closePath();
+            synCtx.fill();
+            
+            synCtx.strokeStyle = '#e06000';
+            synCtx.lineWidth = 4;
+            synCtx.beginPath();
+            synCtx.moveTo(0, 100);
+            synCtx.quadraticCurveTo(synapseCanvas.width / 2, 140, synapseCanvas.width, 100);
+            synCtx.stroke();
+
+            // 2. Dibujar Membrana Postsináptica
+            synCtx.fillStyle = '#0f172a';
+            synCtx.beginPath();
+            synCtx.moveTo(0, synapseCanvas.height);
+            synCtx.lineTo(synapseCanvas.width, synapseCanvas.height);
+            synCtx.lineTo(synapseCanvas.width, synapseCanvas.height - 60);
+            synCtx.quadraticCurveTo(synapseCanvas.width / 2, synapseCanvas.height - 90, 0, synapseCanvas.height - 60);
+            synCtx.closePath();
+            synCtx.fill();
+
+            synCtx.strokeStyle = '#0284c7';
+            synCtx.lineWidth = 4;
+            synCtx.beginPath();
+            synCtx.moveTo(0, synapseCanvas.height - 60);
+            synCtx.quadraticCurveTo(synapseCanvas.width / 2, synapseCanvas.height - 90, synapseCanvas.width, synapseCanvas.height - 60);
+            synCtx.stroke();
+
+            // 3. Dibujar Receptores Postsinápticos
+            receptors.forEach(rec => {
+                if (rec.activationTimer > 0) {
+                    synCtx.fillStyle = '#06b6d4'; 
+                    rec.activationTimer--;
+                } else {
+                    synCtx.fillStyle = '#1e40af';
+                }
+                synCtx.beginPath();
+                synCtx.arc(rec.x, synapseCanvas.height - 70, 12, Math.PI, 0, false);
+                synCtx.fill();
+                synCtx.stroke();
+            });
+
+            // 4. Si el impulso eléctrico viaja por el terminal
+            if (isImpulseTriggered && impulseProgress < 100) {
+                impulseProgress += 1.5;
+                synCtx.strokeStyle = `rgba(251, 146, 60, ${1 - impulseProgress / 100})`;
+                synCtx.lineWidth = 8;
+                synCtx.beginPath();
+                synCtx.moveTo(0, 100);
+                synCtx.quadraticCurveTo(synapseCanvas.width / 2, 140, synapseCanvas.width, 100);
+                synCtx.stroke();
+
+                if (impulseProgress > 50 && neurotransmitters.length === 0) {
+                    vesicles.forEach(v => {
+                        v.released = true;
+                        for(let k=0; k < 12; k++) {
+                            neurotransmitters.push({
+                                x: v.x + (Math.random() - 0.5) * 15,
+                                y: 110,
+                                vx: (Math.random() - 0.5) * 2,
+                                vy: 1.5 + Math.random() * 2,
+                                active: true
+                            });
+                        }
+                    });
+                }
+            }
+
+            // 5. Dibujar Vesículas Sinápticas
+            vesicles.forEach(v => {
+                synCtx.fillStyle = '#475569';
+                synCtx.strokeStyle = '#e2e8f0';
+                synCtx.lineWidth = 2;
+                synCtx.beginPath();
+                synCtx.arc(v.x, v.released ? 115 : 75, v.radius, 0, Math.PI * 2);
+                synCtx.fill();
+                synCtx.stroke();
+
+                if (!v.released) {
+                    synCtx.fillStyle = '#22d3ee';
+                    synCtx.beginPath();
+                    synCtx.arc(v.x - 4, 75 - 4, 3, 0, Math.PI*2);
+                    synCtx.arc(v.x + 4, 75 + 2, 3, 0, Math.PI*2);
+                    synCtx.arc(v.x, 75 + 4, 2, 0, Math.PI*2);
+                    synCtx.fill();
+                }
+            });
+
+            // 6. Mover y Dibujar Neurotransmisores libres
+            neurotransmitters.forEach(nt => {
+                if (!nt.active) return;
+                
+                nt.x += nt.vx;
+                nt.y += nt.vy;
+
+                synCtx.fillStyle = '#22d3ee';
+                synCtx.shadowColor = '#22d3ee';
+                synCtx.shadowBlur = 8;
+                synCtx.beginPath();
+                synCtx.arc(nt.x, nt.y, 4, 0, Math.PI * 2);
+                synCtx.fill();
+                synCtx.shadowBlur = 0; 
+
+                receptors.forEach(rec => {
+                    let dist = Math.hypot(nt.x - rec.x, nt.y - (synapseCanvas.height - 70));
+                    if (dist < 15 && nt.active) {
+                        nt.active = false;
+                        rec.activationTimer = 60; 
+                    }
+                });
+
+                if (nt.y > synapseCanvas.height - 60) {
+                    nt.active = false;
+                }
+            });
+
+            if (isImpulseTriggered && neurotransmitters.length > 0 && neurotransmitters.every(nt => !nt.active)) {
+                isImpulseTriggered = false;
+                document.getElementById('synapse-stats').innerText = "Excitación Completada (Éxito)";
+                document.getElementById('synapse-stats').className = "font-mono text-emerald-400";
+            }
+
+            synAnimationId = requestAnimationFrame(drawSynapse);
+        }
+
+        // --- STREAMING_CHUNK: Initializing Action Potential Oscilloscope logics... ---
+        // --- 3. SIMULADOR DE VOLTAJE (POTENCIAL DE ACCION) ---
+        let voltX = 0;
+        let voltPoints = [];
+        let isVoltActive = false;
+        let currentVoltValue = -70;
+
+        function initVoltageCanvas() {
+            voltageCanvas = document.getElementById('voltageCanvas');
+            if(!voltageCanvas) return;
+            voltCtx = voltageCanvas.getContext('2d');
+            
+            let targetWidth = voltageCanvas.parentElement.clientWidth || 600;
+            voltageCanvas.width = targetWidth;
+            voltageCanvas.height = 384;
+
+            resetVoltage();
+        }
+
+        function resetVoltage() {
+            if(!voltageCanvas) return;
+            voltPoints = [];
+            isVoltActive = false;
+            voltX = 0;
+            currentVoltValue = -70;
+            document.getElementById('voltage-value').innerText = "-70 mV (Reposo)";
+            document.getElementById('voltage-value').className = "font-mono text-emerald-400";
+            
+            for(let x=0; x < voltageCanvas.width; x += 10) {
+                voltPoints.push({ x: x, y: 280, v: -70 });
+            }
+        }
+
+        function triggerVoltageImpulse() {
+            if (isVoltActive) return;
+            isVoltActive = true;
+            voltPoints = [];
+            voltX = 0;
+        }
+
+        function drawVoltage() {
+            if(!voltCtx || !voltageCanvas) return;
+            voltCtx.clearRect(0, 0, voltageCanvas.width, voltageCanvas.height);
+
+            // Rejilla de osciloscopio
+            voltCtx.strokeStyle = '#1e293b';
+            voltCtx.lineWidth = 1;
+            for(let i = 0; i < voltageCanvas.width; i += 40) {
+                voltCtx.beginPath();
+                voltCtx.moveTo(i, 0);
+                voltCtx.lineTo(i, voltageCanvas.height);
+                voltCtx.stroke();
+            }
+            for(let j = 0; j < voltageCanvas.height; j += 40) {
+                voltCtx.beginPath();
+                voltCtx.moveTo(0, j);
+                voltCtx.lineTo(voltageCanvas.width, j);
+                voltCtx.stroke();
+            }
+
+            // Reposo: -70mV -> Y = 280
+            voltCtx.strokeStyle = 'rgba(16, 185, 129, 0.3)';
+            voltCtx.lineWidth = 2;
+            voltCtx.beginPath();
+            voltCtx.moveTo(0, 280);
+            voltCtx.lineTo(voltageCanvas.width, 280);
+            voltCtx.stroke();
+            voltCtx.fillStyle = 'rgba(16, 185, 129, 0.7)';
+            voltCtx.font = '10px monospace';
+            voltCtx.fillText("-70 mV (Reposo)", 10, 275);
+
+            // Umbral de disparo: -55mV -> Y = 245
+            voltCtx.strokeStyle = 'rgba(234, 88, 12, 0.3)';
+            voltCtx.beginPath();
+            voltCtx.moveTo(0, 245);
+            voltCtx.lineTo(voltageCanvas.width, 245);
+            voltCtx.stroke();
+            voltCtx.fillStyle = 'rgba(234, 88, 12, 0.7)';
+            voltCtx.fillText("-55 mV (Umbral)", 10, 240);
+
+            // Pico de despolarización: +40mV -> Y = 80
+            voltCtx.strokeStyle = 'rgba(239, 68, 68, 0.3)';
+            voltCtx.beginPath();
+            voltCtx.moveTo(0, 80);
+            voltCtx.lineTo(voltageCanvas.width, 80);
+            voltCtx.stroke();
+            voltCtx.fillStyle = 'rgba(239, 68, 68, 0.7)';
+            voltCtx.fillText("+40 mV (Despolarización)", 10, 75);
+
+            if (isVoltActive) {
+                voltX += 3;
+                let progress = voltX / (voltageCanvas.width * 0.9);
+
+                if (progress <= 0.1) {
+                    currentVoltValue = -70;
+                } else if (progress <= 0.2) {
+                    let subProg = (progress - 0.1) / 0.1;
+                    currentVoltValue = -70 + (15 * subProg);
+                } else if (progress <= 0.35) {
+                    let subProg = (progress - 0.2) / 0.15;
+                    currentVoltValue = -55 + (95 * subProg);
+                } else if (progress <= 0.5) {
+                    let subProg = (progress - 0.35) / 0.15;
+                    currentVoltValue = 40 - (120 * subProg); 
+                } else if (progress <= 0.7) {
+                    let subProg = (progress - 0.5) / 0.2;
+                    currentVoltValue = -80 + (10 * subProg);
+                } else if (progress <= 1) {
+                    currentVoltValue = -70;
+                } else {
+                    isVoltActive = false; 
+                }
+
+                let yCoord = 280 - ((currentVoltValue - (-70)) * 2);
+                voltPoints.push({ x: voltX, y: yCoord, v: currentVoltValue });
+
+                document.getElementById('voltage-value').innerText = `${Math.round(currentVoltValue)} mV`;
+                if (currentVoltValue > 0) {
+                    document.getElementById('voltage-value').className = "font-mono text-red-400 font-bold animate-pulse";
+                } else if (currentVoltValue < -70) {
+                    document.getElementById('voltage-value').className = "font-mono text-sky-400";
+                } else {
+                    document.getElementById('voltage-value').className = "font-mono text-emerald-400";
+                }
+            }
+
+            // Graficar puntos
+            voltCtx.strokeStyle = '#10b981';
+            voltCtx.lineWidth = 4;
+            voltCtx.shadowColor = '#10b981';
+            voltCtx.shadowBlur = 10;
+            voltCtx.beginPath();
+            if (voltPoints.length > 0) {
+                voltCtx.moveTo(voltPoints[0].x, voltPoints[0].y);
+                for (let i = 1; i < voltPoints.length; i++) {
+                    voltCtx.lineTo(voltPoints[i].x, voltPoints[i].y);
+                }
+            }
+            voltCtx.stroke();
+            voltCtx.shadowBlur = 0; 
+
+            voltAnimationId = requestAnimationFrame(drawVoltage);
+        }
+
+        // --- STREAMING_CHUNK: Writing Chain Network physics and rendering... ---
+        // --- 4. SIMULADOR DE RED NEURONAL (CADENA MULTINEURONAL) ---
+        let netImpulseActive = false;
+        let netStep = 0; 
+        let netProgress = 0; 
+        let netParticles = [];
+        let neurons = [];
+
+        function initNetworkCanvas() {
+            networkCanvas = document.getElementById('networkCanvas');
+            if(!networkCanvas) return;
+            netCtx = networkCanvas.getContext('2d');
+            
+            let targetWidth = networkCanvas.parentElement.clientWidth || 600;
+            networkCanvas.width = targetWidth;
+            networkCanvas.height = 384;
+
+            resetNetwork();
+        }
+
+        function resetNetwork() {
+            netImpulseActive = false;
+            netStep = 0;
+            netProgress = 0;
+            netParticles = [];
+            
+            let padding = 80;
+            let width = networkCanvas.width;
+            let interval = (width - padding * 2) / 2;
+
+            neurons = [
+                { id: 1, name: "Sensorial (Alerta)", x: padding, y: 192, excited: false, axonLength: interval - 60 },
+                { id: 2, name: "Interneurona (Mando)", x: padding + interval, y: 192, excited: false, axonLength: interval - 60 },
+                { id: 3, name: "Motora (Acción)", x: padding + interval * 2, y: 192, excited: false, axonLength: 60 }
+            ];
+
+            document.getElementById('network-stats').innerText = "Inactivo (Esperando estímulo)";
+            document.getElementById('network-stats').className = "font-mono text-slate-400";
+        }
+
+        function triggerNetworkImpulse() {
+            if (netImpulseActive) return;
+            resetNetwork();
+            netImpulseActive = true;
+            netStep = 1; 
+            neurons[0].excited = true;
+            document.getElementById('network-stats').innerText = "Sensorial Despolarizada";
+            document.getElementById('network-stats').className = "font-mono text-amber-500 animate-pulse";
+        }
+
+        function drawNetwork() {
+            if(!netCtx || !networkCanvas) return;
+            netCtx.clearRect(0, 0, networkCanvas.width, networkCanvas.height);
+
+            // Dibujar las 3 neuronas
+            neurons.forEach((neuron, idx) => {
+                // Soma
+                netCtx.fillStyle = neuron.excited ? '#f97316' : '#334155';
+                netCtx.shadowColor = neuron.excited ? '#fb923c' : 'transparent';
+                netCtx.shadowBlur = neuron.excited ? 15 : 0;
+                netCtx.beginPath();
+                netCtx.arc(neuron.x, neuron.y, 24, 0, Math.PI * 2);
+                netCtx.fill();
+                netCtx.shadowBlur = 0;
+
+                // Nombre Neurona
+                netCtx.fillStyle = neuron.excited ? '#fb923c' : '#94a3b8';
+                netCtx.font = 'bold 11px sans-serif';
+                netCtx.textAlign = 'center';
+                netCtx.fillText(neuron.name, neuron.x, neuron.y - 35);
+
+                // Dendritas simplificadas
+                netCtx.strokeStyle = neuron.excited ? '#fb923c' : '#475569';
+                netCtx.lineWidth = 2;
+                for(let angle = 0.5; angle < Math.PI * 2; angle += 1.1) {
+                    if (angle > Math.PI * 1.7 || angle < Math.PI * 0.3) continue; 
+                    let dx = Math.cos(angle) * 24;
+                    let dy = Math.sin(angle) * 24;
+                    netCtx.beginPath();
+                    netCtx.moveTo(neuron.x + dx, neuron.y + dy);
+                    netCtx.lineTo(neuron.x + dx * 1.6, neuron.y + dy * 1.6);
+                    netCtx.stroke();
+                }
+
+                // Dibujar Axón
+                netCtx.strokeStyle = neuron.excited ? '#ea580c' : '#475569';
+                netCtx.lineWidth = 3;
+                netCtx.beginPath();
+                netCtx.moveTo(neuron.x + 24, neuron.y);
+                netCtx.lineTo(neuron.x + 24 + neuron.axonLength, neuron.y);
+                netCtx.stroke();
+
+                // Terminales
+                netCtx.strokeStyle = neuron.excited ? '#f97316' : '#475569';
+                netCtx.lineWidth = 2;
+                let endX = neuron.x + 24 + neuron.axonLength;
+                netCtx.beginPath();
+                netCtx.moveTo(endX, neuron.y);
+                netCtx.lineTo(endX + 10, neuron.y - 12);
+                netCtx.moveTo(endX, neuron.y);
+                netCtx.lineTo(endX + 10, neuron.y + 12);
+                netCtx.stroke();
+
+                // Vainas de mielina
+                let spaceBetweenMielin = 30;
+                let numBlocks = Math.floor(neuron.axonLength / spaceBetweenMielin);
+                for(let b=0; b < numBlocks; b++) {
+                    let mx = neuron.x + 35 + b * spaceBetweenMielin;
+                    netCtx.fillStyle = neuron.excited ? '#10b981' : '#1e293b';
+                    netCtx.strokeStyle = '#047857';
+                    netCtx.lineWidth = 1;
+                    netCtx.beginPath();
+                    netCtx.roundRect(mx, neuron.y - 6, 20, 12, 3);
+                    netCtx.fill();
+                    netCtx.stroke();
+                }
+            });
+
+            if (netImpulseActive) {
+                if (netStep === 1) { 
+                    netProgress += 4;
+                    let n1 = neurons[0];
+                    let currentX = n1.x + 24 + (n1.axonLength * (netProgress / 100));
+                    
+                    netCtx.fillStyle = '#fde047';
+                    netCtx.shadowColor = '#fde047';
+                    netCtx.shadowBlur = 12;
+                    netCtx.beginPath();
+                    netCtx.arc(currentX, n1.y, 6, 0, Math.PI * 2);
+                    netCtx.fill();
+                    netCtx.shadowBlur = 0;
+
+                    if (netProgress >= 100) {
+                        netStep = 2;
+                        netProgress = 0;
+                        let endX = n1.x + 24 + n1.axonLength;
+                        for(let i=0; i<15; i++) {
+                            netParticles.push({
+                                x: endX + 5,
+                                y: n1.y + (Math.random() - 0.5) * 15,
+                                tx: neurons[1].x - 20,
+                                ty: neurons[1].y + (Math.random() - 0.5) * 20,
+                                speed: 1.5 + Math.random() * 1.5,
+                                active: true
+                            });
+                        }
+                        document.getElementById('network-stats').innerText = "Sinapsis Química 1 (Liberación)";
+                    }
+                } 
+                else if (netStep === 2) { 
+                    let activeParticles = 0;
+                    netParticles.forEach(p => {
+                        if (!p.active) return;
+                        activeParticles++;
+
+                        let dx = p.tx - p.x;
+                        let dy = p.ty - p.y;
+                        let dist = Math.hypot(dx, dy);
+
+                        if (dist > 2) {
+                            p.x += (dx / dist) * p.speed;
+                            p.y += (dy / dist) * p.speed;
+                        } else {
+                            p.active = false;
+                        }
+
+                        netCtx.fillStyle = '#22d3ee';
+                        netCtx.beginPath();
+                        netCtx.arc(p.x, p.y, 3, 0, Math.PI*2);
+                        netCtx.fill();
+                    });
+
+                    if (activeParticles === 0) {
+                        netStep = 3;
+                        netProgress = 0;
+                        neurons[1].excited = true;
+                        document.getElementById('network-stats').innerText = "Interneurona Despolarizada";
+                    }
+                } 
+                else if (netStep === 3) { 
+                    netProgress += 4;
+                    let n2 = neurons[1];
+                    let currentX = n2.x + 24 + (n2.axonLength * (netProgress / 100));
+                    
+                    netCtx.fillStyle = '#fde047';
+                    netCtx.shadowColor = '#fde047';
+                    netCtx.shadowBlur = 12;
+                    netCtx.beginPath();
+                    netCtx.arc(currentX, n2.y, 6, 0, Math.PI * 2);
+                    netCtx.fill();
+                    netCtx.shadowBlur = 0;
+
+                    if (netProgress >= 100) {
+                        netStep = 4;
+                        netProgress = 0;
+                        netParticles = [];
+                        let endX = n2.x + 24 + n2.axonLength;
+                        for(let i=0; i<15; i++) {
+                            netParticles.push({
+                                x: endX + 5,
+                                y: n2.y + (Math.random() - 0.5) * 15,
+                                tx: neurons[2].x - 20,
+                                ty: neurons[2].y + (Math.random() - 0.5) * 20,
+                                speed: 1.5 + Math.random() * 1.5,
+                                active: true
+                            });
+                        }
+                        document.getElementById('network-stats').innerText = "Sinapsis Química 2 (Liberación)";
+                    }
+                } 
+                else if (netStep === 4) { 
+                    let activeParticles = 0;
+                    netParticles.forEach(p => {
+                        if (!p.active) return;
+                        activeParticles++;
+
+                        let dx = p.tx - p.x;
+                        let dy = p.ty - p.y;
+                        let dist = Math.hypot(dx, dy);
+
+                        if (dist > 2) {
+                            p.x += (dx / dist) * p.speed;
+                            p.y += (dy / dist) * p.speed;
+                        } else {
+                            p.active = false;
+                        }
+
+                        netCtx.fillStyle = '#22d3ee';
+                        netCtx.beginPath();
+                        netCtx.arc(p.x, p.y, 3, 0, Math.PI*2);
+                        netCtx.fill();
+                    });
+
+                    if (activeParticles === 0) {
+                        netStep = 5;
+                        netProgress = 0;
+                        neurons[2].excited = true;
+                        document.getElementById('network-stats').innerText = "Neurona Motora Activada";
+                    }
+                } 
+                else if (netStep === 5) { 
+                    netProgress += 4;
+                    let n3 = neurons[2];
+                    let currentX = n3.x + 24 + (n3.axonLength * (netProgress / 100));
+                    
+                    netCtx.fillStyle = '#fde047';
+                    netCtx.shadowColor = '#fde047';
+                    netCtx.shadowBlur = 12;
+                    netCtx.beginPath();
+                    netCtx.arc(currentX, n3.y, 6, 0, Math.PI * 2);
+                    netCtx.fill();
+                    netCtx.shadowBlur = 0;
+
+                    if (netProgress >= 100) {
+                        netStep = 6;
+                        netImpulseActive = false;
+                        document.getElementById('network-stats').innerText = "Respuesta Motora Exitosa";
+                        document.getElementById('network-stats').className = "font-mono text-emerald-400 font-bold";
+                    }
+                }
+            }
+
+            netAnimationId = requestAnimationFrame(drawNetwork);
+        }
+
+        // --- STREAMING_CHUNK: Setting up the neural divergence math... ---
+        // --- 5. SIMULADOR DE RED DIVERGENTE (UNO A MUCHOS) ---
+        let divImpulseActive = false;
+        let divStep = 0; // 0: reposo, 1: viaje axon comun, 2: ramificacion, 3: sinapsis multiple, 4: activacion paralela
+        let divProgress = 0;
+        let divParticles = [];
+        let sourceNeuron = null;
+        let targetNeurons = [];
+
+        function initDivergenciaCanvas() {
+            divergenciaCanvas = document.getElementById('divergenciaCanvas');
+            if(!divergenciaCanvas) return;
+            divCtx = divergenciaCanvas.getContext('2d');
+
+            let targetWidth = divergenciaCanvas.parentElement.clientWidth || 600;
+            divergenciaCanvas.width = targetWidth;
+            divergenciaCanvas.height = 384;
+
+            resetDivergencia();
+        }
+
+        function resetDivergencia() {
+            divImpulseActive = false;
+            divStep = 0;
+            divProgress = 0;
+            divParticles = [];
+
+            let w = divergenciaCanvas.width;
+            let h = divergenciaCanvas.height;
+
+            // 1 Presináptica (izquierda)
+            sourceNeuron = { x: 80, y: h / 2, excited: false, axonLength: 140 };
+
+            // 3 Postsinápticas (derecha - divergentes)
+            targetNeurons = [
+                { id: 1, name: "Área Motora (Mielina A)", x: w - 100, y: 70, excited: false },
+                { id: 2, name: "Área Sensorial (Mielina B)", x: w - 100, y: h / 2, excited: false },
+                { id: 3, name: "Área Cognitiva (Mielina C)", x: w - 100, y: h - 70, excited: false }
+            ];
+
+            document.getElementById('div-stats').innerText = "Reposo (0 de 3)";
+            document.getElementById('div-stats').className = "font-mono text-purple-400";
+        }
+
+        function triggerDivergenciaImpulse() {
+            if (divImpulseActive) return;
+            resetDivergencia();
+            divImpulseActive = true;
+            divStep = 1;
+            sourceNeuron.excited = true;
+            document.getElementById('div-stats').innerText = "Divergencia: Iniciando Señal";
+            document.getElementById('div-stats').className = "font-mono text-amber-400 animate-pulse";
+        }
+
+        function drawDivergencia() {
+            if(!divCtx || !divergenciaCanvas) return;
+            divCtx.clearRect(0, 0, divergenciaCanvas.width, divergenciaCanvas.height);
+
+            let forkX = sourceNeuron.x + 24 + sourceNeuron.axonLength;
+            let forkY = sourceNeuron.y;
+
+            // Dibujar Conectores/Cables de ramificación detrás
+            divCtx.strokeStyle = divImpulseActive && divStep >= 2 ? '#c084fc' : '#475569';
+            divCtx.lineWidth = 3;
+            targetNeurons.forEach(target => {
+                divCtx.beginPath();
+                divCtx.moveTo(forkX, forkY);
+                // Curva de bifurcación
+                divCtx.quadraticCurveTo((forkX + target.x) / 2, target.y, target.x - 24, target.y);
+                divCtx.stroke();
+
+                // Vaina de Mielina en cada ramal
+                let midX = (forkX + target.x - 24) / 2;
+                let midY = (forkY + target.y) / 2;
+                divCtx.fillStyle = target.excited ? '#10b981' : '#1e293b';
+                divCtx.strokeStyle = '#047857';
+                divCtx.lineWidth = 1;
+                divCtx.beginPath();
+                divCtx.roundRect(midX - 15, midY - 6, 30, 12, 3);
+                divCtx.fill();
+                divCtx.stroke();
+            });
+
+            // Dibujar Neurona Emisora (Izquierda)
+            divCtx.fillStyle = sourceNeuron.excited ? '#a855f7' : '#334155';
+            divCtx.shadowColor = sourceNeuron.excited ? '#c084fc' : 'transparent';
+            divCtx.shadowBlur = sourceNeuron.excited ? 15 : 0;
+            divCtx.beginPath();
+            divCtx.arc(sourceNeuron.x, sourceNeuron.y, 24, 0, Math.PI * 2);
+            divCtx.fill();
+            divCtx.shadowBlur = 0;
+
+            divCtx.fillStyle = sourceNeuron.excited ? '#c084fc' : '#94a3b8';
+            divCtx.font = 'bold 11px sans-serif';
+            divCtx.textAlign = 'center';
+            divCtx.fillText("Neurona Presináptica", sourceNeuron.x, sourceNeuron.y - 35);
+
+            // Axón Principal (Común)
+            divCtx.strokeStyle = sourceNeuron.excited ? '#a855f7' : '#475569';
+            divCtx.lineWidth = 4;
+            divCtx.beginPath();
+            divCtx.moveTo(sourceNeuron.x + 24, sourceNeuron.y);
+            divCtx.lineTo(forkX, forkY);
+            divCtx.stroke();
+
+            // Dibujar Neuronas Receptoras (Derecha)
+            targetNeurons.forEach(target => {
+                divCtx.fillStyle = target.excited ? '#f97316' : '#334155';
+                divCtx.shadowColor = target.excited ? '#fb923c' : 'transparent';
+                divCtx.shadowBlur = target.excited ? 15 : 0;
+                divCtx.beginPath();
+                divCtx.arc(target.x, target.y, 20, 0, Math.PI * 2);
+                divCtx.fill();
+                divCtx.shadowBlur = 0;
+
+                divCtx.fillStyle = target.excited ? '#fb923c' : '#94a3b8';
+                divCtx.font = 'bold 10px sans-serif';
+                divCtx.fillText(target.name, target.x, target.y - 28);
+            });
+
+            // Lógica Física de la divergencia paso a paso
+            if (divImpulseActive) {
+                if (divStep === 1) { // Paso 1: El potencial viaja por el primer tramo común
+                    divProgress += 4;
+                    let currentX = sourceNeuron.x + 24 + (sourceNeuron.axonLength * (divProgress / 100));
+
+                    divCtx.fillStyle = '#fde047';
+                    divCtx.shadowColor = '#fde047';
+                    divCtx.shadowBlur = 12;
+                    divCtx.beginPath();
+                    divCtx.arc(currentX, sourceNeuron.y, 6, 0, Math.PI * 2);
+                    divCtx.fill();
+                    divCtx.shadowBlur = 0;
+
+                    if (divProgress >= 100) {
+                        divStep = 2;
+                        divProgress = 0;
+                        document.getElementById('div-stats').innerText = "Señal Bifurcada en Paralelo";
+                    }
+                } 
+                else if (divStep === 2) { // Paso 2: La señal se divide y viaja por los 3 ramales
+                    divProgress += 3;
+                    
+                    targetNeurons.forEach(target => {
+                        // Interpolación cuadrática simple para simular el viaje por la curva
+                        let t = divProgress / 100;
+                        let startX = forkX;
+                        let startY = forkY;
+                        let endX = target.x - 24;
+                        let endY = target.y;
+
+                        let currentX = (1 - t) * (1 - t) * startX + 2 * (1 - t) * t * ((startX + endX) / 2) + t * t * endX;
+                        let currentY = (1 - t) * (1 - t) * startY + 2 * (1 - t) * t * endY + t * t * endY;
+
+                        divCtx.fillStyle = '#fde047';
+                        divCtx.shadowColor = '#fde047';
+                        divCtx.shadowBlur = 12;
+                        divCtx.beginPath();
+                        divCtx.arc(currentX, currentY, 5, 0, Math.PI * 2);
+                        divCtx.fill();
+                        divCtx.shadowBlur = 0;
+                    });
+
+                    if (divProgress >= 100) {
+                        divStep = 3;
+                        divProgress = 0;
+                        // Generar partículas químicas de sinapsis simultáneas
+                        targetNeurons.forEach(target => {
+                            for(let i=0; i<8; i++) {
+                                divParticles.push({
+                                    x: target.x - 24,
+                                    y: target.y + (Math.random() - 0.5) * 10,
+                                    tx: target.x,
+                                    ty: target.y,
+                                    targetId: target.id,
+                                    speed: 1.2 + Math.random() * 1.5,
+                                    active: true
+                                });
+                            }
+                        });
+                        document.getElementById('div-stats').innerText = "Liberación Multisináptica Química";
+                    }
+                } 
+                else if (divStep === 3) { // Paso 3: Moléculas químicas cruzando las 3 brechas
+                    let activeParticles = 0;
+                    divParticles.forEach(p => {
+                        if (!p.active) return;
+                        activeParticles++;
+
+                        let dx = p.tx - p.x;
+                        let dy = p.ty - p.y;
+                        let dist = Math.hypot(dx, dy);
+
+                        if (dist > 2) {
+                            p.x += (dx / dist) * p.speed;
+                            p.y += (dy / dist) * p.speed;
+                        } else {
+                            p.active = false;
+                            // Excitamos el objetivo correspondiente
+                            let tgt = targetNeurons.find(t => t.id === p.targetId);
+                            if (tgt) tgt.excited = true;
+                        }
+
+                        divCtx.fillStyle = '#22d3ee';
+                        divCtx.beginPath();
+                        divCtx.arc(p.x, p.y, 3, 0, Math.PI*2);
+                        divCtx.fill();
+                    });
+
+                    let countExcited = targetNeurons.filter(t => t.excited).length;
+                    document.getElementById('div-stats').innerText = `Activando destinos (${countExcited} de 3)`;
+
+                    if (activeParticles === 0) {
+                        divStep = 4;
+                        divImpulseActive = false;
+                        document.getElementById('div-stats').innerText = "Procesamiento en Paralelo Completo";
+                        document.getElementById('div-stats').className = "font-mono text-emerald-400 font-bold";
+                    }
+                }
+            }
+
+            divAnimationId = requestAnimationFrame(drawDivergencia);
+        }
+
+        // Cambio de pestañas de simuladores
+        function switchSim(tabId) {
+            document.getElementById('sinapsis-tab-btn').className = "py-4 text-center font-bold text-xs sm:text-sm text-gray-500 hover:text-brand-blue transition-all flex justify-center items-center gap-2 border-r border-gray-200";
+            document.getElementById('voltaje-tab-btn').className = "py-4 text-center font-bold text-xs sm:text-sm text-gray-500 hover:text-brand-blue transition-all flex justify-center items-center gap-2 border-r border-gray-200";
+            document.getElementById('red-tab-btn').className = "py-4 text-center font-bold text-xs sm:text-sm text-gray-500 hover:text-brand-blue transition-all flex justify-center items-center gap-2 border-r border-gray-200 border-t sm:border-t-0";
+            document.getElementById('divergencia-tab-btn').className = "py-4 text-center font-bold text-xs sm:text-sm text-gray-500 hover:text-brand-blue transition-all flex justify-center items-center gap-2 border-t sm:border-t-0";
+            
+            document.getElementById('sim-sinapsis-container').classList.add('hidden');
+            document.getElementById('sim-voltaje-container').classList.add('hidden');
+            document.getElementById('sim-red-container').classList.add('hidden');
+            document.getElementById('sim-divergencia-container').classList.add('hidden');
+
+            if (tabId === 'sinapsis-tab') {
+                document.getElementById('sinapsis-tab-btn').className = "py-4 text-center font-bold text-xs sm:text-sm text-brand-orange border-b-2 border-brand-orange transition-all flex justify-center items-center gap-2 border-r border-gray-200";
+                document.getElementById('sim-sinapsis-container').classList.remove('hidden');
+                setTimeout(initSynapseCanvas, 50);
+            } else if (tabId === 'voltaje-tab') {
+                document.getElementById('voltaje-tab-btn').className = "py-4 text-center font-bold text-xs sm:text-sm text-brand-orange border-b-2 border-brand-orange transition-all flex justify-center items-center gap-2 border-r border-gray-200";
+                document.getElementById('sim-voltaje-container').classList.remove('hidden');
+                setTimeout(initVoltageCanvas, 50);
+            } else if (tabId === 'red-tab') {
+                document.getElementById('red-tab-btn').className = "py-4 text-center font-bold text-xs sm:text-sm text-brand-orange border-b-2 border-brand-orange transition-all flex justify-center items-center gap-2 border-r border-gray-200 border-t sm:border-t-0";
+                document.getElementById('sim-red-container').classList.remove('hidden');
+                setTimeout(initNetworkCanvas, 50);
+            } else {
+                document.getElementById('divergencia-tab-btn').className = "py-4 text-center font-bold text-xs sm:text-sm text-brand-orange border-b-2 border-brand-orange transition-all flex justify-center items-center gap-2 border-t sm:border-t-0";
+                document.getElementById('sim-divergencia-container').classList.remove('hidden');
+                setTimeout(initDivergenciaCanvas, 50);
+            }
+        }
+
+        // --- 6. CUESTIONARIO / QUIZ EDUCATIVO ---
+        const quizQuestions = [
+            {
+                q: "¿Qué componente aísla eléctricamente el axón para acelerar drásticamente el impulso?",
+                a: [
+                    { text: "Las dendritas receptoras", correct: false },
+                    { text: "La vaina de mielina", correct: true },
+                    { text: "Los astrocitos protectores", correct: false },
+                    { text: "El soma de la célula", correct: false }
+                ],
+                feed: "¡Excelente! La vaina de mielina es el material de alto aislamiento lipídico que acelera la transmisión."
+            },
+            {
+                q: "¿Cómo se llama el espacio físico que separa la terminal de salida de una neurona y el inicio de otra?",
+                a: [
+                    { text: "Potencial de membrana", correct: false },
+                    { text: "Vesícula secretora", correct: false },
+                    { text: "Espacio Sináptico (o Brecha)", correct: true },
+                    { text: "Barrera hematoencefálica", correct: false }
+                ],
+                feed: "¡Exacto! El espacio sináptico es la pequeña fisura química donde ocurre la liberación de neurotransmisores."
+            },
+            {
+                q: "¿Cuál es el voltaje aproximado de una neurona en su fase de completo reposo?",
+                a: [
+                    { text: "+40 milivoltios (mV)", correct: false },
+                    { text: "0 voltios (V)", correct: false },
+                    { text: "-55 milivoltios (mV)", correct: false },
+                    { text: "-70 milivoltios (mV)", correct: true }
+                ],
+                feed: "¡Correcto! En reposo, la bomba de iones mantiene un potencial negativo estable cercano a los -70 mV."
+            },
+            {
+                q: "¿Qué células gliales generan la barrera hematoencefálica y nutren activamente a las neuronas?",
+                a: [
+                    { text: "Los Astrocitos", correct: true },
+                    { text: "La Microglía defensiva", correct: false },
+                    { text: "Los Oligodendrocitos axonal", correct: false },
+                    { text: "Los leucocitos generales", correct: false }
+                ],
+                feed: "¡Así es! Los astrocitos tienen proyecciones vasculares que filtran la sangre para alimentar las neuronas de forma segura."
+            }
+        ];
+
+        let currentQuestionIdx = 0;
+        let score = 0;
+        let answered = false;
+
+        function startQuiz() {
+            document.getElementById('quiz-intro').classList.add('hidden');
+            document.getElementById('quiz-results').classList.add('hidden');
+            document.getElementById('quiz-active').classList.remove('hidden');
+            currentQuestionIdx = 0;
+            score = 0;
+            showQuestion();
+        }
+
+        function showQuestion() {
+            answered = false;
+            document.getElementById('quiz-next-btn').disabled = true;
+            document.getElementById('quiz-feedback').classList.add('hidden');
+            
+            const qData = quizQuestions[currentQuestionIdx];
+            document.getElementById('current-question-num').innerText = currentQuestionIdx + 1;
+            document.getElementById('quiz-progress-pct').innerText = `${((currentQuestionIdx + 1) / 4) * 100}%`;
+            document.getElementById('question-text').innerText = qData.q;
+
+            const grid = document.getElementById('answers-grid');
+            grid.innerHTML = '';
+
+            qData.a.forEach((opt, idx) => {
+                const btn = document.createElement('button');
+                btn.className = "w-full text-left bg-white/5 hover:bg-white/10 border border-white/15 hover:border-white/30 rounded-xl p-4 text-sm font-medium transition duration-200 focus:outline-none flex items-center justify-between";
+                btn.innerHTML = `
+                    <span>${opt.text}</span>
+                    <i class="far fa-circle text-white/30"></i>
+                `;
+                btn.onclick = () => selectAnswer(btn, opt.correct, qData.feed);
+                grid.appendChild(btn);
+            });
+        }
+
+        function selectAnswer(btnElement, isCorrect, feedbackText) {
+            if (answered) return;
+            answered = true;
+
+            const nextBtn = document.getElementById('quiz-next-btn');
+            nextBtn.disabled = false;
+
+            const feedbackEl = document.getElementById('quiz-feedback');
+            feedbackEl.classList.remove('hidden');
+
+            if (isCorrect) {
+                score++;
+                btnElement.className = "w-full text-left bg-emerald-600 border border-emerald-500 text-white rounded-xl p-4 text-sm font-medium flex items-center justify-between";
+                btnElement.querySelector('i').className = "fas fa-check-circle text-white";
+                feedbackEl.innerText = feedbackText;
+                feedbackEl.className = "text-sm font-semibold text-emerald-300";
+            } else {
+                btnElement.className = "w-full text-left bg-rose-700 border border-rose-500 text-white rounded-xl p-4 text-sm font-medium flex items-center justify-between";
+                btnElement.querySelector('i').className = "fas fa-times-circle text-white";
+                feedbackEl.innerText = "Respuesta incorrecta. ¡Repasa el concepto e inténtalo de nuevo!";
+                feedbackEl.className = "text-sm font-semibold text-rose-300";
+            }
+
+            const buttons = document.getElementById('answers-grid').querySelectorAll('button');
+            buttons.forEach(btn => {
+                if(btn !== btnElement) {
+                    btn.classList.add('opacity-40');
+                    btn.disabled = true;
+                }
+            });
+        }
+
+        function nextQuestion() {
+            if (currentQuestionIdx < quizQuestions.length - 1) {
+                currentQuestionIdx++;
+                showQuestion();
+            } else {
+                showResults();
+            }
+        }
+
+        function showResults() {
+            document.getElementById('quiz-active').classList.add('hidden');
+            const resultsScreen = document.getElementById('quiz-results');
+            resultsScreen.classList.remove('hidden');
+
+            document.getElementById('results-score').innerText = `${score} / 4 correctas`;
+
+            const iconContainer = document.getElementById('results-icon');
+            const messageEl = document.getElementById('results-message');
+
+            if (score === 4) {
+                iconContainer.className = "w-24 h-24 rounded-full bg-emerald-500 text-white flex items-center justify-center text-4xl mx-auto shadow-lg";
+                iconContainer.innerHTML = '<i class="fas fa-award"></i>';
+                messageEl.innerText = "¡Excelente nivel! Posees un dominio académico intachable de la neurobiología celular del cerebro. Estás listo para subir este recurso a GitHub Pages como parte de tus aportaciones de divulgación.";
+            } else if (score >= 2) {
+                iconContainer.className = "w-24 h-24 rounded-full bg-amber-500 text-white flex items-center justify-center text-4xl mx-auto shadow-lg";
+                iconContainer.innerHTML = '<i class="fas fa-thumbs-up"></i>';
+                messageEl.innerText = "¡Buen esfuerzo! Entiendes las bases fundamentales del funcionamiento cerebral y de soporte del IPCED. Te sugerimos repasar los simuladores interactivos para afianzar los conceptos eléctricos.";
+            } else {
+                iconContainer.className = "w-24 h-24 rounded-full bg-rose-600 text-white flex items-center justify-center text-4xl mx-auto shadow-lg";
+                iconContainer.innerHTML = '<i class="fas fa-redo"></i>';
+                messageEl.innerText = "Aún quedan algunos conceptos por afinar. Recuerda que el aprendizaje en Protección Civil y emergencias médicas es continuo para garantizar la seguridad de todos.";
+            }
+        }
+
+        function resetQuiz() {
+            document.getElementById('quiz-results').classList.add('hidden');
+            document.getElementById('quiz-intro').classList.remove('hidden');
+        }
+
+        // --- INICIALIZAR EN EVENTO WINDOW LOAD ---
+        window.onload = function() {
+            initSynapseCanvas();
+            initVoltageCanvas();
+            initNetworkCanvas();
+            initDivergenciaCanvas();
+            
+            // Iniciar loops de dibujo paralelos
+            drawSynapse();
+            drawVoltage();
+            drawNetwork();
+            drawDivergencia();
+        }
+
+        // Asegurar que responda adecuadamente al reajuste de la ventana
+        window.addEventListener('resize', () => {
+            if(synapseCanvas) {
+                synapseCanvas.width = synapseCanvas.parentElement.clientWidth || synapseCanvas.width;
+            }
+            if(voltageCanvas) {
+                voltageCanvas.width = voltageCanvas.parentElement.clientWidth || voltageCanvas.width;
+            }
+            if(networkCanvas) {
+                networkCanvas.width = networkCanvas.parentElement.clientWidth || networkCanvas.width;
+            }
+            if(divergenciaCanvas) {
+                divergenciaCanvas.width = divergenciaCanvas.parentElement.clientWidth || divergenciaCanvas.width;
+            }
+        });
+    </script>
+</body>
+</html>
