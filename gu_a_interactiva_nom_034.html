@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía Interactiva NOM-034-SSA3-2013 | IPCED</title>
+    
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- jsPDF for Certificate Generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f3f4f6;
+            color: #1f2937;
+        }
+        
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .nav-btn.active {
+            border-bottom: 3px solid #ea580c;
+            color: #ea580c;
+            font-weight: bold;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .cw-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 40px);
+            grid-auto-rows: 40px;
+            gap: 2px;
+            justify-content: center;
+            margin: 20px auto;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <!-- Header Institucional -->
+    <header class="bg-white shadow-md border-b-4 border-orange-600 sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex flex-col md:flex-row items-center justify-between">
+            <div class="flex items-center gap-6">
+                <!-- Logotipo Oficial del Instituto -->
+                <img src="ipced-removebg-preview_4.png" alt="Logotipo IPCED" class="h-24 w-24 object-contain drop-shadow-md flex-shrink-0" onerror="this.src='https://placehold.co/100x100/1e3a8a/ffffff?text=IPCED'">
+                <div>
+                    <h1 class="text-2xl font-extrabold text-gray-800">Instituto de Protección Civil, Emergencias y Desastres</h1>
+                    <h2 class="text-lg font-semibold text-gray-600">Licenciatura en Atención, Gestión y Administración de las Emergencias</h2>
+                    <p class="text-sm text-gray-500">Materia: Marco Legal de la Gestión de las Emergencias</p>
+                </div>
+            </div>
+            <div class="mt-4 md:mt-0 text-right">
+                <p class="font-bold text-orange-600 uppercase tracking-wide">Guía Interactiva de Estudio</p>
+                <p class="text-sm font-semibold text-gray-700">NOM-034-SSA3-2013</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navegación por Pestañas -->
+    <nav class="bg-white shadow-sm mb-8 overflow-x-auto">
+        <div class="max-w-6xl mx-auto px-4 flex gap-2 md:gap-6">
+            <button class="nav-btn active whitespace-nowrap py-4 px-2 text-gray-600 hover:text-orange-600 transition-colors focus:outline-none" onclick="switchTab(event, 'intro')">1. Introducción</button>
+            <button class="nav-btn whitespace-nowrap py-4 px-2 text-gray-600 hover:text-orange-600 transition-colors focus:outline-none" onclick="switchTab(event, 'contenido')">2. Contenido Temático</button>
+            <button class="nav-btn whitespace-nowrap py-4 px-2 text-gray-600 hover:text-orange-600 transition-colors focus:outline-none" onclick="switchTab(event, 'abp')">3. Caso Práctico (ABP)</button>
+            <button class="nav-btn whitespace-nowrap py-4 px-2 text-gray-600 hover:text-orange-600 transition-colors focus:outline-none" onclick="switchTab(event, 'actividades')">4. Actividades Interactivas</button>
+            <button class="nav-btn whitespace-nowrap py-4 px-2 text-gray-600 hover:text-orange-600 transition-colors focus:outline-none" onclick="switchTab(event, 'evaluacion')">5. Evaluación Final</button>
+        </div>
+    </nav>
+
+    <!-- Contenedor Principal -->
+    <main class="max-w-6xl mx-auto px-4 pb-12 flex-grow w-full">
+        
+        <!-- Pestaña 1: Introducción -->
+        <section id="intro" class="tab-content active bg-white p-8 rounded-lg shadow-sm border border-gray-100">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6 border-b-2 pb-2 border-gray-200">Introducción a la NOM-034-SSA3-2013</h2>
+            <div class="text-gray-700 leading-relaxed space-y-4">
+                <p>Estimado estudiante, la atención de emergencias trasciende la voluntad de asistir; requiere rigor clínico, ético y legal. La <strong>Norma Oficial Mexicana NOM-034-SSA3-2013</strong> constituye el marco regulatorio fundamental para la atención médica prehospitalaria en México, estableciendo los criterios de operación para las unidades móviles (ambulancias) y el perfil del personal técnico.</p>
+                
+                <p>Esta guía ha sido diseñada bajo una <strong>metodología constructivista y de pedagogía activa</strong>. El objetivo no es la memorización pasiva de artículos legales, sino la construcción de conocimiento a través de la reflexión, la resolución de problemas reales y la evaluación interactiva. Al comprender esta norma, usted estará garantizando la calidad en el servicio y la protección legal tanto del paciente como del proveedor de atención.</p>
+                
+                <div class="bg-blue-50 border-l-4 border-blue-600 p-5 mt-6 rounded-r-lg">
+                    <h3 class="font-bold text-blue-800 text-lg">Objetivo de Aprendizaje</h3>
+                    <p class="text-blue-900 mt-2">Analizar, interpretar y aplicar los preceptos de la NOM-034-SSA3-2013 en escenarios simulados de atención prehospitalaria, asegurando la selección adecuada de recursos, el llenado correcto de registros médicos y el cumplimiento del perfil profesional exigido por la autoridad sanitaria.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pestaña 2: Contenido Temático -->
+        <section id="contenido" class="tab-content bg-white p-8 rounded-lg shadow-sm border border-gray-100">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6 border-b-2 pb-2 border-gray-200">Contenido Temático Fundamental</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Tarjeta 1 -->
+                <div class="bg-gray-50 p-6 rounded-lg border border-gray-200 hover:shadow-md transition-shadow">
+                    <h3 class="text-xl font-bold text-orange-700 mb-3">1. Clasificación de Ambulancias</h3>
+                    <p class="text-sm text-gray-600 mb-3">La norma clasifica las unidades móviles según su nivel de resolución:</p>
+                    <ul class="list-disc pl-5 space-y-1 text-sm text-gray-800">
+                        <li><strong>Ambulancia de Traslado:</strong> Para pacientes cuya condición no represente una urgencia o estado crítico.</li>
+                        <li><strong>Urgencias Básicas:</strong> Equipada para brindar soporte vital básico y desfibrilación externa automatizada.</li>
+                        <li><strong>Urgencias Avanzadas:</strong> Equipada para brindar soporte vital avanzado (manejo de vía aérea invasiva, farmacoterapia).</li>
+                        <li><strong>Cuidados Intensivos:</strong> Destinada a pacientes en estado crítico que requieren soporte vital avanzado continuo e instrumentalización especializada.</li>
+                    </ul>
+                </div>
+
+                <!-- Tarjeta 2 -->
+                <div class="bg-gray-50 p-6 rounded-lg border border-gray-200 hover:shadow-md transition-shadow">
+                    <h3 class="text-xl font-bold text-orange-700 mb-3">2. Perfil del Personal</h3>
+                    <p class="text-sm text-gray-600 mb-3">El personal técnico debe cumplir con requisitos formativos estrictos:</p>
+                    <ul class="list-disc pl-5 space-y-1 text-sm text-gray-800">
+                        <li>Debe poseer documento comprobatorio (certificado, diploma) que lo acredite como Técnico en Atención Prehospitalaria (Básico, Avanzado o Superior Universitario).</li>
+                        <li>La formación debe ser expedida por instituciones educativas reconocidas por las autoridades competentes.</li>
+                        <li>Se requiere actualización constante en las técnicas de atención médica.</li>
+                    </ul>
+                </div>
+
+                <!-- Tarjeta 3 -->
+                <div class="bg-gray-50 p-6 rounded-lg border border-gray-200 hover:shadow-md transition-shadow">
+                    <h3 class="text-xl font-bold text-orange-700 mb-3">3. Registro de Atención (FRAP)</h3>
+                    <p class="text-sm text-gray-600 mb-3">El Formato de Registro de Atención Prehospitalaria es un documento clínico y legal ineludible.</p>
+                    <ul class="list-disc pl-5 space-y-1 text-sm text-gray-800">
+                        <li>Debe ser llenado invariablemente por cada paciente atendido.</li>
+                        <li>Contiene información vital: signos vitales, intervenciones realizadas, datos del paciente y destino hospitalario.</li>
+                        <li>Se entrega una copia al establecimiento de salud receptor, formando parte del expediente clínico.</li>
+                    </ul>
+                </div>
+
+                <!-- Tarjeta 4 -->
+                <div class="bg-gray-50 p-6 rounded-lg border border-gray-200 hover:shadow-md transition-shadow">
+                    <h3 class="text-xl font-bold text-orange-700 mb-3">4. Recursos de Consulta Oficial</h3>
+                    <p class="text-sm text-gray-600 mb-4">Se requiere la lectura y análisis directo de los documentos normativos oficiales del Estado Mexicano.</p>
+                    <div class="space-y-3">
+                        <a href="https://dof.gob.mx/nota_detalle.php?codigo=5361072&fecha=23/09/2014" target="_blank" class="block w-full text-center bg-gray-800 text-white px-4 py-2 rounded font-semibold hover:bg-gray-700 transition-colors">
+                            Consultar NOM-034 en el DOF
+                        </a>
+                        <a href="https://www.diputados.gob.mx/LeyesBiblio/pdf/142_290523.pdf" target="_blank" class="block w-full text-center bg-gray-800 text-white px-4 py-2 rounded font-semibold hover:bg-gray-700 transition-colors">
+                            Consultar Ley General de Salud
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pestaña 3: ABP -->
+        <section id="abp" class="tab-content bg-white p-8 rounded-lg shadow-sm border border-gray-100">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6 border-b-2 pb-2 border-gray-200">Aprendizaje Basado en Problemas (ABP)</h2>
+            
+            <div class="bg-orange-50 border-l-4 border-orange-500 p-6 rounded-r-lg mb-6">
+                <h3 class="text-xl font-extrabold text-orange-900 mb-3">Estudio de Caso: "Decisión Operativa Crítica"</h3>
+                
+                <h4 class="font-bold text-gray-800 mt-4 mb-2">Contexto del Problema:</h4>
+                <p class="text-gray-700 mb-4">Usted ejerce como Coordinador Operativo y de Regulación en un servicio de ambulancias privadas. Recibe una solicitud urgente del Centro Regulador de Urgencias Médicas (CRUM) para el traslado interhospitalario de un paciente masculino de 58 años de edad, diagnosticado con Infarto Agudo de Miocardio (IAM), intubado y bajo infusión de medicamentos vasoactivos continuos.</p>
+                
+                <p class="text-gray-700 mb-4">Al revisar el estado de fuerza de su corporación, el despachador le notifica que la única unidad operativa disponible en ese sector es la "Ambulancia 04". Esta unidad está registrada ante salubridad como <em>Ambulancia de Urgencias Básicas</em>. La tripulación en turno está compuesta por un operador de vehículo de emergencia (sin conocimientos médicos formales) y un Técnico en Atención Prehospitalaria de nivel Básico.</p>
+                
+                <h4 class="font-bold text-gray-800 mt-6 mb-2">Actividad de Reflexión Universitaria:</h4>
+                <p class="text-sm text-gray-600 mb-4">Redacte sus respuestas basándose estrictamente en los lineamientos de la NOM-034-SSA3-2013 para discutirlas en su próxima sesión presencial.</p>
+                
+                <ol class="list-decimal pl-6 space-y-3 text-gray-800 font-medium">
+                    <li>Con sustento en la normativa vigente, ¿la "Ambulancia 04" posee la clasificación técnica y legal requerida para ejecutar este traslado específico? Exponga sus argumentos.</li>
+                    <li>¿El perfil académico de la tripulación en turno cumple con las exigencias legales para el manejo y monitorización de un paciente crítico intubado?</li>
+                    <li>Como responsable de la gestión de la emergencia, ¿qué determinación debe tomar ante esta solicitud? Evalúe las implicaciones legales, tanto por omisión de auxilio como por negligencia o impericia, en caso de un desenlace fatal durante el traslado.</li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- Pestaña 4: Actividades Interactivas -->
+        <section id="actividades" class="tab-content bg-white p-8 rounded-lg shadow-sm border border-gray-100">
+            <h2 class="text-3xl font-bold text-gray-800 mb-6 border-b-2 pb-2 border-gray-200">Actividades Interactivas de Repaso</h2>
+            
+            <!-- Actividad 1: Rellenar Textos -->
+            <div class="mb-10 p-6 bg-gray-50 rounded-lg border border-gray-200">
+                <h3 class="text-xl font-bold text-gray-800 mb-4">A) Completar el Párrafo Normativo</h3>
+                <p class="text-sm text-gray-600 mb-4">Seleccione en los recuadros la terminología correcta que da sentido legal al texto.</p>
+                
+                <div class="text-gray-800 leading-loose bg-white p-4 rounded border">
+                    Todo el personal que preste servicios en una ambulancia de urgencias médicas debe contar con un 
+                    <select id="fill1" class="border border-gray-300 p-1 mx-1 rounded font-bold text-blue-700 bg-blue-50 focus:outline-none">
+                        <option value="">[Seleccionar]</option>
+                        <option value="permiso">permiso</option>
+                        <option value="documento">documento</option>
+                        <option value="registro">registro</option>
+                    </select> 
+                    expedido por una institución formadora reconocida. Invariablemente, toda la atención y los procedimientos brindados al paciente deben quedar registrados y fundamentados en el formato estandarizado conocido como 
+                    <select id="fill2" class="border border-gray-300 p-1 mx-1 rounded font-bold text-blue-700 bg-blue-50 focus:outline-none">
+                        <option value="">[Seleccionar]</option>
+                        <option value="CENAPRED">CENAPRED</option>
+                        <option value="SINAPROC">SINAPROC</option>
+                        <option value="FRAP">FRAP</option>
+                    </select>. 
+                    Finalmente, si la unidad móvil está equipada para brindar atención a pacientes cuyo estado clínico compromete inminentemente la vida, requiriendo instrumentalización avanzada, la norma la clasifica como ambulancia de 
+                    <select id="fill3" class="border border-gray-300 p-1 mx-1 rounded font-bold text-blue-700 bg-blue-50 focus:outline-none">
+                        <option value="">[Seleccionar]</option>
+                        <option value="Traslado">Traslado</option>
+                        <option value="Urgencias Básicas">Urgencias Básicas</option>
+                        <option value="Cuidados Intensivos">Cuidados Intensivos</option>
+                    </select>.
+                </div>
+                <div class="mt-4 flex items-center gap-4">
+                    <button onclick="checkFillIn()" class="bg-blue-600 text-white px-5 py-2 rounded font-semibold hover:bg-blue-700 transition-colors">Validar Párrafo</button>
+                    <span id="fillResult" class="font-bold text-lg"></span>
+                </div>
+            </div>
+
+            <!-- Actividad 2: Relacionar Columnas -->
+            <div class="mb-10 p-6 bg-gray-50 rounded-lg border border-gray-200">
+                <h3 class="text-xl font-bold text-gray-800 mb-4">B) Relacionar Conceptos Clínico-Legales</h3>
+                <p class="text-sm text-gray-600 mb-4">Asigne la definición correcta (letras A, B, C) a cada elemento normativo.</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="space-y-4">
+                        <div class="bg-white p-3 border rounded shadow-sm flex items-center justify-between">
+                            <span class="font-semibold text-gray-700">1. Ambulancia de Traslado</span>
+                            <select id="match1" class="border border-gray-300 p-2 rounded focus:outline-none focus:border-blue-500">
+                                <option value="">-</option>
+                                <option value="A">Opción A</option>
+                                <option value="B">Opción B</option>
+                                <option value="C">Opción C</option>
+                            </select>
+                        </div>
+                        <div class="bg-white p-3 border rounded shadow-sm flex items-center justify-between">
+                            <span class="font-semibold text-gray-700">2. Ambulancia Avanzada</span>
+                            <select id="match2" class="border border-gray-300 p-2 rounded focus:outline-none focus:border-blue-500">
+                                <option value="">-</option>
+                                <option value="A">Opción A</option>
+                                <option value="B">Opción B</option>
+                                <option value="C">Opción C</option>
+                            </select>
+                        </div>
+                        <div class="bg-white p-3 border rounded shadow-sm flex items-center justify-between">
+                            <span class="font-semibold text-gray-700">3. FRAP</span>
+                            <select id="match3" class="border border-gray-300 p-2 rounded focus:outline-none focus:border-blue-500">
+                                <option value="">-</option>
+                                <option value="A">Opción A</option>
+                                <option value="B">Opción B</option>
+                                <option value="C">Opción C</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white p-4 border rounded shadow-sm space-y-3 text-sm text-gray-700">
+                        <p><strong>A.</strong> Constituye el documento médico-legal indispensable que debe generarse tras cada atención prehospitalaria.</p>
+                        <hr>
+                        <p><strong>B.</strong> Unidad destinada al paciente cuya condición médica no representa una emergencia ni requiere cuidados críticos.</p>
+                        <hr>
+                        <p><strong>C.</strong> Unidad equipada para el manejo invasivo de la vía aérea y la administración de farmacoterapia de urgencia.</p>
+                    </div>
+                </div>
+                
+                <div class="mt-4 flex items-center gap-4">
+                    <button onclick="checkMatch()" class="bg-blue-600 text-white px-5 py-2 rounded font-semibold hover:bg-blue-700 transition-colors">Validar Relaciones</button>
+                    <span id="matchResult" class="font-bold text-lg"></span>
+                </div>
+            </div>
+
+            <!-- Actividad 3: Crucigrama -->
+            <div class="p-6 bg-gray-50 rounded-lg border border-gray-200">
+                <h3 class="text-xl font-bold text-gray-800 mb-4">C) Crucigrama Terminológico</h3>
+                <p class="text-sm text-gray-600 mb-4">Complete los campos de la cuadrícula empleando letras mayúsculas.</p>
+                
+                <div class="flex flex-col lg:flex-row gap-8 items-start">
+                    <div class="bg-gray-200 p-4 rounded-lg inline-block shadow-inner mx-auto lg:mx-0">
+                        <div id="crossword-container" class="cw-grid">
+                            <!-- El grid es generado mediante Javascript -->
+                        </div>
+                    </div>
+                    
+                    <div class="flex-1 bg-white p-5 border rounded-lg shadow-sm w-full">
+                        <h4 class="font-bold text-orange-700 mb-2 border-b pb-1">Horizontales:</h4>
+                        <ul class="text-sm space-y-2 mb-6 text-gray-700">
+                            <li><strong>1.</strong> (4 letras) Abreviatura oficial del documento donde se registra la evaluación, tratamiento y destino del paciente.</li>
+                            <li><strong>2.</strong> (6 letras) Nivel o tipo de ambulancia de urgencias cuya dotación incluye desfibrilador, pero no material para intubación orotraqueal (En femenino).</li>
+                        </ul>
+                        
+                        <h4 class="font-bold text-orange-700 mb-2 border-b pb-1">Verticales:</h4>
+                        <ul class="text-sm space-y-2 text-gray-700">
+                            <li><strong>3.</strong> (3 letras) Acrónimo que designa al profesional capacitado académicamente para brindar soporte vital prehospitalario.</li>
+                        </ul>
+                        
+                        <div class="mt-6 flex items-center gap-4">
+                            <button onclick="checkCrossword()" class="bg-blue-600 text-white px-5 py-2 rounded font-semibold hover:bg-blue-700 transition-colors w-full sm:w-auto">Validar Crucigrama</button>
+                            <span id="crosswordResult" class="font-bold text-sm block mt-2 sm:mt-0"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Pestaña 5: Evaluación y Certificado -->
+        <section id="evaluacion" class="tab-content bg-white p-8 rounded-lg shadow-sm border border-gray-100">
+            <h2 class="text-3xl font-bold text-gray-800 mb-2">Evaluación Final de la Guía</h2>
+            <p class="text-gray-600 mb-6 pb-4 border-b">Complete el cuestionario de validación de conocimientos. Al aprobar la evaluación, el sistema emitirá un certificado en formato PDF comprobatorio.</p>
+            
+            <div class="mb-8 bg-blue-50 p-6 rounded-lg border border-blue-100">
+                <label class="block font-bold text-gray-800 mb-2" for="studentName">Nombre Completo del Alumno (Aparecerá en el certificado):</label>
+                <input type="text" id="studentName" class="w-full md:w-2/3 border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm" placeholder="Ingrese sus nombres y apellidos">
+            </div>
+
+            <form id="quizForm" class="space-y-6">
+                
+                <!-- Pregunta 1 -->
+                <div class="bg-gray-50 p-5 rounded-lg border border-gray-200">
+                    <p class="font-bold text-gray-800 mb-3">1. De acuerdo a la NOM-034-SSA3-2013, ¿cuál es el significado correcto de la sigla FRAP?</p>
+                    <div class="space-y-2 text-gray-700">
+                        <label class="flex items-center cursor-pointer p-2 hover:bg-gray-100 rounded transition"><input type="radio" name="q1" value="0" class="mr-3 w-4 h-4"> Formulario Rápido de Atención Prehospitalaria</label>
+                        <label class="flex items-center cursor-pointer p-2 hover:bg-gray-100 rounded transition"><input type="radio" name="q1" value="0" class="mr-3 w-4 h-4"> Ficha de Rescate y Apoyo Prehospitalario</label>
+                        <label class="flex items-center cursor-pointer p-2 hover:bg-gray-100 rounded transition"><input type="radio" name="q1" value="1" class="mr-3 w-4 h-4"> Formato de Registro de Atención Prehospitalaria</label>
+                    </div>
+                </div>
+
+                <!-- Pregunta 2 -->
+                <div class="bg-gray-50 p-5 rounded-lg border border-gray-200">
+                    <p class="font-bold text-gray-800 mb-3">2. Una Ambulancia de Cuidados Intensivos está estrictamente destinada a:</p>
+                    <div class="space-y-2 text-gray-700">
+                        <label class="flex items-center cursor-pointer p-2 hover:bg-gray-100 rounded transition"><input type="radio" name="q2" value="0" class="mr-3 w-4 h-4"> Pacientes de consulta general que requieren un traslado foráneo.</label>
+                        <label class="flex items-center cursor-pointer p-2 hover:bg-gray-100 rounded transition"><input type="radio" name="q2" value="1" class="mr-3 w-4 h-4"> Pacientes en estado crítico que precisan soporte vital avanzado continuo.</label>
+                        <label class="flex items-center cursor-pointer p-2 hover:bg-gray-100 rounded transition"><input type="radio" name="q2" value="0" class="mr-3 w-4 h-4"> La primera respuesta ante accidentes viales sin lesionados de gravedad.</label>
+                    </div>
+                </div>
+
+                <!-- Pregunta 3 -->
+                <div class="bg-gray-50 p-5 rounded-lg border border-gray-200">
+                    <p class="font-bold text-gray-800 mb-3">3. En términos de perfil del personal, la norma establece que el prestador de servicios en la ambulancia debe contar obligatoriamente con:</p>
+                    <div class="space-y-2 text-gray-700">
+                        <label class="flex items-center cursor-pointer p-2 hover:bg-gray-100 rounded transition"><input type="radio" name="q3" value="0" class="mr-3 w-4 h-4"> Un curso de primeros auxilios de 8 horas impartido por su empresa.</label>
+                        <label class="flex items-center cursor-pointer p-2 hover:bg-gray-100 rounded transition"><input type="radio" name="q3" value="1" class="mr-3 w-4 h-4"> Documento comprobatorio emitido por una institución educativa reconocida que lo avale como técnico.</label>
+                        <label class="flex items-center cursor-pointer p-2 hover:bg-gray-100 rounded transition"><input type="radio" name="q3" value="0" class="mr-3 w-4 h-4"> Exclusivamente con una licencia de conducir tipo chofer vigente.</label>
+                    </div>
+                </div>
+
+                <!-- Pregunta 4 -->
+                <div class="bg-gray-50 p-5 rounded-lg border border-gray-200">
+                    <p class="font-bold text-gray-800 mb-3">4. Identifique la intervención técnica que excede la capacidad resolutiva normativa de una Ambulancia de Urgencias Básicas:</p>
+                    <div class="space-y-2 text-gray-700">
+                        <label class="flex items-center cursor-pointer p-2 hover:bg-gray-100 rounded transition"><input type="radio" name="q4" value="0" class="mr-3 w-4 h-4"> Utilización del Desfibrilador Externo Automatizado (DEA).</label>
+                        <label class="flex items-center cursor-pointer p-2 hover:bg-gray-100 rounded transition"><input type="radio" name="q4" value="0" class="mr-3 w-4 h-4"> Inmovilización de columna y control de hemorragias exanguinantes.</label>
+                        <label class="flex items-center cursor-pointer p-2 hover:bg-gray-100 rounded transition"><input type="radio" name="q4" value="1" class="mr-3 w-4 h-4"> Intubación endotraqueal y administración de medicamentos inotrópicos.</label>
+                    </div>
+                </div>
+
+                <!-- Pregunta 5 -->
+                <div class="bg-gray-50 p-5 rounded-lg border border-gray-200">
+                    <p class="font-bold text-gray-800 mb-3">5. El objetivo central que persigue el Estado mediante la publicación y vigilancia de la NOM-034 es:</p>
+                    <div class="space-y-2 text-gray-700">
+                        <label class="flex items-center cursor-pointer p-2 hover:bg-gray-100 rounded transition"><input type="radio" name="q5" value="0" class="mr-3 w-4 h-4"> Regular exclusivamente los esquemas de cobro de las empresas de ambulancias privadas.</label>
+                        <label class="flex items-center cursor-pointer p-2 hover:bg-gray-100 rounded transition"><input type="radio" name="q5" value="1" class="mr-3 w-4 h-4"> Establecer los requisitos mínimos indispensables para garantizar niveles de calidad y seguridad en la atención médica prehospitalaria.</label>
+                        <label class="flex items-center cursor-pointer p-2 hover:bg-gray-100 rounded transition"><input type="radio" name="q5" value="0" class="mr-3 w-4 h-4"> Dictaminar los colores y tipos de pintura para el parque vehicular de rescate.</label>
+                    </div>
+                </div>
+
+                <div class="pt-6 border-t border-gray-200 flex flex-col sm:flex-row items-center gap-4">
+                    <button type="button" onclick="evaluateAndCertify()" class="bg-orange-600 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-orange-700 transition shadow-lg w-full sm:w-auto">
+                        Evaluar y Descargar Certificado
+                    </button>
+                    <div id="evaluationFeedback" class="text-xl text-center sm:text-left"></div>
+                </div>
+            </form>
+        </section>
+
+    </main>
+
+    <!-- Footer Institucional -->
+    <footer class="bg-gray-900 text-gray-400 py-8 text-center text-sm border-t-4 border-gray-700 mt-auto">
+        <div class="max-w-6xl mx-auto px-4">
+            <p class="mb-2 font-semibold text-gray-300">Instituto de Protección Civil, Emergencias y Desastres (IPCED)</p>
+            <p>Guía elaborada para la asignatura: Marco Legal de la Gestión de las Emergencias.</p>
+            <p>Diseño basado en metodologías de aprendizaje activo y constructivismo.</p>
+        </div>
+    </footer>
+
+    <script>
+        // --- Navegación por pestañas ---
+        function switchTab(event, targetId) {
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.classList.remove('active'));
+            
+            const btns = document.querySelectorAll('.nav-btn');
+            btns.forEach(btn => btn.classList.remove('active'));
+            
+            document.getElementById(targetId).classList.add('active');
+            event.currentTarget.classList.add('active');
+        }
+
+        // --- Actividad A: Rellenar Textos ---
+        function checkFillIn() {
+            const a1 = document.getElementById('fill1').value;
+            const a2 = document.getElementById('fill2').value;
+            const a3 = document.getElementById('fill3').value;
+            const resultBox = document.getElementById('fillResult');
+            
+            if (!a1 || !a2 || !a3) {
+                resultBox.textContent = "Faltan espacios por seleccionar.";
+                resultBox.className = "font-bold text-sm text-gray-600";
+                return;
+            }
+
+            if (a1 === 'documento' && a2 === 'FRAP' && a3 === 'Cuidados Intensivos') {
+                resultBox.textContent = "¡Correcto! Análisis normativo acertado.";
+                resultBox.className = "font-bold text-sm text-green-600";
+            } else {
+                resultBox.textContent = "Respuestas incorrectas. Revise la sección de contenido temático.";
+                resultBox.className = "font-bold text-sm text-red-600";
+            }
+        }
+
+        // --- Actividad B: Relacionar Columnas ---
+        function checkMatch() {
+            const m1 = document.getElementById('match1').value;
+            const m2 = document.getElementById('match2').value;
+            const m3 = document.getElementById('match3').value;
+            const resultBox = document.getElementById('matchResult');
+
+            if (!m1 || !m2 || !m3) {
+                resultBox.textContent = "Debe asignar una letra a cada concepto.";
+                resultBox.className = "font-bold text-sm text-gray-600";
+                return;
+            }
+
+            if (m1 === 'B' && m2 === 'C' && m3 === 'A') {
+                resultBox.textContent = "¡Asociación correcta!";
+                resultBox.className = "font-bold text-sm text-green-600";
+            } else {
+                resultBox.textContent = "Correlación errónea. Intente nuevamente.";
+                resultBox.className = "font-bold text-sm text-red-600";
+            }
+        }
+
+        // --- Actividad C: Crucigrama ---
+        function renderCrossword() {
+            const container = document.getElementById('crossword-container');
+            const layout = [
+                ['#', '1,F', 'R', 'A', 'P', '#', '#'],
+                ['#', '#', '#', '#', '#', '#', '#'],
+                ['#', '2,B', 'A', 'S', 'I', 'C', 'A'],
+                ['3,T', '#', '#', '#', '#', '#', '#'],
+                ['U', '#', '#', '#', '#', '#', '#'],
+                ['M', '#', '#', '#', '#', '#', '#']
+            ];
+
+            layout.forEach(row => {
+                row.forEach(cell => {
+                    const cellDiv = document.createElement('div');
+                    
+                    if (cell === '#') {
+                        cellDiv.style.backgroundColor = '#4b5563';
+                    } else {
+                        cellDiv.style.position = 'relative';
+                        cellDiv.style.backgroundColor = '#ffffff';
+                        cellDiv.style.border = '1px solid #9ca3af';
+                        
+                        const input = document.createElement('input');
+                        input.type = 'text';
+                        input.maxLength = 1;
+                        input.className = 'w-full h-full text-center font-extrabold uppercase focus:outline-none focus:ring-2 focus:ring-orange-500 cw-input bg-white text-gray-800';
+                        
+                        if (cell.includes(',')) {
+                            const [num, letter] = cell.split(',');
+                            const numSpan = document.createElement('span');
+                            numSpan.textContent = num;
+                            numSpan.className = 'absolute top-0 left-1 text-[10px] text-gray-500 pointer-events-none font-sans font-normal';
+                            cellDiv.appendChild(numSpan);
+                            input.dataset.letter = letter;
+                        } else {
+                            input.dataset.letter = cell;
+                        }
+                        cellDiv.appendChild(input);
+                    }
+                    container.appendChild(cellDiv);
+                });
+            });
+        }
+
+        function checkCrossword() {
+            const inputs = document.querySelectorAll('.cw-input');
+            let isCorrect = true;
+            let isEmpty = true;
+
+            inputs.forEach(inp => {
+                const val = inp.value.toUpperCase();
+                if (val !== '') isEmpty = false;
+                
+                if (val !== inp.dataset.letter) {
+                    isCorrect = false;
+                    if(val !== '') inp.style.color = '#dc2626';
+                } else {
+                    inp.style.color = '#16a34a';
+                }
+            });
+            
+            const resultBox = document.getElementById('crosswordResult');
+            if (isEmpty) {
+                resultBox.textContent = "El crucigrama está vacío.";
+                resultBox.className = "font-bold text-sm text-gray-600 block mt-2";
+            } else if (isCorrect) {
+                resultBox.textContent = "¡Resolución terminológica correcta!";
+                resultBox.className = "font-bold text-sm text-green-600 block mt-2";
+            } else {
+                resultBox.textContent = "Existen inexactitudes. Revise los campos marcados en rojo.";
+                resultBox.className = "font-bold text-sm text-red-600 block mt-2";
+            }
+        }
+
+        // --- Evaluación y Generación de PDF (jsPDF) ---
+        function evaluateAndCertify() {
+            const studentName = document.getElementById('studentName').value.trim();
+            const feedbackBox = document.getElementById('evaluationFeedback');
+
+            if (!studentName) {
+                feedbackBox.innerHTML = "<span class='text-red-600 font-bold text-sm'>Requisito faltante:</span><br><span class='text-sm text-gray-700'>Por favor, ingrese su nombre completo para procesar la evaluación.</span>";
+                return;
+            }
+
+            let score = 0;
+            const respuestas = [
+                document.querySelector('input[name="q1"]:checked'),
+                document.querySelector('input[name="q2"]:checked'),
+                document.querySelector('input[name="q3"]:checked'),
+                document.querySelector('input[name="q4"]:checked'),
+                document.querySelector('input[name="q5"]:checked')
+            ];
+
+            const faltanRespuestas = respuestas.some(r => r === null);
+            if (faltanRespuestas) {
+                feedbackBox.innerHTML = "<span class='text-red-600 font-bold text-sm'>Evaluación Incompleta:</span><br><span class='text-sm text-gray-700'>Debe responder las 5 preguntas.</span>";
+                return;
+            }
+
+            respuestas.forEach(r => {
+                if (r && r.value === "1") {
+                    score += 20;
+                }
+            });
+
+            feedbackBox.innerHTML = `Calificación Final: <strong class="${score >= 80 ? 'text-green-600' : 'text-red-600'}">${score} / 100</strong>`;
+
+            generatePDFCertificate(studentName, score);
+        }
+
+        function generatePDFCertificate(name, score) {
+            try {
+                const { jsPDF } = window.jspdf;
+                const doc = new jsPDF({
+                    orientation: 'landscape',
+                    unit: 'mm',
+                    format: 'a4'
+                });
+                
+                doc.setDrawColor(234, 88, 12);
+                doc.setLineWidth(3);
+                doc.rect(10, 10, 277, 190);
+                
+                doc.setDrawColor(31, 41, 55);
+                doc.setLineWidth(1);
+                doc.rect(14, 14, 269, 182);
+
+                doc.setFillColor(234, 88, 12);
+                doc.rect(15, 15, 267, 30, 'F');
+                doc.setTextColor(255, 255, 255);
+                doc.setFont("helvetica", "bold");
+                doc.setFontSize(20);
+                doc.text("INSTITUTO DE PROTECCIÓN CIVIL, EMERGENCIAS Y DESASTRES", 148, 35, null, null, "center");
+
+                doc.setTextColor(31, 41, 55);
+                doc.setFontSize(32);
+                doc.text("CERTIFICADO DE APROVECHAMIENTO", 148, 70, null, null, "center");
+                
+                doc.setFontSize(16);
+                doc.setFont("helvetica", "normal");
+                doc.text("Se otorga el presente documento a:", 148, 90, null, null, "center");
+                
+                doc.setFont("helvetica", "bold");
+                doc.setFontSize(28);
+                doc.setTextColor(234, 88, 12);
+                doc.text(name.toUpperCase(), 148, 105, null, null, "center");
+                
+                doc.setTextColor(31, 41, 55);
+                doc.setFont("helvetica", "normal");
+                doc.setFontSize(14);
+                doc.text("Por haber concluido satisfactoriamente la Guía Interactiva Universitaria sobre la", 148, 125, null, null, "center");
+                
+                doc.setFont("helvetica", "bold");
+                doc.text("Norma Oficial Mexicana NOM-034-SSA3-2013", 148, 135, null, null, "center");
+                
+                doc.setFont("helvetica", "normal");
+                doc.text("Regulación de los servicios de salud. Atención médica prehospitalaria.", 148, 145, null, null, "center");
+                
+                doc.setFont("helvetica", "bold");
+                doc.setFontSize(18);
+                const scoreColor = score >= 80 ? [22, 163, 74] : [220, 38, 38];
+                doc.setTextColor(scoreColor[0], scoreColor[1], scoreColor[2]);
+                doc.text(`Calificación Obtenida: ${score} / 100`, 148, 165, null, null, "center");
+
+                doc.setTextColor(100, 100, 100);
+                doc.setFontSize(10);
+                doc.setFont("helvetica", "normal");
+                doc.text("Materia: Marco Legal de la Gestión de las Emergencias", 148, 185, null, null, "center");
+                
+                const fecha = new Date().toLocaleDateString('es-MX', { year: 'numeric', month: 'long', day: 'numeric' });
+                doc.text(`Fecha de emisión del documento: ${fecha}`, 148, 192, null, null, "center");
+
+                const formattedName = name.replace(/\s+/g, '_').toLowerCase();
+                doc.save(`Certificado_NOM034_${formattedName}.pdf`);
+                
+            } catch (error) {
+                console.error("Error al generar el PDF:", error);
+                alert("Hubo un error al generar el certificado PDF.");
+            }
+        }
+
+        window.onload = function() {
+            renderCrossword();
+        };
+    </script>
+</body>
+</html>
